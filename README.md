@@ -1,13 +1,13 @@
 # pageLinkage
 
 ***
-##key
+### key words
 A simple way to show how the sliding of the page/
 pageViewController,页面联动, pageLIinkage,多页面展示
 
 
 ***
-##How to use?
+### How to use?
 1. Create a page and inheritance The 'MCPageViewController'.
 2. Give the title arrays and page array to fill in the data.
 ```
@@ -29,8 +29,9 @@ pageViewController,页面联动, pageLIinkage,多页面展示
 // 实现自身的方法. 必须调用
 - (void)achieve;
 ```
-3. Call method '[self achieve];'
+3. Call method `[self achieve];`
 
-
+***
+### The sample
 ![1](https://github.com/mancongiOS/pageLinkage/blob/master/1.png)
 ![2](https://github.com/mancongiOS/pageLinkage/blob/master/2.png)

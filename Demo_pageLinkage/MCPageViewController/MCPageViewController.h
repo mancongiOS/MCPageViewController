@@ -26,4 +26,7 @@
 
 @property (nonatomic, assign) NSInteger currentPage;          // 需要显示的页面  默认为第零页
 
+// 实现自身的方法. 必须调用
+- (void)achieve;
+
 @end

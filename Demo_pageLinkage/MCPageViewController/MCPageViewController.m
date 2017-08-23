@@ -40,14 +40,11 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 #define kHeigth         self.view.bounds.size.height
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+// 避免子类重写viewDidLoad方法导致不能实现下面的两个方法
+- (void)achieve {
     [self reference_baseSetting];
     [self reference_initUI];
 }
-
-
 
 #pragma mark - 系统代理
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {

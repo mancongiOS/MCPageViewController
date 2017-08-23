@@ -45,7 +45,7 @@
     for (int i = 0; i < 15; i ++) {
         SubViewController * one = [[SubViewController alloc] init];
         
-        one.str = [NSString stringWithFormat:@"%d",i];
+        one.str = [NSString stringWithFormat:@"第%d页",i];
         [vc addObject:one];
         
         __weak __typeof__(self) weakSelf = self;
@@ -58,14 +58,14 @@
         };
         
         
-        [title addObject:[NSString stringWithFormat:@"%d",i]];
+        [title addObject:[NSString stringWithFormat:@"第%d位",i]];
     }
     
     
     page.vcArray = vc;
     page.titleArray = title;    
     page.blockColor = [UIColor greenColor];
-    
+    page.blockWidth = 80;
     
     
     [self.navigationController pushViewController:page animated:YES];

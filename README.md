@@ -29,7 +29,27 @@ pageViewController,页面联动, pageLIinkage,多页面展示
 // 实现自身的方法. 必须调用
 - (void)achieve;
 ```
-3. Call method `[self achieve];`
+3. Call method `[self achieve];
+
+4. use
+        创建控制器 并继承MCPageViewController.
+
+        self.titleArray = ["   分类   ","   品牌   "]
+        
+        let classVC = MCClass_classViewController()
+        let brandVC  = MCClass_brandViewController()
+        
+        
+        
+        classVC.customDelegate = self
+        brandVC.customDelegate = self
+        
+        self.vcArray = [classVC,brandVC]
+        self.lineView.backgroundColor = UIColor.MCGray_light
+        self.blockWidth = MCScreenWidth/2
+        self.blockFont = 14
+        self.blockNormalColor = UIColor.MCGray_middle
+        achieve()
 
 ***
 ### The sample

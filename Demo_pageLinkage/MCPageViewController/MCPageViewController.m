@@ -128,11 +128,12 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
                                            delay:0.0
                                          options:UIViewKeyframeAnimationOptionLayoutSubviews
                                       animations:^{
-                                          _indicatorView.center = CGPointMake(button.center.x, _indicatorView.center.y);
+                                          
+                                          _indicatorView.center = CGPointMake(button.center.x, self.barHeight-0.75);
                                           _indicatorView.bounds = CGRectMake(0, 0, width, 1.5);
                                       }
                                       completion:^(BOOL finished) {
-                                          [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                                          [button setTitleColor:self.blockSelectedColor forState:UIControlStateNormal];
                                       }];
         }
     }
@@ -222,6 +223,8 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     
     [self titleButtonClicked:self.titleButtonArrayM[0]];
     
+    self.titleScrollView.contentSize = CGSizeMake(self.blockWidth*self.titleArray.count, 0);
+    self.titleScrollView.contentSize = CGSizeMake(self.blockWidth*self.titleArray.count, 0);
     
     NSString * title = [self.titleArray objectAtIndex:0];
     CGFloat width = [title boundingRectWithSize:CGSizeMake(1000, self.blockFont) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:self.blockFont]} context:nil].size.width;
@@ -229,6 +232,9 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     [self.titleScrollView addSubview:self.indicatorView];
 }
 
+- (void)setCurrentPage:(NSInteger)currentPage {
+    [self titleButtonClicked:self.titleButtonArrayM[currentPage]];
+}
 
 
 
@@ -238,8 +244,6 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
         self.titleScrollView = [[UIScrollView alloc] init];
         self.titleScrollView.showsHorizontalScrollIndicator = NO;
         self.titleScrollView.backgroundColor = self.barColor;
-        self.titleScrollView.contentSize = CGSizeMake(self.blockWidth*self.titleArray.count, 0);
-        self.titleScrollView.contentSize = CGSizeMake(self.blockWidth*self.titleArray.count, 0);
     } return _titleScrollView;
 }
 

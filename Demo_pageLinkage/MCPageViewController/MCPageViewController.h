@@ -11,22 +11,23 @@
 
 @interface MCPageViewController : UIViewController
 
-@property (nonatomic, strong) NSArray * titleArray;           // 存放标题的数组
-@property (nonatomic, strong) NSArray * vcArray;              // 控制器的数组
 
-@property (nonatomic, strong) UIColor * barColor;             // 标题栏的背景颜色
+/** 可选
+ 设置属性
+ */
+
 @property (nonatomic, assign) CGFloat   barHeight;            // 标题栏的高度  默认我40
-
-@property (nonatomic, assign) CGFloat   blockWidth;           // 标题块的宽度  默认50
 @property (nonatomic, assign) CGFloat   blockFont;            // 标题块的字体的大小  默认18
 @property (nonatomic, strong) UIColor * blockColor;           // 标题块的背景颜色
-@property (nonatomic, strong) UIColor * blockNormalColor;     // 标题块的默认颜色
-@property (nonatomic, strong) UIColor * blockSelectedColor;   // 标题块的选择颜色
 
 
-@property (nonatomic, assign) NSInteger currentPage;          // 需要显示的页面  默认为第零页
-
-// 实现自身的方法. 必须调用
-- (void)achieve;
+/**
+ titles              : 设置标题数组
+ vcArray             : 设置控制器数组
+ blockNormalColor    : 设置按钮文字未选中状态的颜色
+ blockSelectedColor  : 设置按钮文字已选中状态的颜色
+ currentPage         : 设置当前页
+ */
+- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor currentPage:(NSInteger)currentPage;
 
 @end

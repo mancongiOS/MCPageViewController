@@ -22,6 +22,8 @@
     [super viewDidLoad];
     
     self.title = @"页面联动";
+    
+    
     NSMutableArray * vc = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray * title = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < 15; i ++) {
@@ -40,12 +42,11 @@
         [title addObject:[NSString stringWithFormat:@"第%d位",i]];
     }
     
-    self.vcArray = vc;
-    self.titleArray = title;
-    self.blockColor = [UIColor greenColor];
-    self.blockWidth = 80;
+    self.blockFont = 40;
+    self.barHeight = 100;
+    self.blockColor = [UIColor yellowColor];
     
-    [self achieve];
+    [self initWithTitleArray:title vcArray:vc blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor] currentPage:0];
 }
 
 @end

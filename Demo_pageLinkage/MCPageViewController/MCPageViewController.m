@@ -47,6 +47,9 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 #define kHeigth         self.view.bounds.size.height
 
 
+
+
+
 - (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor currentPage:(NSInteger)currentPage {
    
     if (titles.count != vcArray.count) {
@@ -76,6 +79,11 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     [self reference_baseSetting];
     [self reference_initUI];
 }
+
+-(void)jumpToSubViewController:(NSInteger)index {
+    [self titleButtonClicked:self.titleButtonArrayM[index]];
+}
+
 
 #pragma mark - 系统代理
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
@@ -176,7 +184,11 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    if (_barHeight < 40) { _barHeight = 40; }
+    if (_barHeight == 0) { _barHeight = 40; }
+    
+    //
+    if (_barHeight < 0) { _barHeight = 0; }
+
     
     if (_blockFont < 14) { _blockFont = 18; }
     

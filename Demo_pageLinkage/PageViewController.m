@@ -24,13 +24,16 @@
     self.title = @"页面联动";
     
     
-    NSMutableArray * vc = [NSMutableArray arrayWithCapacity:0];
-    NSMutableArray * title = [NSMutableArray arrayWithCapacity:0];
-    for (int i = 0; i < 15; i ++) {
+    NSArray * dataArray = @[@"关注",@"推荐",@"热点",@"上海",@"娱乐",@"头条",@"问答",@"科技",@"视频"];
+    
+    NSMutableArray * vcArrayM = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i < dataArray.count; i ++) {
         SubViewController * one = [[SubViewController alloc] init];
+        one.title = dataArray[i];
+        one.str = dataArray[i];
+        [vcArrayM addObject:one];
         
-        one.str = [NSString stringWithFormat:@"第%d页",i];
-        [vc addObject:one];
+        
         
         // 子页面上点击事件的处理
         __weak __typeof__(self) weakSelf = self;
@@ -39,14 +42,16 @@
             [weakSelf.navigationController pushViewController:vc animated:YES];
         };
         
-        [title addObject:[NSString stringWithFormat:@"第%d位",i]];
+        one.twoBlock = ^(int index) {
+            [weakSelf jumpToSubViewController:index];
+        };
+        
     }
     
-    self.blockFont = 40;
-    self.barHeight = 100;
-    self.blockColor = [UIColor yellowColor];
+    self.blockFont = 14;
+    self.barHeight = 40;
     
-    [self initWithTitleArray:title vcArray:vc blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor] currentPage:0];
+    [self initWithTitleArray:dataArray vcArray:vcArrayM blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor] currentPage:0];
 }
 
 @end

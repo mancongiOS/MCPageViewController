@@ -19,11 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"点击空白处";
+    self.title = @"";
     
     UINavigationBar * navigationBar = self.navigationController.navigationBar;
     navigationBar.translucent = NO;
-    [navigationBar setBackgroundImage:[UIImage imageNamed:@"Reuse_placeholder_2*1"] forBarMetrics:UIBarMetricsDefault];
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];
 
 }
 

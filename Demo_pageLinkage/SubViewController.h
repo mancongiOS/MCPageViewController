@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^OneBlock)(NSString * string,UIViewController *vc);
+typedef void(^TwoBlock)(int idnex);
 
 
 @interface SubViewController : UIViewController
@@ -17,6 +18,7 @@ typedef void(^OneBlock)(NSString * string,UIViewController *vc);
 
 
 @property (nonatomic, copy) OneBlock oneBlock;
+@property (nonatomic, copy) TwoBlock twoBlock;
 
 
 @end

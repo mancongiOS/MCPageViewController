@@ -7,9 +7,19 @@ pageViewController,页面联动, pageLIinkage,多页面展示
 
 
 ***
-### 如何使用?
-1. 导入 'MCPageViewController'进自己的项目.
-2. 实现init方法，并填充必要方法入参.
+
+### 属性和方法的说明
+1. 设置可选属性. (可选属性的设置要写在init方法之前才可生效！！！)
+```
+/** 标题栏的高度
+默认为40
+当设置 barHeight 为负数时候，隐藏标题栏。 实例：当有有且只有一个子页面的时候
+*/
+@property (nonatomic, assign) CGFloat   barHeight;
+@property (nonatomic, assign) CGFloat   blockFont;            // 标题块的字体的大小  默认15
+@property (nonatomic, strong) UIColor * blockColor;           // 标题块的背景颜色
+```
+2. 页面初始化 （必须实现）
 ```
 /**
 titles              : 设置标题数组
@@ -19,47 +29,47 @@ blockSelectedColor  : 设置按钮文字已选中状态的颜色
 currentPage         : 设置当前页
 */
 - (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor currentPage:(NSInteger)currentPage;
-```
 
-3. 设置可选属性. (可选属性的设置要写在init方法之前才可生效！！！)
 ```
-/** 可选
-设置属性
-*/
+3.  跳转到其他pageViewController的子页面 （可选）
+```- (void)jumpToSubViewController:(NSInteger)index;```
 
-@property (nonatomic, assign) CGFloat   barHeight;            // 标题栏的高度  默认我40
-@property (nonatomic, assign) CGFloat   blockFont;            // 标题块的字体的大小  默认18
-@property (nonatomic, strong) UIColor * blockColor;           // 标题块的背景颜色
-```
 
-3. use
+### 如何使用?
+1. 导入 'MCPageViewController'进自己的项目.
+
+2. use
         创建控制器 并继承MCPageViewController.
 ```
-NSMutableArray * vc = [NSMutableArray arrayWithCapacity:0];
-NSMutableArray * title = [NSMutableArray arrayWithCapacity:0];
-for (int i = 0; i < 15; i ++) {
+在viewDidLoad方法中设置可选属性并且实现initWithTitleArray方法
+NSArray * dataArray = @[@"关注",@"推荐",@"热点",@"上海",@"娱乐",@"头条",@"问答",@"科技",@"视频"];
+
+NSMutableArray * vcArrayM = [NSMutableArray arrayWithCapacity:0];
+for (int i = 0; i < dataArray.count; i ++) {
 SubViewController * one = [[SubViewController alloc] init];
+one.title = dataArray[i];
+one.str = dataArray[i];
+[vcArrayM addObject:one];
 
-one.str = [NSString stringWithFormat:@"第%d页",i];
-[vc addObject:one];
-
-// 子页面上点击事件的处理
+// 子页面上点击事件的处理  --> push到下个页面
 __weak __typeof__(self) weakSelf = self;
 one.oneBlock = ^(NSString *string, UIViewController *vc) {
 vc.title = string;
 [weakSelf.navigationController pushViewController:vc animated:YES];
 };
 
-[title addObject:[NSString stringWithFormat:@"第%d位",i]];
+// 子页面上点击事件的处理  --> 跳转到其他pageViewController的子页面
+one.twoBlock = ^(int index) {
+[weakSelf jumpToSubViewController:index];
+};
+
 }
+self.blockFont = 14;
+self.barHeight = 40;
 
-self.blockFont = 40;
-self.barHeight = 100;
-self.blockColor = [UIColor yellowColor];
-
-[self initWithTitleArray:title vcArray:vc blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor] currentPage:0];
+[self initWithTitleArray:dataArray vcArray:vcArrayM blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor] currentPage:0];
 ```
-
+3. 子页面上的事件，请单独处理。子页面上没法做push跳转，一定要让pageViewController去做跳转。具体请看demo。
 
 ***
 ### The sample

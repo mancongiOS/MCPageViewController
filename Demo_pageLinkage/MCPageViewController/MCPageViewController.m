@@ -189,8 +189,7 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     //
     if (_barHeight < 0) { _barHeight = 0; }
 
-    
-    if (_blockFont < 14) { _blockFont = 18; }
+    if (_blockFont < 14) { _blockFont = 15; }
     
     if (_blockColor == nil) { _blockColor = [UIColor whiteColor]; }
     

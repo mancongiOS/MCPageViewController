@@ -33,21 +33,19 @@
         one.str = dataArray[i];
         [vcArrayM addObject:one];
         
-        
-        
-        // 子页面上点击事件的处理
+        // 子页面上点击事件的处理  --> push到下个页面
         __weak __typeof__(self) weakSelf = self;
         one.oneBlock = ^(NSString *string, UIViewController *vc) {
             vc.title = string;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         };
         
+        // 子页面上点击事件的处理  --> 跳转到其他pageViewController的子页面
         one.twoBlock = ^(int index) {
             [weakSelf jumpToSubViewController:index];
         };
         
     }
-    
     self.blockFont = 14;
     self.barHeight = 40;
     

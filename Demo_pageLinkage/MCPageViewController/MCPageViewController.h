@@ -20,9 +20,7 @@
  当设置 barHeight 为负数时候，隐藏标题栏。 实例：当有有且只有一个子页面的时候
  */
 @property (nonatomic, assign) CGFloat   barHeight;
-
-
-@property (nonatomic, assign) CGFloat   blockFont;            // 标题块的字体的大小  默认18
+@property (nonatomic, assign) CGFloat   blockFont;            // 标题块的字体的大小  默认15
 @property (nonatomic, strong) UIColor * blockColor;           // 标题块的背景颜色
 
 

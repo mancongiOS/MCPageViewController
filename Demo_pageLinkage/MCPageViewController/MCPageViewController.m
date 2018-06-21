@@ -272,7 +272,7 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 - (UIView *)lineView {
     if (_lineView == nil) {
         self.lineView = [[UIView alloc] init];
-        self.lineView.backgroundColor = [UIColor grayColor];
+        self.lineView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
     } return _lineView;
 }
 

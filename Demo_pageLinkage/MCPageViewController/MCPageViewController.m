@@ -30,11 +30,12 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
  *  用来改变按钮的状态
  */
 @property (nonatomic, strong) NSMutableArray * titleButtonArrayM;
-@property (nonatomic, assign) CGFloat   blockWidth;           // 标题块的宽度  根据标题文字长度计算
 @property (nonatomic, strong) NSArray * titleArray;           // 存放标题的数组
 @property (nonatomic, strong) NSArray * vcArray;              // 控制器的数组
-@property (nonatomic, strong) UIColor * blockNormalColor;     // 标题块的默认颜色
-@property (nonatomic, strong) UIColor * blockSelectedColor;   // 标题块的选择颜色
+@property (nonatomic, assign) CGFloat   titleFont;            //  标题的字体大小
+@property (nonatomic, assign) CGFloat   titleWidth;           //  标题的宽度
+@property (nonatomic, strong) UIColor * titleNormalColor;     // 标题块的默认颜色
+@property (nonatomic, strong) UIColor * titleSelectedColor;   // 标题块的选择颜色
 @property (nonatomic, assign) NSInteger currentPage;          // 需要显示的页面  默认为第零页
 
 
@@ -50,8 +51,8 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 
 
 
-- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor currentPage:(NSInteger)currentPage {
-   
+- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray titleFont:(CGFloat)titleFont titleNormalColor:(UIColor *)titleNormalColor titleSelectedColor:(UIColor *)titleSelectedColor currentPage:(NSInteger)currentPage {
+
     if (titles.count != vcArray.count) {
         printf("-----------------\n\n标题数组和控制器数组个数不一致\n\n-------------");
         return;
@@ -60,8 +61,9 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     
     self.titleArray = titles;
     self.vcArray = vcArray;
-    self.blockNormalColor = blockNormalColor;
-    self.blockSelectedColor = blockSelectedColor;
+    self.titleFont = titleFont;
+    self.titleNormalColor = titleNormalColor;
+    self.titleSelectedColor = titleSelectedColor;
     
     [self achieve];
     
@@ -121,13 +123,17 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 //设置偏移
 - (void)setScrollViewOffSet:(UIButton *)sender {
     
-    int count = kWidth * 0.5 / self.blockWidth;
+    if (self.isLeftSideDistribution) {
+        return;
+    }
+    
+    int count = kWidth * 0.5 / self.titleWidth;
     if (count % 2 == 0) { count --; }
-    CGFloat offsetX = sender.frame.origin.x - count * self.blockWidth;
-  
+    CGFloat offsetX = sender.frame.origin.x - count * self.titleWidth;
+    
     if (offsetX<0) { offsetX=0; }
     CGFloat maxOffsetX= _titleScrollView.contentSize.width - kWidth;
-  
+    
     if (offsetX > maxOffsetX) { offsetX = maxOffsetX; }
     [UIView animateWithDuration:.2 animations:^{
         [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
@@ -144,11 +150,12 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     if (_curPage < 0) { _curPage = 1; }
     
     NSString * title = [self.titleArray objectAtIndex:_curPage];
-    CGFloat width = [title boundingRectWithSize:CGSizeMake(1000, self.blockFont) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:self.blockFont]} context:nil].size.width;
+    CGFloat width = [title boundingRectWithSize:CGSizeMake(1000, self.titleFont) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:self.titleFont]} context:nil].size.width;
     
     for (UIButton * button in self.titleButtonArrayM) {
         if (tagNum != button.tag) {
-            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            button.selected = false;
+            button.titleLabel.font = [UIFont systemFontOfSize:self.titleFont];
         } else {
             [UIView animateKeyframesWithDuration:0.2
                                            delay:0.0
@@ -159,7 +166,9 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
                                           _indicatorView.bounds = CGRectMake(0, 0, width, 1.5);
                                       }
                                       completion:^(BOOL finished) {
-                                          [button setTitleColor:self.blockSelectedColor forState:UIControlStateNormal];
+                                          button.selected = true;
+                                          button.titleLabel.font = [UIFont systemFontOfSize:self.titleFont + 1];
+
                                       }];
         }
     }
@@ -184,20 +193,20 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    if (_barHeight == 0) { _barHeight = 40; }
+    if (_barHeight == 0) { _barHeight = 44; }
     
-    //
     if (_barHeight < 0) { _barHeight = 0; }
 
-    if (_blockFont < 14) { _blockFont = 15; }
+    if (_titleFont < 14) { _titleFont = 15; }
     
-    if (_blockColor == nil) { _blockColor = [UIColor whiteColor]; }
+    if (_barColor == nil) { _barColor = [UIColor whiteColor]; }
+    
     
     CGFloat W = 0.0;
     CGFloat allW = 0.0;
     for (NSString * str in self.titleArray) {
         CGSize size = CGSizeMake(999, 20);
-        NSDictionary * dict =@{NSFontAttributeName : [UIFont systemFontOfSize:self.blockFont]};
+        NSDictionary * dict =@{NSFontAttributeName : [UIFont systemFontOfSize:self.titleFont]};
         CGFloat width = [str boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size.width + 15;
         
         if (width > W) {
@@ -207,10 +216,16 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     }
     
     if (allW >= kWidth) {
-        self.blockWidth = W;
+        self.titleWidth = W;
+        self.isLeftSideDistribution = false;
     } else {
-        self.blockWidth = kWidth / self.titleArray.count;
+        if (self.isLeftSideDistribution) {
+            self.titleWidth = W;
+        } else {
+            self.titleWidth = kWidth / self.titleArray.count;
+        }
     }
+    
 }
 
 - (void)reference_initUI {
@@ -227,12 +242,12 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     //创建按钮
     for (int i = 0; i<self.titleArray.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(i*self.blockWidth, 0, self.blockWidth, self.barHeight);
-        btn.backgroundColor = self.blockColor;
-        btn.titleLabel.font = [UIFont systemFontOfSize:self.blockFont];
+        btn.frame = CGRectMake(i*self.titleWidth, 0, self.titleWidth, self.barHeight);
+        btn.backgroundColor = self.barColor;
+        btn.titleLabel.font = [UIFont systemFontOfSize:self.titleFont];
         [btn setTitle:[NSString stringWithFormat:@"%@",self.titleArray[i]] forState:UIControlStateNormal];
-        [btn setTitleColor:self.blockNormalColor forState:UIControlStateNormal];
-        [btn setTitleColor:self.blockSelectedColor forState:UIControlStateNormal];
+        [btn setTitleColor:self.titleNormalColor forState:UIControlStateNormal];
+        [btn setTitleColor:self.titleSelectedColor forState:UIControlStateSelected];
         btn.tag = 1000 + i;
         //添加点击事件
         [btn addTarget:self action:@selector(jumpToVC:) forControlEvents:UIControlEventTouchUpInside];
@@ -241,12 +256,12 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     }
     
     
-    self.titleScrollView.contentSize = CGSizeMake(self.blockWidth*self.titleArray.count, 0);
-    self.titleScrollView.contentSize = CGSizeMake(self.blockWidth*self.titleArray.count, 0);
+    self.titleScrollView.contentSize = CGSizeMake(self.titleWidth*self.titleArray.count, 0);
+    self.titleScrollView.contentSize = CGSizeMake(self.titleWidth*self.titleArray.count, 0);
     
     NSString * title = [self.titleArray objectAtIndex:0];
-    CGFloat width = [title boundingRectWithSize:CGSizeMake(1000, self.blockFont) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:self.blockFont]} context:nil].size.width;
-    self.indicatorView.frame = CGRectMake((self.blockWidth - width)/2 + self.currentPage * self.blockWidth, self.barHeight-1.5, width, 1.5);
+    CGFloat width = [title boundingRectWithSize:CGSizeMake(1000, self.titleFont) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:self.titleFont]} context:nil].size.width;
+    self.indicatorView.frame = CGRectMake((self.titleWidth - width)/2 + self.currentPage * self.titleWidth, self.barHeight-1.5, width, 1.5);
     [self.titleScrollView addSubview:self.indicatorView];
 }
 
@@ -265,14 +280,15 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 - (UIView *)indicatorView {
     if (_indicatorView == nil) {
         self.indicatorView = [[UIView alloc] init];
-        self.indicatorView.backgroundColor = self.blockSelectedColor;
+        self.indicatorView.backgroundColor = self.titleSelectedColor;
+        self.indicatorView.hidden = self.isHiddenBlock;
     } return _indicatorView;
 }
 
 - (UIView *)lineView {
     if (_lineView == nil) {
         self.lineView = [[UIView alloc] init];
-        self.lineView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+        self.lineView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
     } return _lineView;
 }
 

@@ -24,7 +24,14 @@
     self.title = @"页面联动";
     
     
-    NSArray * dataArray = @[@"关注",@"推荐",@"热点",@"上海",@"娱乐",@"头条",@"问答",@"科技",@"视频"];
+    NSArray * dataArray = @[@"关注",@"推荐",@"热点",@"上海",@"娱乐",@"头条",@"问答",@"科技",@"视频",@"关注",@"推荐",@"热点",@"上海",@"娱乐",@"头条",@"问答",@"科技",@"视频"];
+  
+    
+    //    NSArray * dataArray = @[@"关注",@"推荐"];
+    //    self.barHeight = 40;
+    //    self.isLeftSideDistribution = true;
+    //    self.isHiddenBlock = true;
+    
     
     NSMutableArray * vcArrayM = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < dataArray.count; i ++) {
@@ -46,10 +53,9 @@
         };
         
     }
-    self.blockFont = 14;
-    self.barHeight = 40;
+
     
-    [self initWithTitleArray:dataArray vcArray:vcArrayM blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor] currentPage:0];
+    [self initWithTitleArray:dataArray vcArray:vcArrayM titleFont:15 titleNormalColor:[UIColor lightGrayColor] titleSelectedColor:[UIColor redColor] currentPage:0];
 }
 
 @end

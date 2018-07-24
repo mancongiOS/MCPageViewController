@@ -26,8 +26,11 @@ titles              : 设置标题数组
 vcArray             : 设置控制器数组
 blockNormalColor    : 设置按钮文字未选中状态的颜色
 blockSelectedColor  : 设置按钮文字已选中状态的颜色
+currentPage         : 默认显示的页码
 */
-- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor;
+
+- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor currentPage:(NSInteger)currentPage;
+
 
 ```
 3.  跳转到其他pageViewController的子页面 （可选）

@@ -47,10 +47,7 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 #define kHeigth         self.view.bounds.size.height
 
 
-
-
-
-- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor {
+- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor currentPage:(NSInteger)currentPage {
     
     if (titles.count != vcArray.count) {
         printf("-----------------\n\n标题数组和控制器数组个数不一致\n\n-------------");
@@ -65,13 +62,10 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     
     [self achieve];
     
-//    // 顺序不能乱，容易数组越界
-//    if (currentPage <= 0) {
-//        currentPage = 0;
-//    }
-//    self.currentPage = currentPage;
-//    [self titleButtonClicked:self.titleButtonArrayM[currentPage]];
+    
+    [self jumpToSubViewController:currentPage];
 }
+
 
 
 // 避免子类重写viewDidLoad方法导致不能实现下面的两个方法
@@ -81,7 +75,6 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 }
 
 -(void)jumpToSubViewController:(NSInteger)index {
-    //    [self titleButtonClicked:self.titleButtonArrayM[index]];
     [self jumpToVC:self.titleButtonArrayM[index]];
 }
 
@@ -163,7 +156,7 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
                                           
                                           _indicatorView.center = CGPointMake(button.center.x, self.barHeight-0.75);
                                           _indicatorView.bounds = CGRectMake(0, 0, width, 1.5);
-
+                                          
                                       }
                                       completion:^(BOOL finished) {
                                           button.titleLabel.font = [UIFont systemFontOfSize:self.blockFont + 1];

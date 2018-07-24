@@ -54,8 +54,10 @@
         
     }
 
+    [self initWithTitleArray:dataArray vcArray:vcArrayM blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor]];
     
-    [self initWithTitleArray:dataArray vcArray:vcArrayM titleFont:15 titleNormalColor:[UIColor lightGrayColor] titleSelectedColor:[UIColor redColor] currentPage:0];
+    
+    [self jumpToSubViewController:2];
 }
 
 @end

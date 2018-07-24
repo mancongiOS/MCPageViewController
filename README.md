@@ -11,13 +11,13 @@ pageViewController,页面联动, pageLIinkage,多页面展示
 ### 属性和方法的说明
 1. 设置可选属性. (可选属性的设置要写在init方法之前才可生效！！！)
 ```
-/** 标题栏的高度
 默认为40
 当设置 barHeight 为负数时候，隐藏标题栏。 实例：当有有且只有一个子页面的时候
 */
 @property (nonatomic, assign) CGFloat   barHeight;
 @property (nonatomic, assign) CGFloat   blockFont;            // 标题块的字体的大小  默认15
 @property (nonatomic, strong) UIColor * blockColor;           // 标题块的背景颜色
+@property (nonatomic, assign) BOOL      isLeftPosition;       // 当title数量少的时候，是否居左
 ```
 2. 页面初始化 （必须实现）
 ```
@@ -26,9 +26,8 @@ titles              : 设置标题数组
 vcArray             : 设置控制器数组
 blockNormalColor    : 设置按钮文字未选中状态的颜色
 blockSelectedColor  : 设置按钮文字已选中状态的颜色
-currentPage         : 设置当前页
 */
-- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor currentPage:(NSInteger)currentPage;
+- (void)initWithTitleArray:(NSArray *)titles vcArray:(NSArray *)vcArray blockNormalColor:(UIColor *)blockNormalColor blockSelectedColor:(UIColor *)blockSelectedColor;
 
 ```
 3.  跳转到其他pageViewController的子页面 （可选）
@@ -67,7 +66,7 @@ one.twoBlock = ^(int index) {
 self.blockFont = 14;
 self.barHeight = 40;
 
-[self initWithTitleArray:dataArray vcArray:vcArrayM blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor] currentPage:0];
+[self initWithTitleArray:dataArray vcArray:vcArrayM blockNormalColor:[UIColor lightGrayColor] blockSelectedColor:[UIColor redColor]];
 ```
 3. 子页面上的事件，请单独处理。子页面上没法做push跳转，一定要让pageViewController去做跳转。具体请看demo。
 

@@ -13,9 +13,9 @@
 <
 UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 >
-{
-    NSInteger _curPage;
-}
+
+@property (nonatomic, assign) NSInteger curPage;
+
 @property (nonatomic, strong) UIScrollView * titleScrollView;
 //标题滚动视图
 @property (nonatomic, strong) UIView * indicatorView;
@@ -102,11 +102,11 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     NSInteger index = 0;
     for (UIViewController *VC in _vcArray) {
         
-        if ([VC isEqual:sub]) { _curPage = index; }
+        if ([VC isEqual:sub]) { self.curPage = index; }
         index++;
     }
     
-    UIButton * btn = (UIButton *)[self.view.window viewWithTag:_curPage + 1000];
+    UIButton * btn = (UIButton *)[self.view.window viewWithTag:self.curPage + 1000];
     [self titleButtonClicked:btn];
     [self setScrollViewOffSet:btn];
 }
@@ -127,8 +127,10 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     CGFloat maxOffsetX= _titleScrollView.contentSize.width - kWidth;
     
     if (offsetX > maxOffsetX) { offsetX = maxOffsetX; }
+    
+    __weak __typeof__(self) weakSelf = self;
     [UIView animateWithDuration:.2 animations:^{
-        [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+        [weakSelf.titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
     }];
 }
 
@@ -137,13 +139,15 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
 - (void)titleButtonClicked:(id)sender {
     NSInteger tagNum = [sender tag];
     
-    _curPage = tagNum - 1000;
+    self.curPage = tagNum - 1000;
     
-    if (_curPage < 0) { _curPage = 1; }
+    if (self.curPage < 0) { self.curPage = 1; }
     
-    NSString * title = [self.titleArray objectAtIndex:_curPage];
+    NSString * title = [self.titleArray objectAtIndex:self.curPage];
     CGFloat width = [title boundingRectWithSize:CGSizeMake(1000, self.blockFont) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:self.blockFont]} context:nil].size.width;
     
+    __weak __typeof__(self) weakSelf = self;
+
     for (UIButton * button in self.titleButtonArrayM) {
         if (tagNum != button.tag) {
             [button setTitleColor:self.blockNormalColor forState:UIControlStateNormal];
@@ -154,8 +158,8 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
                                          options:UIViewKeyframeAnimationOptionLayoutSubviews
                                       animations:^{
                                           
-                                          _indicatorView.center = CGPointMake(button.center.x, self.barHeight-0.75);
-                                          _indicatorView.bounds = CGRectMake(0, 0, width, 1.5);
+                                          weakSelf.indicatorView.center = CGPointMake(button.center.x, self.barHeight-0.75);
+                                          weakSelf.indicatorView.bounds = CGRectMake(0, 0, width, 1.5);
                                           
                                       }
                                       completion:^(BOOL finished) {
@@ -171,9 +175,11 @@ UIScrollViewDelegate,UIPageViewControllerDelegate,UIPageViewControllerDataSource
     //direction：0代表前进，1代表后退
     [self titleButtonClicked:btn];
     
+    __weak __typeof__(self) weakSelf = self;
+
     NSInteger toPage = btn.tag - 1000;
-    [_pageVC setViewControllers:@[_vcArray[toPage]] direction:_curPage>toPage animated:NO completion:^(BOOL finished) {
-        _curPage = toPage;
+    [_pageVC setViewControllers:@[_vcArray[toPage]] direction:self.curPage>toPage animated:NO completion:^(BOOL finished) {
+        weakSelf.curPage = toPage;
     }];
 }
 

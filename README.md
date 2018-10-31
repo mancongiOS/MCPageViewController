@@ -1,10 +1,24 @@
 # pageLinkage
 
+
+***
+### pods安装
+```
+platform :ios, '8.0'
+use_frameworks!
+
+source 'https://github.com/CocoaPods/Specs.git'        #官方仓库地址
+source 'https://github.com/mancongiOS/MCPageViewControllerRepo.git'      #私有仓库地址
+
+target '工程名' do
+pod 'MCPageViewController'
+end
+```
+
 ***
 ### key words
 A simple way to show how the sliding of the page/
 pageViewController,页面联动, pageLIinkage,多页面展示
-
 
 ***
 

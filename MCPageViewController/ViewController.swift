@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "欢迎页"
         
         let navigationBar = navigationController?.navigationBar
         navigationBar?.isTranslucent = false

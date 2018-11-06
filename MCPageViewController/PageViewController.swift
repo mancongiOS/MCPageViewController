@@ -24,6 +24,7 @@ class PageViewController: MCPageViewController {
         
         for i in 0..<titles.count {
             let vc = SubViewController()
+            vc.delegate = self
             vc.str = titles[i]
             vcArrayM.add(vc)
             
@@ -33,16 +34,13 @@ class PageViewController: MCPageViewController {
                 item.tagImageView.image = #imageLiteral(resourceName: "hot")
                 item.bgImageView.image = #imageLiteral(resourceName: "HOT_bg")
             }
-            
-//            item.tagImageView.backgroundColor = UIColor.randomColor
-//            item.bgImageView.backgroundColor = UIColor.randomColor
+
             arrayM.add(item)
         }
         
         let config = MCPageConfig.init()
         config.titles = titles
         config.vcs = vcArrayM as! [UIViewController]
-//        config.barHeight = 1
         config.blockWidth = 80
         
         
@@ -52,4 +50,15 @@ class PageViewController: MCPageViewController {
     }
     
 
+}
+
+extension PageViewController : SubViewControllerProtocal {
+    func jump(index: Int) {
+        self.jumpToSubViewController(index)
+    }
+    
+    func push() {
+        let vc = NextViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

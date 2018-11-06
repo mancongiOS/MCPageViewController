@@ -13,7 +13,7 @@ fileprivate let kScreenWidth = UIScreen.main.bounds.size.width
 fileprivate let kScreenHeight = UIScreen.main.bounds.size.height
 
 
-public class MCPageViewController: UIViewController {
+open class MCPageViewController: UIViewController {
     
     /**
      * 根据数据直接创建

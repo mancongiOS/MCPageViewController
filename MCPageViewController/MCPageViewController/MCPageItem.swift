@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class MCPageItem: UIButton {
+open class MCPageItem: UIButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,7 +20,7 @@ public class MCPageItem: UIButton {
     }
     
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
         let selfWidth = self.frame.size.width

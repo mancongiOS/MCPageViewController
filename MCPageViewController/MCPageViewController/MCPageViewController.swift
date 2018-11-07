@@ -9,10 +9,6 @@
 import UIKit
 
 
-fileprivate let kScreenWidth = UIScreen.main.bounds.size.width
-fileprivate let kScreenHeight = UIScreen.main.bounds.size.height
-
-
 open class MCPageViewController: UIViewController {
     
     /**
@@ -40,6 +36,10 @@ open class MCPageViewController: UIViewController {
         
     }
     
+    
+    private var kSelfWidth : CGFloat = UIScreen.main.bounds.size.width
+    private var kSelfHeight : CGFloat = UIScreen.main.bounds.size.height
+
     
     // MARK: - Setter & Getter
     private lazy var titleScrollView: UIScrollView = {
@@ -136,6 +136,10 @@ private extension MCPageViewController {
     
     private func settingWithConfig(_ config:MCPageConfig,items:[UIButton]?) {
        
+        
+        kSelfWidth = self.view.frame.width
+        kSelfHeight = self.view.frame.height
+        
         if (config.titles.count != config.vcs.count) || config.titles.count == 0 || config.vcs.count == 0 {
             print("MCPageViewController: 请检查config的配置 config.vcs.count:\(config.titles.count) --- config.vcs.count:\(config.vcs.count)")
             return
@@ -166,14 +170,14 @@ private extension MCPageViewController {
         
         self.view.backgroundColor = UIColor.white
 
-        titleScrollView.frame = CGRect.init(x: 0, y: 0, width: kScreenWidth, height: config.barHeight)
+        titleScrollView.frame = CGRect.init(x: 0, y: 0, width: kSelfWidth, height: config.barHeight)
         titleScrollView.contentSize = CGSize.init(width: config.blockWidth * CGFloat(config.titles.count), height: 0)
         view.addSubview(titleScrollView)
         
-        lineView.frame = CGRect.init(x: 0, y: config.barHeight, width: kScreenWidth, height: 1.5)
+        lineView.frame = CGRect.init(x: 0, y: config.barHeight, width: kSelfWidth, height: 1.5)
         view.addSubview(lineView)
         
-        pageVC.view.frame = CGRect.init(x: 0, y: config.barHeight + 1, width: kScreenWidth, height: kScreenHeight - config.barHeight)
+        pageVC.view.frame = CGRect.init(x: 0, y: config.barHeight + 1, width: kSelfWidth, height: kSelfHeight - config.barHeight)
         view.addSubview(pageVC.view)
         
         
@@ -203,7 +207,7 @@ private extension MCPageViewController {
             if config.isLeftPosition {
                 config.blockWidth = maxW
             } else {
-                config.blockWidth = allW >= kScreenWidth ? maxW : (kScreenWidth / CGFloat(config.titles.count))
+                config.blockWidth = allW >= kSelfWidth ? maxW : (kSelfWidth / CGFloat(config.titles.count))
             }
         }
     }
@@ -301,7 +305,7 @@ extension MCPageViewController : UIScrollViewDelegate,UIPageViewControllerDelega
             return
         }
         
-        var count = kScreenWidth * 0.5 / config.blockWidth
+        var count = kSelfWidth * 0.5 / config.blockWidth
         
         if count.truncatingRemainder(dividingBy: 2) == 0 { count -= 1 }
         
@@ -309,7 +313,7 @@ extension MCPageViewController : UIScrollViewDelegate,UIPageViewControllerDelega
         
         if offsetX < 0 { offsetX = 0 }
         
-        let maxOffsetX = titleScrollView.contentSize.width - kScreenWidth
+        let maxOffsetX = titleScrollView.contentSize.width - kSelfWidth
         
         if offsetX > maxOffsetX { offsetX = maxOffsetX }
         

@@ -15,8 +15,6 @@ open class MCPageItem: UIButton {
         
         self.addSubview(bgImageView)
         self.addSubview(tagImageView)
-        
- 
     }
     
     

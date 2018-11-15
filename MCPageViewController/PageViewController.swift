@@ -15,7 +15,9 @@ class PageViewController: MCPageViewController {
 
         self.title = "页面联动";
         let titles = ["第1页","第2页","第3页","第4页","第5页","第6页","第7页","第8页","第9页","第10页"]
-        
+
+//        let titles = ["第1页","第2页"]
+
         
         let vcArrayM = NSMutableArray()
         
@@ -42,7 +44,7 @@ class PageViewController: MCPageViewController {
         config.titles = titles
         config.vcs = vcArrayM as! [UIViewController]
         config.blockWidth = 80
-        
+//        config.isLeftPosition = true
         
         
         initCustomPageWithConfig(config, items: arrayM as! [UIButton])

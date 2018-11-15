@@ -126,6 +126,8 @@ private extension MCPageViewController {
                 }
             }
         }
+        
+        setScrollViewOffSet(btn: btn)
     }
 }
 
@@ -301,9 +303,14 @@ extension MCPageViewController : UIScrollViewDelegate,UIPageViewControllerDelega
     }
     
     private func setScrollViewOffSet(btn:UIButton) {
-        if config.isLeftPosition {
+        
+        if config.blockWidth * CGFloat(config.titles.count) < kSelfWidth {
             return
         }
+        
+//        if config.isLeftPosition {
+//            return
+//        }
         
         var count = kSelfWidth * 0.5 / config.blockWidth
         

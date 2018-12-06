@@ -13,8 +13,8 @@ public extension String {
     func MCPageString_getWidth(font:CGFloat,height:CGFloat) -> CGFloat {
         let statusLabelText: NSString = self as NSString
         let size = CGSize.init(width: 9999, height: height)
-        let dic = NSDictionary(object: UIFont.systemFont(ofSize: font), forKey: NSAttributedStringKey.font as NSCopying)
-        let strSize = statusLabelText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedStringKey : Any], context: nil).size
+        let dic = NSDictionary(object: UIFont.systemFont(ofSize: font), forKey: NSAttributedString.Key.font as NSCopying)
+        let strSize = statusLabelText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedString.Key : Any], context: nil).size
         return strSize.width
     }
 }

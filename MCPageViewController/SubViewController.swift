@@ -54,7 +54,7 @@ class SubViewController: UIViewController {
     }()
 
     lazy var jumpButton: UIButton = {
-        let button = UIButton.init(type: UIButtonType.custom)
+        let button = UIButton.init(type: UIButton.ButtonType.custom)
         button.layer.cornerRadius = 4
         button.layer.masksToBounds = true
         button.backgroundColor = UIColor.red
@@ -67,7 +67,7 @@ class SubViewController: UIViewController {
     
     
     lazy var pushButton: UIButton = {
-        let button = UIButton.init(type: UIButtonType.custom)
+        let button = UIButton.init(type: UIButton.ButtonType.custom)
         button.layer.cornerRadius = 4
         button.layer.masksToBounds = true
         button.backgroundColor = UIColor.red

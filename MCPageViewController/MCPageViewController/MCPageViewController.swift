@@ -90,7 +90,7 @@ private extension MCPageViewController {
         titleButtonClicked(btn: btn)
         
         let toPage = btn.tag - 1000
-        let direction : UIPageViewControllerNavigationDirection = config.defaultIndex > toPage ? .forward : .reverse
+        let direction : UIPageViewController.NavigationDirection = config.defaultIndex > toPage ? .forward : .reverse
         
         pageVC.setViewControllers([config.vcs[toPage]], direction: direction, animated: false) { (finished) in
             self.config.defaultIndex = toPage;
@@ -116,7 +116,7 @@ private extension MCPageViewController {
                 button.setTitleColor(config.normalColor, for: .normal)
                 button.titleLabel?.font = UIFont.systemFont(ofSize: config.blockFont)
             } else {
-                UIView.animate(withDuration: 0.15, delay: 0.0, options: UIViewAnimationOptions.layoutSubviews, animations: {
+                UIView.animate(withDuration: 0.15, delay: 0.0, options: UIView.AnimationOptions.layoutSubviews, animations: {
                     self.indicatorView.center = CGPoint.init(x: button.center.x, y: self.config.barHeight - 0.75)
                     self.indicatorView.bounds = CGRect.init(x: 0, y: 0, width: width, height: 1.5)
                 }) { (finished) in
@@ -222,7 +222,7 @@ private extension MCPageViewController {
         
         let arrayM = NSMutableArray()
         for i in 0..<config.titles.count {
-            let btn = UIButton.init(type: UIButtonType.custom)
+            let btn = UIButton.init(type: UIButton.ButtonType.custom)
             btn.frame = CGRect.init(x: CGFloat(i)*config.blockWidth, y: 0, width: config.blockWidth, height: config.barHeight - 1.5)
             btn.backgroundColor = config.blockColor
             btn.titleLabel?.font = UIFont.systemFont(ofSize: config.blockFont)

@@ -8,7 +8,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 source 'https://github.com/CocoaPods/Specs.git'        #官方仓库地址
-source 'https://github.com/mancongiOS/MCPageViewControllerRepo.git'      #私有仓库地址
 
 target '工程名' do
 pod 'MCPageViewController'

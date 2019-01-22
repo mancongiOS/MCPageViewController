@@ -52,6 +52,8 @@ open class MCPageViewController: UIViewController {
     private lazy var indicatorView: UIView = {
         let view = UIView()
         view.backgroundColor = config.indicatorColor
+        view.layer.cornerRadius = 1
+        view.layer.masksToBounds = true
         return view
     }()
     
@@ -117,10 +119,10 @@ private extension MCPageViewController {
                 button.titleLabel?.font = config.blockFont
             } else {
                 UIView.animate(withDuration: 0.15, delay: 0.0, options: UIView.AnimationOptions.layoutSubviews, animations: {
-                    self.indicatorView.center = CGPoint.init(x: button.center.x, y: self.config.barHeight - 0.75)
-                    self.indicatorView.bounds = CGRect.init(x: 0, y: 0, width: width, height: 1.5)
+                    self.indicatorView.center = CGPoint.init(x: button.center.x, y: self.config.barHeight - 1)
+                    self.indicatorView.bounds = CGRect.init(x: 0, y: 0, width: width, height: 2)
                 }) { (finished) in
-                    self.indicatorView.bounds = CGRect.init(x: 0, y: 0, width: width, height: 1.5)
+                    self.indicatorView.bounds = CGRect.init(x: 0, y: 0, width: width, height: 2)
                     button.titleLabel?.font = self.config.selectedBlockFont
                     button.setTitleColor(self.config.selectedColor, for: .normal)
                 }
@@ -185,8 +187,8 @@ private extension MCPageViewController {
         
         let width = config.blockWidth * 0.8
         let indicatorView_x : CGFloat = (config.blockWidth - width)/2 + CGFloat(config.defaultIndex) * CGFloat(config.blockWidth)
-        let indicatorView_y = config.barHeight - 1.5
-        indicatorView.frame = CGRect.init(x: indicatorView_x, y: indicatorView_y, width: width, height: 1.5)
+        let indicatorView_y = config.barHeight - 2
+        indicatorView.frame = CGRect.init(x: indicatorView_x, y: indicatorView_y, width: width, height: 2)
         indicatorView.isHidden = config.isHiddenIndicator
         titleScrollView.addSubview(indicatorView)
     }

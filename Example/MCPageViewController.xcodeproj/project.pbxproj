@@ -54,7 +54,7 @@
 		CA1A5F371DDE1D775F21C39F /* Pods_MCPageViewController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MCPageViewController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF2563A2E80FEB651593156D /* Pods-MCPageViewController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MCPageViewController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MCPageViewController_Example/Pods-MCPageViewController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E4904DC6D4C3D944C65BC966 /* Pods-MCPageViewController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MCPageViewController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MCPageViewController_Tests/Pods-MCPageViewController_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		EA0065DD0060A9690D2AB45F /* MCPageViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MCPageViewController.podspec; path = ../MCPageViewController.podspec; sourceTree = "<group>"; };
+		EA0065DD0060A9690D2AB45F /* MCPageViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MCPageViewController.podspec; path = ../MCPageViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

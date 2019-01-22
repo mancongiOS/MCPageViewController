@@ -37,7 +37,7 @@ class PageViewController: MCPageViewController {
                 let gif = "http://img.glela.com/file/base/20181116161837105.gif"
                 
                 item.tagImageView.sd_setImage(with: URL.init(string: gif), placeholderImage: nil)
-                item.hotSize = CGSize.init(width: 12, height: 20)
+                item.tagSize = CGSize.init(width: 12, height: 20)
 //                item.tagImageView.image = #imageLiteral(resourceName: "hot")
                 item.bgImageView.image = #imageLiteral(resourceName: "HOT_bg")
             }

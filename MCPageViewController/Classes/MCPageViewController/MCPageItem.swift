@@ -11,7 +11,7 @@ import SDWebImage
 // tagImageView 和 bgImageView可以支持设置gif图片。要关联SDWebImage和FL
 open class MCPageItem: UIButton {
 
-    public var hotSize = CGSize.init(width: 20, height: 20)
+    public var tagSize = CGSize.init(width: 20, height: 20)
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +32,7 @@ open class MCPageItem: UIButton {
         
         
         bgImageView.frame = CGRect.init(x: 0, y: 0, width: selfWidth, height: selfHeight)
-        tagImageView.frame = CGRect.init(x: title_x - 2, y: 0, width: hotSize.width, height: hotSize.height)
+        tagImageView.frame = CGRect.init(x: title_x - 2, y: 0, width: tagSize.width, height: tagSize.height)
     }
     
     required public init?(coder aDecoder: NSCoder) {

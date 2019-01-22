@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
     s.name         = "MCPageViewController"
-    s.version      = "3.0"
+    s.version      = "3.1"
     s.summary      = "MCPageViewController for Swift.Public"
     s.homepage     = "https://github.com/mancongiOS/MCPageViewController"
     s.license      = "MIT"
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
     s.swift_version = '4.2'
     s.ios.deployment_target = '8.0'
     
-    s.dependency 'SDWebImage', '~> 4.0.0'
+    s.dependency 'SDWebImage'
     s.dependency 'SDWebImage/GIF'
     
     

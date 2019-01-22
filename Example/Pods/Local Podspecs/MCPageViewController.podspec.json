@@ -18,7 +18,7 @@
   "swift_version": "4.2",
   "dependencies": {
     "SDWebImage": [
-      "~> 4.0.0"
+
     ],
     "SDWebImage/GIF": [
 

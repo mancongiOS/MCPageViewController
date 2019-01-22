@@ -1,0 +1,6 @@
+framework module MCPageViewController {
+  umbrella header "MCPageViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

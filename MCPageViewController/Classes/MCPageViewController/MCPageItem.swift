@@ -8,7 +8,9 @@
 
 import UIKit
 import SDWebImage
-// tagImageView 和 bgImageView可以支持设置gif图片。要关联SDWebImage和FL
+
+
+/// tagImageView 和 bgImageView可以支持设置gif图片。要关联SDWebImage和FL
 open class MCPageItem: UIButton {
 
     public var tagSize = CGSize.init(width: 20, height: 20)

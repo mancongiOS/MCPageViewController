@@ -56,18 +56,18 @@ public class MCCategoryBar: UIView {
     }()
     
     
-    lazy var moreButton: UIButton = {
+    public lazy var moreButton: UIButton = {
         let button = UIButton.init(type: .custom)
         button.setImage(MCPageConfig.shared.moreImage, for: .normal)
         button.isHidden = !MCPageConfig.shared.isShowMoreButton
         button.addTarget(self, action: #selector(moreEvent(sender:)), for: .touchUpInside)
-        button.backgroundColor = UIColor.blue
+        button.backgroundColor = UIColor.white
         return button
     }()
     
-    lazy var lineView: UIView = {
+    public lazy var lineView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.MCPage_line
         return view
     }()
 }
@@ -122,7 +122,7 @@ extension MCCategoryBar {
         self.addSubview(lineView)
         lineView.snp.remakeConstraints { (make) ->Void in
             make.left.right.bottom.equalTo(self)
-            make.height.equalTo(1)
+            make.height.equalTo(0.5)
         }
     }
 }

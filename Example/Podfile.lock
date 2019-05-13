@@ -1,5 +1,5 @@
 PODS:
-  - MCPageViewController (3.4):
+  - MCPageViewController (3.6):
     - SnapKit
   - MJRefresh (3.1.16)
   - SnapKit (4.2.0)
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MCPageViewController: e54794a52a6b71fb0343e7998529893fb006c7ff
+  MCPageViewController: 7e8699dca265e2a0cff770b408364729602a0893
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 

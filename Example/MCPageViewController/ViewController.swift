@@ -165,6 +165,10 @@ extension ViewController: MCPageViewControllerDelegate {
     func pageViewControllerDidEndDragging(_ pageViewController: MCPageViewController) {
         tableView.isScrollEnabled = true
     }
+    
+    func pageViewController(_ pageViewController: MCPageViewController, clickItemIndex index: Int) {
+        print(index)
+    }
 }
 
 

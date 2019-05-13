@@ -9,12 +9,19 @@
 import UIKit
 
 
-public protocol MCPageViewControllerDelegate: NSObjectProtocol {
+
+@objc public protocol MCPageViewControllerDelegate {
     
     func pageViewControllerWillBeginDragging(_ pageViewController: MCPageViewController)
     func pageViewControllerDidEndDragging(_ pageViewController: MCPageViewController)
-    func pageViewControllerClickMoreEvent(_ pageViewController: MCPageViewController)
+   
+    
+    /// 点击了更多按钮回调
+    @objc optional func pageViewControllerClickMoreEvent(_ pageViewController: MCPageViewController)
+    /// 切换了分类item的回调
+    @objc optional func pageViewController(_ pageViewController: MCPageViewController, clickItemIndex index: Int)
 }
+
 
 
 open class MCPageViewController: UIViewController {
@@ -194,7 +201,7 @@ extension MCPageViewController {
 
 extension MCPageViewController: MCCategoryBarDelegate {
     public func categoryBarClickMoreEvent(categoryBar: MCCategoryBar) {
-        delegate?.pageViewControllerClickMoreEvent(self)
+        delegate?.pageViewControllerClickMoreEvent?(self)
     }
     
     
@@ -204,5 +211,7 @@ extension MCPageViewController: MCCategoryBarDelegate {
         
         currentChildPageViewController = MCPageConfig.shared.viewControllers[index] as? MCPageChildViewController
         MCPageConfig.shared.selectIndex = index
+        
+        delegate?.pageViewController?(self, clickItemIndex: index)
     }
 }

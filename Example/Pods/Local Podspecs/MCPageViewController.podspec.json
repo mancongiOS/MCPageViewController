@@ -1,6 +1,6 @@
 {
   "name": "MCPageViewController",
-  "version": "3.0",
+  "version": "3.3",
   "summary": "MCPageViewController for Swift.Public",
   "homepage": "https://github.com/mancongiOS/MCPageViewController",
   "license": "MIT",
@@ -12,15 +12,12 @@
   },
   "source": {
     "git": "https://github.com/mancongiOS/MCPageViewController.git",
-    "tag": "3.0"
+    "tag": "3.3"
   },
   "source_files": "MCPageViewController/Classes/**/*",
   "swift_version": "4.2",
   "dependencies": {
-    "SDWebImage": [
-
-    ],
-    "SDWebImage/GIF": [
+    "SnapKit": [
 
     ]
   }

@@ -7,76 +7,89 @@
 //
 
 import UIKit
+import MJRefresh
 
-protocol SubViewControllerProtocal : NSObjectProtocol {
-    func jump(index:Int)
-    func push()
-}
 
-class SubViewController: UIViewController {
+import MCPageViewController
 
-    public var str = ""
+
+import SnapKit
+class SubViewController: MCPageChildViewController {
     
-    weak var delegate : SubViewControllerProtocal?
-    
-    let selfWidth = UIScreen.main.bounds.size.width
-    
+    public var pageExplain = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        titleLabel.text = str
-        view.addSubview(titleLabel)
-
         
-        view.addSubview(jumpButton)
-        view.addSubview(pushButton)
+        
+        initUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     
-    @objc func jumpButtonClicked() {
-        delegate?.jump(index: 2)
+    
+    lazy var tableView: UITableView = {
+        let tb = UITableView.init(frame: CGRect.zero, style: .plain)
+        tb.delegate = self
+        tb.dataSource = self
+        tb.separatorStyle = .none
+        tb.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
+        return tb
+    }()
+}
+
+extension SubViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 40
     }
-
-    @objc func pushButtonClicked() {
-        delegate?.push()
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
-
     
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.frame = CGRect.init(x: 10, y: 10, width: selfWidth - 20, height: 40)
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textAlignment = NSTextAlignment.center
-        label.textColor = UIColor.MCPage_red
-        return label
-    }()
-
-    lazy var jumpButton: UIButton = {
-        let button = UIButton.init(type: .custom)
-        button.layer.cornerRadius = 4
-        button.layer.masksToBounds = true
-        button.backgroundColor = UIColor.red
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.setTitle("跳转第3页", for: .normal)
-        button.frame = CGRect.init(x: 20, y: 200, width: selfWidth - 40, height: 40)
-        button.addTarget(self, action: #selector(jumpButtonClicked), for: .touchUpInside)
-        return button
-    }()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+      
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = UIColor.white
+        } else {
+            cell.backgroundColor = UIColor.orange
+        }
+        
+        cell.textLabel?.text = pageExplain + "  第" + String(indexPath.row) + "行"
+        cell.textLabel?.textColor = UIColor.black
+        
+        return cell
+    }
     
-    
-    lazy var pushButton: UIButton = {
-        let button = UIButton.init(type: .custom)
-        button.layer.cornerRadius = 4
-        button.layer.masksToBounds = true
-        button.backgroundColor = UIColor.red
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.setTitle("导航跳转", for: .normal)
-        button.frame = CGRect.init(x: 20, y: 260, width: selfWidth - 40, height: 40)
-        button.addTarget(self, action: #selector(pushButtonClicked), for: .touchUpInside)
+}
 
-        return button
-    }()
 
+extension SubViewController {
+    func initUI() {
+        view.addSubview(tableView)
+        tableView.snp.remakeConstraints { (make) ->Void in
+            make.edges.equalTo(view)
+        }
+        
+        
+        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
+                self.tableView.mj_header.endRefreshing()
+            })
+        })
+        
+        
+        tableView.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
+                self.tableView.mj_footer.endRefreshing()
+            })
+        })
+    }
 }

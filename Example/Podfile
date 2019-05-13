@@ -3,6 +3,10 @@ use_frameworks!
 target 'MCPageViewController_Example' do
   pod 'MCPageViewController', :path => '../'
 
+  pod 'SnapKit'
+  pod 'MJRefresh'
+
+
   target 'MCPageViewController_Tests' do
     inherit! :search_paths
 

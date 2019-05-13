@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		4C7E65D621F6A6B100530578 /* SubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E65D221F6A6B100530578 /* SubViewController.swift */; };
 		4C7E65D721F6A6B100530578 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E65D321F6A6B100530578 /* NextViewController.swift */; };
-		4C7E65D821F6A6B100530578 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E65D421F6A6B100530578 /* PageViewController.swift */; };
-		4C7E65D921F6A6B100530578 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E65D521F6A6B100530578 /* CustomButton.swift */; };
 		4E63747B698A9F87EE233D97 /* Pods_MCPageViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1A5F371DDE1D775F21C39F /* Pods_MCPageViewController_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -34,8 +32,6 @@
 /* Begin PBXFileReference section */
 		4C7E65D221F6A6B100530578 /* SubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubViewController.swift; sourceTree = "<group>"; };
 		4C7E65D321F6A6B100530578 /* NextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
-		4C7E65D421F6A6B100530578 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		4C7E65D521F6A6B100530578 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MCPageViewController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCPageViewController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +73,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42F9D4952272FA060078771B /* MCPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MCPageViewController;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -101,9 +104,8 @@
 		607FACD21AFB9204008FA782 /* Example for MCPageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4C7E65D521F6A6B100530578 /* CustomButton.swift */,
+				42F9D4952272FA060078771B /* MCPageViewController */,
 				4C7E65D321F6A6B100530578 /* NextViewController.swift */,
-				4C7E65D421F6A6B100530578 /* PageViewController.swift */,
 				4C7E65D221F6A6B100530578 /* SubViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -315,20 +317,20 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MCPageViewController_Example/Pods-MCPageViewController_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-MCPageViewController_Example/Pods-MCPageViewController_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/MCPageViewController/MCPageViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MCPageViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MCPageViewController_Example/Pods-MCPageViewController_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MCPageViewController_Example/Pods-MCPageViewController_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -339,8 +341,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C7E65D621F6A6B100530578 /* SubViewController.swift in Sources */,
-				4C7E65D821F6A6B100530578 /* PageViewController.swift in Sources */,
-				4C7E65D921F6A6B100530578 /* CustomButton.swift in Sources */,
 				4C7E65D721F6A6B100530578 /* NextViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

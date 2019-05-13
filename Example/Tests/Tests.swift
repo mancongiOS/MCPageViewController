@@ -1,5 +1,5 @@
 import XCTest
-import MCPageViewController
+//import MCPageViewController
 
 class Tests: XCTestCase {
     

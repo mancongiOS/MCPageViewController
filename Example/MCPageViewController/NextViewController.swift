@@ -15,7 +15,7 @@ class NextViewController: UIViewController {
 
         title = "跳转的页面"
         
-        view.backgroundColor = UIColor.randomColor
+        view.backgroundColor = UIColor.green
         // Do any additional setup after loading the view.
     }
 

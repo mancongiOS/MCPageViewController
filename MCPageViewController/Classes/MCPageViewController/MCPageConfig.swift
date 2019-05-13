@@ -48,6 +48,9 @@ public class MCPageConfig: NSObject {
     public var isHiddenIndicator : Bool = false
     
     
+    /// 标题最长字数
+    public var maxTitleCount: Int = 5
+    
     /**
      * 标题栏的高度
      * 默认值40
@@ -83,6 +86,14 @@ public class MCPageConfig: NSObject {
     
     
     
+    /// 分类元素的间距 （collectionView的minimumInteritemSpacing）
+    public var categoryItemSpacing: CGFloat = 1
+    
+    
+    /// 分类的边距 （collectionView的sectionInset）
+    public var  categoryInset: UIEdgeInsets = UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: 10)
+
+    
     /// 背景颜色
     public var barBackgroundColor : UIColor = UIColor.white
 
@@ -100,5 +111,5 @@ public class MCPageConfig: NSObject {
     public var isShowMoreButton: Bool = false
     
     /// 更多按钮图片
-    public var moreImage: UIImage = UIImage.init()
+    public var moreImage: UIImage? = UIImage.init()
 }

@@ -11,11 +11,17 @@ import UIKit
 public extension String {
     // 计算字符串的宽度
     public func getWidth(font:UIFont,height:CGFloat) -> CGFloat {
-        let statusLabelText: NSString = self as NSString
-        let size = CGSize.init(width: 9999, height: height)
-        let dic = NSDictionary(object: font, forKey: NSAttributedString.Key.font as NSCopying)
-        let strSize = statusLabelText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedString.Key : Any], context: nil).size
-        return strSize.width
+        
+        let size: CGSize = self.size(withAttributes: [NSAttributedString.Key.font: font])
+        
+        
+
+        
+//        let statusLabelText: NSString = self as NSString
+//        let size = CGSize.init(width: 9999, height: height)
+//        let dic = NSDictionary(object: font, forKey: NSAttributedString.Key.font as NSCopying)
+//        let strSize = statusLabelText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedString.Key : Any], context: nil).size
+        return size.width
     }
 }
 
@@ -111,4 +117,22 @@ extension UIColor {
         }
         return self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
+}
+
+
+extension String {
+    /**
+     * 字符串的截取 从头截取到指定index
+     */
+    public func MCClipFromPrefix(to index: Int) -> String {
+        
+        if self.count <= index {
+            return self
+        } else {
+            let index = self.index(self.startIndex, offsetBy: index)
+            let str = self.prefix(upTo: index)
+            return String(str)
+        }
+    }
+
 }

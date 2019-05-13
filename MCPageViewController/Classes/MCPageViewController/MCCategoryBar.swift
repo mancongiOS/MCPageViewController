@@ -43,8 +43,8 @@ public class MCCategoryBar: UIView {
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = 10
-        flowLayout.sectionInset = UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: 10)
+        flowLayout.minimumInteritemSpacing = MCPageConfig.shared.categoryItemSpacing
+        flowLayout.sectionInset = MCPageConfig.shared.categoryInset
         
         let view = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
         view.showsHorizontalScrollIndicator = false
@@ -139,9 +139,15 @@ extension MCCategoryBar: UICollectionViewDelegate, UICollectionViewDataSource,UI
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         // 最多显示5个字
-        let name = MCPageConfig.shared.categoryModels[indexPath.row].title
         
-        let width =  name.getWidth(font: MCPageConfig.shared.selectFont, height: 20) + 10
+        
+        var name = MCPageConfig.shared.categoryModels[indexPath.row].title
+        
+        name = name.MCClipFromPrefix(to: MCPageConfig.shared.maxTitleCount)
+        
+
+        
+        let width =  name.getWidth(font: MCPageConfig.shared.selectFont, height: 30) + 10
         return CGSize.init(width: width, height: 50)
     }
     
@@ -149,7 +155,9 @@ extension MCCategoryBar: UICollectionViewDelegate, UICollectionViewDataSource,UI
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MCCategoryCell", for: indexPath) as! MCCategoryCell
         
-        let name = categoryModels[indexPath.row].title
+        var name = categoryModels[indexPath.row].title
+        
+        name = name.MCClipFromPrefix(to: MCPageConfig.shared.maxTitleCount)
         
         cell.titleLabel.text = name
         cell.backgroundColor = MCPageConfig.shared.categoryBackgroundColor

@@ -103,11 +103,12 @@ extension ViewController {
         tableView.tableFooterView = sectionFooter
         
         self.title = "页面联动";
-        let titles = ["第0页","第1页","第2页","第3页","第4页","第5页","第6页","第7页","第8页","第9页","第10页"]
+        let titles = ["第0页第0页第0页","第1页","第2页","第3页","第4页","第5页","第6页","第7页","第8页","第9页","第10页"]
         
         
         let vcArrayM = NSMutableArray()
         let titleArrayM = NSMutableArray()
+        
         
         
         
@@ -122,6 +123,7 @@ extension ViewController {
             titleArrayM.add(model)
         }
         
+
         let config = MCPageConfig.shared
         config.categoryModels = titleArrayM as! [MCCategoryModel]
         config.viewControllers = vcArrayM as! [UIViewController]
@@ -129,7 +131,10 @@ extension ViewController {
         config.categoryBackgroundColor = UIColor.orange
         config.selectIndex = 0
         config.isShowMoreButton = true
+        config.selectFont = UIFont.systemFont(ofSize: 19)
+        config.categoryInset = UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 5)
         
+
         
 
         self.addChild(pageViewController)

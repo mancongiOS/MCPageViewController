@@ -25,6 +25,10 @@ class NextViewController: UIViewController {
     }
     
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

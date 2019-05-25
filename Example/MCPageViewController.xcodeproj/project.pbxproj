@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42F48B81229530EE000C65EB /* MCPageChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7B229530EE000C65EB /* MCPageChildViewController.swift */; };
+		42F48B82229530EE000C65EB /* MCPageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7C229530EE000C65EB /* MCPageConfig.swift */; };
+		42F48B83229530EE000C65EB /* MCCategoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7D229530EE000C65EB /* MCCategoryBar.swift */; };
+		42F48B84229530EE000C65EB /* MCPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7E229530EE000C65EB /* MCPageViewController.swift */; };
+		42F48B85229530EE000C65EB /* MCPageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7F229530EE000C65EB /* MCPageTool.swift */; };
+		42F48B86229530EE000C65EB /* MCBaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B80229530EE000C65EB /* MCBaseTableView.swift */; };
 		4C7E65D621F6A6B100530578 /* SubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E65D221F6A6B100530578 /* SubViewController.swift */; };
 		4C7E65D721F6A6B100530578 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E65D321F6A6B100530578 /* NextViewController.swift */; };
 		4E63747B698A9F87EE233D97 /* Pods_MCPageViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1A5F371DDE1D775F21C39F /* Pods_MCPageViewController_Tests.framework */; };
@@ -30,6 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42F48B7B229530EE000C65EB /* MCPageChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCPageChildViewController.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCPageChildViewController.swift; sourceTree = "<group>"; };
+		42F48B7C229530EE000C65EB /* MCPageConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCPageConfig.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCPageConfig.swift; sourceTree = "<group>"; };
+		42F48B7D229530EE000C65EB /* MCCategoryBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCCategoryBar.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCCategoryBar.swift; sourceTree = "<group>"; };
+		42F48B7E229530EE000C65EB /* MCPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCPageViewController.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCPageViewController.swift; sourceTree = "<group>"; };
+		42F48B7F229530EE000C65EB /* MCPageTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCPageTool.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCPageTool.swift; sourceTree = "<group>"; };
+		42F48B80229530EE000C65EB /* MCBaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCBaseTableView.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCBaseTableView.swift; sourceTree = "<group>"; };
 		4C7E65D221F6A6B100530578 /* SubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubViewController.swift; sourceTree = "<group>"; };
 		4C7E65D321F6A6B100530578 /* NextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MCPageViewController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCPageViewController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +88,12 @@
 		42F9D4952272FA060078771B /* MCPageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				42F48B80229530EE000C65EB /* MCBaseTableView.swift */,
+				42F48B7D229530EE000C65EB /* MCCategoryBar.swift */,
+				42F48B7B229530EE000C65EB /* MCPageChildViewController.swift */,
+				42F48B7C229530EE000C65EB /* MCPageConfig.swift */,
+				42F48B7F229530EE000C65EB /* MCPageTool.swift */,
+				42F48B7E229530EE000C65EB /* MCPageViewController.swift */,
 			);
 			path = MCPageViewController;
 			sourceTree = "<group>";
@@ -318,13 +336,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MCPageViewController_Example/Pods-MCPageViewController_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MCPageViewController/MCPageViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MCPageViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -340,10 +356,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F48B85229530EE000C65EB /* MCPageTool.swift in Sources */,
+				42F48B82229530EE000C65EB /* MCPageConfig.swift in Sources */,
+				42F48B84229530EE000C65EB /* MCPageViewController.swift in Sources */,
 				4C7E65D621F6A6B100530578 /* SubViewController.swift in Sources */,
 				4C7E65D721F6A6B100530578 /* NextViewController.swift in Sources */,
+				42F48B83229530EE000C65EB /* MCCategoryBar.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				42F48B86229530EE000C65EB /* MCBaseTableView.swift in Sources */,
+				42F48B81229530EE000C65EB /* MCPageChildViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

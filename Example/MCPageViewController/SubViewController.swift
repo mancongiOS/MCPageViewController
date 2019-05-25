@@ -18,6 +18,8 @@ class SubViewController: MCPageChildViewController {
     
     public var pageExplain = ""
     
+    public var fatherViewController: UIViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +67,15 @@ extension SubViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.textColor = UIColor.black
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = NextViewController()
+        
+        print("点击了")
+        
+        fatherViewController?.present(vc, animated: true, completion: nil)
+        
     }
     
 }

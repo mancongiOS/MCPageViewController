@@ -36,6 +36,12 @@ open class MCPageChildViewController: UIViewController {
     public func makePageViewControllerScrollToTop() {
         scrollView.contentOffset = CGPoint.zero
     }
+    
+    /// 子类重写该方法可以监听scrollViewDidScroll方法
+    open func pageChildViewControllerScrollViewScroll(_ scrollView: UIScrollView) {
+        
+    }
+
 }
 
 extension MCPageChildViewController: UIScrollViewDelegate {
@@ -43,7 +49,7 @@ extension MCPageChildViewController: UIScrollViewDelegate {
         
         self.scrollView = scrollView
         
-        
+        pageChildViewControllerScrollViewScroll(scrollView)
         
         
         if (self.canScroll) {

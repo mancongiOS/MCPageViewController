@@ -1,6 +1,6 @@
 {
   "name": "MCPageViewController",
-  "version": "3.6",
+  "version": "3.8",
   "summary": "MCPageViewController for Swift.Public",
   "homepage": "https://github.com/mancongiOS/MCPageViewController",
   "license": "MIT",
@@ -12,9 +12,8 @@
   },
   "source": {
     "git": "https://github.com/mancongiOS/MCPageViewController.git",
-    "tag": "3.6"
+    "tag": "3.8"
   },
-  "source_files": "MCPageViewController/Classes/**/*",
   "swift_version": "4.2",
   "dependencies": {
     "SnapKit": [

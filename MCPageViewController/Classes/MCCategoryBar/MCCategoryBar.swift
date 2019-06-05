@@ -26,13 +26,14 @@ public class MCCategoryBar: UIView {
             return
         }
         
+        MCPageConfig.shared.category.barHeight = self.frame.size.height
         selectedIndex = MCPageConfig.shared.selectIndex
-
+        
         initUI()
-
+        //
         collectionView.reloadData()
     }
-
+    
     
     
     private var selectedIndex = 0
@@ -47,25 +48,9 @@ public class MCCategoryBar: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-       
-        
-        MCPageConfig.shared.category.barHeight = self.frame.size.height
-
-        
-        
-        collectionView.snp.remakeConstraints { (make) ->Void in
-            make.top.bottom.equalTo(self)
-            make.left.equalTo(MCPageConfig.shared.category.inset.left)
-            make.right.equalTo(-MCPageConfig.shared.category.inset.right)
-
-        }
-        lineView.snp.remakeConstraints { (make) ->Void in
-            make.left.right.bottom.equalTo(self)
-            make.height.equalTo(0.5)
-        }
-        
         
         categoryBarDidClickItem(at: selectedIndex)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -120,11 +105,24 @@ extension MCCategoryBar {
     }
     
     func initUI() {
-
+        
+        
         self.addSubview(collectionView)
-
+        collectionView.snp.remakeConstraints { (make) ->Void in
+            make.top.bottom.equalTo(self)
+            make.left.equalTo(MCPageConfig.shared.category.inset.left)
+            make.right.equalTo(-MCPageConfig.shared.category.inset.right)
+        }
+        
+        
+        
         self.addSubview(lineView)
-
+        lineView.snp.remakeConstraints { (make) ->Void in
+            make.left.bottom.equalTo(self)
+            make.height.equalTo(0.5)
+            make.width.equalTo(self.snp.width)
+        }
+        
         collectionView.addSubview(indicatorView)
     }
     
@@ -156,14 +154,14 @@ extension MCCategoryBar {
         if let selectedCell = self.getCell(index: self.selectedIndex) {
             selectedCell.isCategorySelected = false
         }
-
+        
         
         if let targetCell = self.getCell(index: itemIndex) {
             targetCell.isCategorySelected = true
             self.selectedIndex = itemIndex;
             MCPageConfig.shared.selectIndex = self.selectedIndex
         }
-
+        
         self.layoutAndScrollToSelectedItem(itemIndex)
         collectionView.reloadData()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) { [weak self] in
@@ -199,16 +197,16 @@ extension MCCategoryBar: UICollectionViewDelegate, UICollectionViewDataSource,UI
         let model = config.categoryModels[indexPath.row]
         
         let title = model.title
-
+        
         let itemHeight: CGFloat = self.frame.size.height
-
+        
         var itemWidth: CGFloat = config.category.itemExtendWidth + 2
         if indexPath.item == selectedIndex {
             itemWidth += title.getWidth(font: config.category.selectFont, height: 30)
         } else {
             itemWidth += title.getWidth(font: config.category.normalFont, height: 30)
         }
-                
+        
         return CGSize.init(width: itemWidth, height: itemHeight)
     }
     
@@ -217,7 +215,7 @@ extension MCCategoryBar: UICollectionViewDelegate, UICollectionViewDataSource,UI
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MCCategoryCell", for: indexPath) as! MCCategoryBarCell
         
         let name = categoryModels[indexPath.row].title
-        cell.titleLabel.text = name        
+        cell.titleLabel.text = name
         cell.isCategorySelected = selectedIndex == indexPath.row ? true : false
         return cell
     }
@@ -229,6 +227,7 @@ extension MCCategoryBar: UICollectionViewDelegate, UICollectionViewDataSource,UI
         delegate?.categoryBar(categoryBar: self, didSelectItemAt: indexPath.row)
     }
 }
+
 
 
 

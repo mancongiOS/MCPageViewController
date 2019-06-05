@@ -13,13 +13,7 @@ open class MCIndicatorView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        let indicator = MCPageConfig.shared.indicator
-        
-        isHidden = indicator.isHiddenIndicator
-        layer.cornerRadius = indicator.cornerRadius
-        layer.masksToBounds = true
-        backgroundColor = indicator.backgroundColor
+
     }
     
     required public init?(coder aDecoder: NSCoder) {

@@ -25,6 +25,14 @@ public class MCCategoryBar: UIView {
             return
         }
 
+        let indicator = config.indicator
+        indicatorView.isHidden = indicator.isHiddenIndicator
+        indicatorView.layer.cornerRadius = indicator.cornerRadius
+        indicatorView.layer.masksToBounds = true
+        indicatorView.backgroundColor = indicator.backgroundColor
+        
+
+        
         selectedIndex = MCPageConfig.shared.selectIndex
         
         categoryModels = config.categoryModels

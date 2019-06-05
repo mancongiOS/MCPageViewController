@@ -88,6 +88,7 @@ extension MCCategoryOnNavViewController {
         config.viewControllers = vcArray
         config.categoryModels = modelArray
         
+        config.indicator.isHiddenIndicator = true
         
         categoryBar.initCategoryBarWithConfig(config)
         containerView.initContainerViewWithConfig(config)

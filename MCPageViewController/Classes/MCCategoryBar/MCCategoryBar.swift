@@ -30,8 +30,10 @@ public class MCCategoryBar: UIView {
         selectedIndex = MCPageConfig.shared.selectIndex
         
         initUI()
-        //
+        
         collectionView.reloadData()
+        
+        categoryBarDidClickItem(at: selectedIndex)
     }
     
     
@@ -46,12 +48,6 @@ public class MCCategoryBar: UIView {
         MCPageConfig.shared.empty()
     }
     
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        categoryBarDidClickItem(at: selectedIndex)
-        
-    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -106,24 +102,21 @@ extension MCCategoryBar {
     
     func initUI() {
         
-        
         self.addSubview(collectionView)
+        self.addSubview(lineView)
+        collectionView.addSubview(indicatorView)
+        
         collectionView.snp.remakeConstraints { (make) ->Void in
             make.top.bottom.equalTo(self)
             make.left.equalTo(MCPageConfig.shared.category.inset.left)
             make.right.equalTo(-MCPageConfig.shared.category.inset.right)
         }
         
-        
-        
-        self.addSubview(lineView)
         lineView.snp.remakeConstraints { (make) ->Void in
             make.left.bottom.equalTo(self)
             make.height.equalTo(0.5)
             make.width.equalTo(self.snp.width)
         }
-        
-        collectionView.addSubview(indicatorView)
     }
     
     

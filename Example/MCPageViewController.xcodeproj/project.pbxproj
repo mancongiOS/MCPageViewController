@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		42F48B81229530EE000C65EB /* MCPageChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7B229530EE000C65EB /* MCPageChildViewController.swift */; };
-		42F48B82229530EE000C65EB /* MCPageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7C229530EE000C65EB /* MCPageConfig.swift */; };
-		42F48B83229530EE000C65EB /* MCCategoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7D229530EE000C65EB /* MCCategoryBar.swift */; };
-		42F48B84229530EE000C65EB /* MCPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7E229530EE000C65EB /* MCPageViewController.swift */; };
-		42F48B85229530EE000C65EB /* MCPageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B7F229530EE000C65EB /* MCPageTool.swift */; };
-		42F48B86229530EE000C65EB /* MCBaseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F48B80229530EE000C65EB /* MCBaseTableView.swift */; };
+		429623D622A4F13E00F59709 /* MCSlidingSuspensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429623D522A4F13E00F59709 /* MCSlidingSuspensionViewController.swift */; };
+		429623D822A4F19E00F59709 /* MCNormalOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429623D722A4F19E00F59709 /* MCNormalOneViewController.swift */; };
+		429623DA22A4F95200F59709 /* NormalSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429623D922A4F95200F59709 /* NormalSubViewController.swift */; };
+		42CF36DE22A6986E00FD65CF /* MCSlidingSuspensionTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF36DD22A6986E00FD65CF /* MCSlidingSuspensionTwoViewController.swift */; };
+		42D1532222A61F4F00786F25 /* MCNormalTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1532122A61F4F00786F25 /* MCNormalTwoViewController.swift */; };
+		42D1532522A6220300786F25 /* MCCategoryOnNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1532422A6220300786F25 /* MCCategoryOnNavViewController.swift */; };
 		4C7E65D621F6A6B100530578 /* SubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E65D221F6A6B100530578 /* SubViewController.swift */; };
 		4C7E65D721F6A6B100530578 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7E65D321F6A6B100530578 /* NextViewController.swift */; };
 		4E63747B698A9F87EE233D97 /* Pods_MCPageViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1A5F371DDE1D775F21C39F /* Pods_MCPageViewController_Tests.framework */; };
@@ -36,12 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		42F48B7B229530EE000C65EB /* MCPageChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCPageChildViewController.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCPageChildViewController.swift; sourceTree = "<group>"; };
-		42F48B7C229530EE000C65EB /* MCPageConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCPageConfig.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCPageConfig.swift; sourceTree = "<group>"; };
-		42F48B7D229530EE000C65EB /* MCCategoryBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCCategoryBar.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCCategoryBar.swift; sourceTree = "<group>"; };
-		42F48B7E229530EE000C65EB /* MCPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCPageViewController.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCPageViewController.swift; sourceTree = "<group>"; };
-		42F48B7F229530EE000C65EB /* MCPageTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCPageTool.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCPageTool.swift; sourceTree = "<group>"; };
-		42F48B80229530EE000C65EB /* MCBaseTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MCBaseTableView.swift; path = ../../../MCPageViewController/Classes/MCPageViewController/MCBaseTableView.swift; sourceTree = "<group>"; };
+		429623D522A4F13E00F59709 /* MCSlidingSuspensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSlidingSuspensionViewController.swift; sourceTree = "<group>"; };
+		429623D722A4F19E00F59709 /* MCNormalOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCNormalOneViewController.swift; sourceTree = "<group>"; };
+		429623D922A4F95200F59709 /* NormalSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalSubViewController.swift; sourceTree = "<group>"; };
+		42CF36DD22A6986E00FD65CF /* MCSlidingSuspensionTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSlidingSuspensionTwoViewController.swift; sourceTree = "<group>"; };
+		42D1532122A61F4F00786F25 /* MCNormalTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCNormalTwoViewController.swift; sourceTree = "<group>"; };
+		42D1532422A6220300786F25 /* MCCategoryOnNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCCategoryOnNavViewController.swift; sourceTree = "<group>"; };
 		4C7E65D221F6A6B100530578 /* SubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubViewController.swift; sourceTree = "<group>"; };
 		4C7E65D321F6A6B100530578 /* NextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MCPageViewController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCPageViewController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,17 +85,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		42F9D4952272FA060078771B /* MCPageViewController */ = {
+		429623D122A4F0DD00F59709 /* NormalTwo */ = {
 			isa = PBXGroup;
 			children = (
-				42F48B80229530EE000C65EB /* MCBaseTableView.swift */,
-				42F48B7D229530EE000C65EB /* MCCategoryBar.swift */,
-				42F48B7B229530EE000C65EB /* MCPageChildViewController.swift */,
-				42F48B7C229530EE000C65EB /* MCPageConfig.swift */,
-				42F48B7F229530EE000C65EB /* MCPageTool.swift */,
-				42F48B7E229530EE000C65EB /* MCPageViewController.swift */,
+				42D1532122A61F4F00786F25 /* MCNormalTwoViewController.swift */,
 			);
-			path = MCPageViewController;
+			path = NormalTwo;
+			sourceTree = "<group>";
+		};
+		429623D222A4F0DD00F59709 /* SlidingSuspension(滑动悬挂) */ = {
+			isa = PBXGroup;
+			children = (
+				429623D522A4F13E00F59709 /* MCSlidingSuspensionViewController.swift */,
+				42CF36DD22A6986E00FD65CF /* MCSlidingSuspensionTwoViewController.swift */,
+			);
+			path = "SlidingSuspension(滑动悬挂)";
+			sourceTree = "<group>";
+		};
+		429623D322A4F0DD00F59709 /* NormalOne */ = {
+			isa = PBXGroup;
+			children = (
+				429623D722A4F19E00F59709 /* MCNormalOneViewController.swift */,
+			);
+			path = NormalOne;
+			sourceTree = "<group>";
+		};
+		429623D422A4F0F200F59709 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4C7E65D321F6A6B100530578 /* NextViewController.swift */,
+				4C7E65D221F6A6B100530578 /* SubViewController.swift */,
+				429623D922A4F95200F59709 /* NormalSubViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		42D1532322A621D400786F25 /* Medium */ = {
+			isa = PBXGroup;
+			children = (
+				42D1532422A6220300786F25 /* MCCategoryOnNavViewController.swift */,
+			);
+			path = Medium;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -122,9 +152,11 @@
 		607FACD21AFB9204008FA782 /* Example for MCPageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				42F9D4952272FA060078771B /* MCPageViewController */,
-				4C7E65D321F6A6B100530578 /* NextViewController.swift */,
-				4C7E65D221F6A6B100530578 /* SubViewController.swift */,
+				42D1532322A621D400786F25 /* Medium */,
+				429623D422A4F0F200F59709 /* Detail */,
+				429623D322A4F0DD00F59709 /* NormalOne */,
+				429623D122A4F0DD00F59709 /* NormalTwo */,
+				429623D222A4F0DD00F59709 /* SlidingSuspension(滑动悬挂) */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -336,12 +368,22 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MCPageViewController_Example/Pods-MCPageViewController_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MCComponentExtension/MCComponentExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MCComponentFunction/MCComponentFunction.framework",
+				"${BUILT_PRODUCTS_DIR}/MCComponentPublicUI/MCComponentPublicUI.framework",
 				"${BUILT_PRODUCTS_DIR}/MCPageViewController/MCPageViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MCComponentExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MCComponentFunction.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MCComponentPublicUI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MCPageViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -358,16 +400,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42F48B85229530EE000C65EB /* MCPageTool.swift in Sources */,
-				42F48B82229530EE000C65EB /* MCPageConfig.swift in Sources */,
-				42F48B84229530EE000C65EB /* MCPageViewController.swift in Sources */,
+				429623D822A4F19E00F59709 /* MCNormalOneViewController.swift in Sources */,
+				429623D622A4F13E00F59709 /* MCSlidingSuspensionViewController.swift in Sources */,
+				42D1532522A6220300786F25 /* MCCategoryOnNavViewController.swift in Sources */,
+				429623DA22A4F95200F59709 /* NormalSubViewController.swift in Sources */,
+				42D1532222A61F4F00786F25 /* MCNormalTwoViewController.swift in Sources */,
 				4C7E65D621F6A6B100530578 /* SubViewController.swift in Sources */,
+				42CF36DE22A6986E00FD65CF /* MCSlidingSuspensionTwoViewController.swift in Sources */,
 				4C7E65D721F6A6B100530578 /* NextViewController.swift in Sources */,
-				42F48B83229530EE000C65EB /* MCCategoryBar.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				42F48B86229530EE000C65EB /* MCBaseTableView.swift in Sources */,
-				42F48B81229530EE000C65EB /* MCPageChildViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +560,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MCPageViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -532,6 +575,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MCPageViewController/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";

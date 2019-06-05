@@ -1,0 +1,6 @@
+framework module MCComponentFunction {
+  umbrella header "MCComponentFunction-umbrella.h"
+
+  export *
+  module * { export * }
+}

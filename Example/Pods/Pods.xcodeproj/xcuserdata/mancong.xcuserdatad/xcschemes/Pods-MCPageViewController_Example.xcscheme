@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BC460FA6B9AB862F2F2757C211492973"
+               BlueprintIdentifier = "EAACD225C5A9163BFA4347D1F8BB82CA"
                BuildableName = "Pods_MCPageViewController_Example.framework"
                BlueprintName = "Pods-MCPageViewController_Example"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BC460FA6B9AB862F2F2757C211492973"
+            BlueprintIdentifier = "EAACD225C5A9163BFA4347D1F8BB82CA"
             BuildableName = "Pods_MCPageViewController_Example.framework"
             BlueprintName = "Pods-MCPageViewController_Example"
             ReferencedContainer = "container:Pods.xcodeproj">

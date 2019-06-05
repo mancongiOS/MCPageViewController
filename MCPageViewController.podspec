@@ -9,8 +9,8 @@
 
 Pod::Spec.new do |s|
     s.name         = "MCPageViewController"
-    s.version      = "4.0"
-    s.summary      = "MCPageViewController for Swift.Public"
+    s.version      = "5.0.0"
+    s.summary      = "分页控制器： 支持分类栏在navigationBar上，滑动置顶等功能。"
     s.homepage     = "https://github.com/mancongiOS/MCPageViewController"
     s.license      = "MIT"
     s.author             = { "MC" => "562863544@qq.com" }
@@ -21,5 +21,6 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '8.0'
     
     s.dependency 'SnapKit'
+    
     
 end

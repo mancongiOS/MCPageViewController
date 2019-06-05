@@ -1,3 +1,7 @@
+
+source 'https://github.com/CocoaPods/Specs.git'        #官方仓库地址
+source 'https://gitee.com/mancong/MyPublicRepo.git'
+
 use_frameworks!
 
 target 'MCPageViewController_Example' do
@@ -5,8 +9,13 @@ target 'MCPageViewController_Example' do
 
   pod 'SnapKit'
   pod 'MJRefresh'
+  
+  # ==============扩展库
+  pod 'MCComponentExtension', '~> 0.6.4'
+  pod 'MCComponentPublicUI', '~> 0.6.4'
+  pod 'MCComponentFunction', '~> 0.6.8'
 
-
+  
   target 'MCPageViewController_Tests' do
     inherit! :search_paths
 

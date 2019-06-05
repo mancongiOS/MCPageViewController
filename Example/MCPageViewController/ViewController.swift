@@ -7,225 +7,120 @@
 //
 
 
+
+/**
+ 继续需要完善的地方
+ 1. 分类栏分类是否居中展示
+ 2. MCIndicatorView需要重新完善动画效果。
+ 3. 更新完整的readMe文件，录制一个使用的gif。
+ */
+
+
 import UIKit
 import MJRefresh
 import MCPageViewController
+import MCComponentExtension
+import MCComponentFunction
+import MCComponentPublicUI
+
 
 
 import SnapKit
+
 class ViewController: UIViewController {
-    
-    
-    /// 当前页面是否 不能滑动
-    private var cannotScroll: Bool = false
-    
+    // life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 11.0, *) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
-        } else {
-            self.automaticallyAdjustsScrollViewInsets = false
-        }
+        baseSetting()
         
         initUI()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = true
-    }
-    
-    
-    
-    lazy var tableView: MCBaseTableView = {
-        let tb = MCBaseTableView.init(frame: CGRect.zero, style: .plain)
-        tb.delegate = self
-        tb.dataSource = self
-        tb.separatorStyle = .none
-        tb.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
-        return tb
-    }()
-    
-    lazy var sectionHeader: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.red
-        view.frame = CGRect.init(x: 0, y: 0, width: 0, height: 1000)
-        return view
-    }()
-    
-    lazy var sectionFooter: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.green
-        view.frame = CGRect.init(x: 0, y: 0, width: 0, height: UIDevice.height - UIDevice.topSafeAreaHeight)
-        return view
-    }()
-    
-    
-    lazy var pageViewController: MCPageViewController = {
-        let pageViewController = MCPageViewController()
-        pageViewController.delegate = self
-
-        return pageViewController
-    }()
-}
-
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        return cell
     }
     
+    // MARK: - Setter & Getter
+    lazy var tableView = MCTableView.mc_make(registerCell: UITableViewCell.self, delegate: self)
+    
+    lazy var dataArray: [String] = []
 }
 
 
+//MARK: UI的处理,通知的接收
 extension ViewController {
+    
+    func baseSetting() {
+        self.title = "示例"
+        dataArray = [
+            "基本使用 - 有导航栏",
+            "基本使用 - 设置左右按钮",
+            "中级使用 - 分类栏在导航条上",
+            "高级使用 - 滑动悬停分类栏（无导航栏）",
+            "高级使用 - 滑动悬停分类栏（有导航栏）"
+        ]
+    }
+    
     func initUI() {
         view.addSubview(tableView)
         tableView.snp.remakeConstraints { (make) ->Void in
             make.edges.equalTo(view)
         }
-        
-
-        
-        tableView.tableHeaderView = sectionHeader
-        tableView.tableFooterView = sectionFooter
-        
-        self.title = "页面联动";
-        let titles = ["第0页第0页第0页","第1页","第2页","第3页","第4页","第5页","第6页","第7页","第8页","第9页","第10页"]
-        
-        
-        let vcArrayM = NSMutableArray()
-        let titleArrayM = NSMutableArray()
-        
-        
-        
-        
-        for i in 0..<titles.count {
-            let vc = SubViewController()
-            vc.fatherViewController = self
-            vc.delegate = self
-            vc.pageExplain = titles[i]
-            vcArrayM.add(vc)
-            
-            let model = MCCategoryModel()
-            model.title = titles[i]
-            titleArrayM.add(model)
-        }
-        
-
-        let config = MCPageConfig.shared
-        config.categoryModels = titleArrayM as! [MCCategoryModel]
-        config.viewControllers = vcArrayM as! [UIViewController]
-        config.indicatorColor = UIColor.orange
-        config.categoryBackgroundColor = UIColor.orange
-        config.selectIndex = 0
-        config.isShowMoreButton = true
-        config.selectFont = UIFont.systemFont(ofSize: 19)
-        config.categoryInset = UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 5)
-        
-
-        
-
-        self.addChild(pageViewController)
-        self.sectionFooter.addSubview(pageViewController.view)
-        pageViewController.didMove(toParent: self)
-        
-        pageViewController.view.snp.remakeConstraints { (make) ->Void in
-            make.edges.equalTo(sectionFooter)
-        }
-        
-
-        
-        pageViewController.initPagesWithConfig(config)
     }
 }
 
-extension ViewController: MCPageViewControllerDelegate {
-    func pageViewControllerClickMoreEvent(_ pageViewController: MCPageViewController) {
-        print("点击了更多按钮")
+//MARK: 代理方法
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
     }
     
-    func pageViewControllerWillBeginDragging(_ pageViewController: MCPageViewController) {
-        tableView.isScrollEnabled = false
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
     
-    
-    
-    func pageViewControllerDidEndDragging(_ pageViewController: MCPageViewController) {
-        tableView.isScrollEnabled = true
-    }
-    
-    func pageViewController(_ pageViewController: MCPageViewController, clickItemIndex index: Int) {
-        print(index)
-    }
-}
-
-
-
-
-extension ViewController: MCPageChildViewControllerDelegate {
-    func pageChildViewControllerLeaveTop(_ childViewController: MCPageChildViewController) {
-        cannotScroll = false
-    }
-}
-
-
-
-extension ViewController {
-    
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        return true
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let identifier = MCTool.mc_getClassName(UITableViewCell.self)
         
-        //第二部分：处理scrollView滑动冲突
-        let contentOffsetY = scrollView.contentOffset.y
-        //吸顶临界点(此时的临界点不是视觉感官上导航栏的底部，而是当前屏幕的顶部相对scrollViewContentView的位置)
-        let criticalPointOffsetY = scrollView.contentSize.height - UIDevice.height
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        cell.textLabel?.text = dataArray[indexPath.row]
         
-        
-        //利用contentOffset处理内外层scrollView的滑动冲突问题
-        if (contentOffsetY >= criticalPointOffsetY) {
-            /*
-             * 到达临界点：
-             * 1.未吸顶状态 -> 吸顶状态
-             * 2.维持吸顶状态 (pageViewController.scrollView.contentOffsetY > 0)
-             */
-            //“进入吸顶状态”以及“维持吸顶状态”
-            self.cannotScroll = true
-            
-            scrollView.contentOffset = CGPoint.init(x: 0, y: criticalPointOffsetY)
-
-            pageViewController.currentChildPageViewController?.makePageViewControllerScroll(canScroll: true)
+        if indexPath.row % 2 == 0 {
+            cell.backgroundColor = UIColor.mc_backgroud
         } else {
-            /*
-             * 未达到临界点：
-             * 1.维持吸顶状态 (pageViewController.scrollView.contentOffsetY > 0)
-             * 2.吸顶状态 -> 不吸顶状态
-             */
-            if (self.cannotScroll) {
-                //“维持吸顶状态”
-                scrollView.contentOffset = CGPoint.init(x: 0, y: criticalPointOffsetY)
-            } else {
-                /* 吸顶状态 -> 不吸顶状态
-                 * categoryView的子控制器的tableView或collectionView在竖直方向上的contentOffsetY小于等于0时，会通过代理的方式改变当前控制器self.canScroll的值；
-                 */
-            }
+            cell.backgroundColor = UIColor.white
+        }
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        case 0:
+            let vc = MCNormalOneViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 1:
+            let vc = MCNormalTwoViewController()
+            navigationController?.pushViewController(vc, animated: true)
+
+        case 2:
+            let vc = MCCategoryOnNavViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            let vc = MCSlidingSuspensionViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            
+        case 4:
+            let vc = MCSlidingSuspensionTwoViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            
+            
+
+
+           
+        default:
+            break
         }
     }
 }
-

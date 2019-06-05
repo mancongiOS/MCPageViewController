@@ -42,10 +42,17 @@ class MCCategoryOnNavViewController: UIViewController {
 }
 
 extension MCCategoryOnNavViewController {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
     func initUI() {
         view.backgroundColor = UIColor.white
         
-        categoryBar.frame = CGRect.init(x: 0, y: 0, width: 1000, height: 44)
+        categoryBar.backgroundColor = UIColor.red
+
+        categoryBar.frame = CGRect.init(x: 0, y: 0, width: 100, height: 44)
         self.navigationItem.titleView = categoryBar
 
         view.addSubview(containerView)

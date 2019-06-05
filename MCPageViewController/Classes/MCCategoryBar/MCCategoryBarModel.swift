@@ -16,7 +16,6 @@ public class MCCategoryBarModel: NSObject {
         }
     }
         
-    
     override public func setValue(_ value: Any?, forUndefinedKey key: String) { }
 }
 

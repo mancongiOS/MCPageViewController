@@ -181,6 +181,7 @@ extension MCSlidingSuspensionViewController {
     
     func loadPageViewController() {
         
+        
         /// 一定要使用这个单例
         let config = MCPageConfig.shared
         config.category.normalColor = UIColor.gray
@@ -190,6 +191,7 @@ extension MCSlidingSuspensionViewController {
         config.selectIndex = 0
         config.viewControllers = vcArray
         config.categoryModels = modelArray
+        
         
         
         config.indicator.height = 3

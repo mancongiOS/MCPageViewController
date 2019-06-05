@@ -89,6 +89,7 @@ extension MCNormalOneViewController {
         config.categoryModels = modelArray
         
         
+        
         config.indicator.height = 3
         config.indicator.cornerRadius = 1.5
         config.indicator.backgroundColor = UIColor.purple

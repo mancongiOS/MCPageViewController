@@ -44,8 +44,9 @@ class MCCategoryOnNavViewController: UIViewController {
 extension MCCategoryOnNavViewController {
     func initUI() {
         view.backgroundColor = UIColor.white
-        self.navigationItem.titleView = categoryBar
+        
         categoryBar.frame = CGRect.init(x: 0, y: 0, width: 1000, height: 44)
+        self.navigationItem.titleView = categoryBar
 
         view.addSubview(containerView)
         containerView.snp.remakeConstraints { (make) ->Void in

@@ -7,7 +7,8 @@
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+![示例](https://github.com/mancongiOS/MCPageViewController/blob/master/MCPageViewController.gif)
 
 ## Installation
 

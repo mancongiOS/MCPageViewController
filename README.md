@@ -8,7 +8,7 @@
 ## Example
 
 
-![示例](https://github.com/mancongiOS/MCPageViewController/blob/master/MCPageViewController.gif)
+![示例](https://github.com/mancongiOS/MCPageViewController/blob/master/demo.gif)
 
 ## Installation
 
@@ -22,6 +22,4 @@ pod 'MCPageViewController'
 
 联系作者 QQ群： 316879774
 
-## License
 
-MCPageViewController is available under the MIT license. See the LICENSE file for more info.

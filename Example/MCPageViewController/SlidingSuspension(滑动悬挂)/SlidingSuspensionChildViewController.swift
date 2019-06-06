@@ -14,7 +14,7 @@ import MCPageViewController
 
 
 import SnapKit
-class SubViewController: MCPageChildViewController {
+class SlidingSuspensionChildViewController: MCPageChildViewController {
     
     public var pageExplain = ""
     
@@ -48,7 +48,7 @@ class SubViewController: MCPageChildViewController {
     }()
 }
 
-extension SubViewController: UITableViewDelegate, UITableViewDataSource {
+extension SlidingSuspensionChildViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 40
@@ -68,6 +68,8 @@ extension SubViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         
+        
+        /// 如果分类栏置顶之后向下滑动，点击headerView使之停止滑动，第一下点击不触发didSelectRowAt方法，可以再cell底部添加一个button。原因是响应者链条的原因。具体未知。
 //        let button = UIButton.init(type: .custom)
 //        button.addTarget(self, action: #selector(buttenEvent), for: .touchUpInside)
 //
@@ -98,7 +100,7 @@ extension SubViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-extension SubViewController {
+extension SlidingSuspensionChildViewController {
     func initUI() {
         view.addSubview(tableView)
         tableView.snp.remakeConstraints { (make) ->Void in

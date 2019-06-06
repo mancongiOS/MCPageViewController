@@ -51,8 +51,8 @@ extension ViewController {
     func baseSetting() {
         self.title = "示例"
         dataArray = [
-            "基本使用 - 有导航栏",
-            "基本使用 - 设置左右按钮",
+            "基本使用",
+            "基本使用 - 分类栏添加元素",
             "中级使用 - 分类栏在导航条上",
             "高级使用 - 滑动悬停分类栏（无导航栏）",
             "高级使用 - 滑动悬停分类栏（有导航栏）"
@@ -98,7 +98,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            let vc = MCNormalOneViewController()
+            let vc = MCBasicUseViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = MCNormalTwoViewController()

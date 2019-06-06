@@ -23,6 +23,7 @@ class MCSlidingSuspensionTwoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "滑动悬停分类栏"
         
         initUI()
         
@@ -138,13 +139,15 @@ extension MCSlidingSuspensionTwoViewController {
     
     func createData() {
         
-        let titles = ["第0页","第1页"]
-        for title in titles {
+        for i in 0..<10 {
             
             let model = MCCategoryBarModel()
+            let title = "第" + String(i) + "页"
             model.title = title
             
-            let vc = SubViewController()
+            
+            /// 注意 SlidingSuspensionChildViewController继承的类
+            let vc = SlidingSuspensionChildViewController()
             vc.delegate = self
             vc.pageExplain = title
             vc.fatherViewController = self

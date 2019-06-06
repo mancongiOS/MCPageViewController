@@ -33,6 +33,8 @@ public class MCCategoryBar: UIView {
         
 
         
+        lineView.isHidden = config.category.isHiddenLine
+        
         selectedIndex = MCPageConfig.shared.selectIndex
         
         categoryModels = config.categoryModels
@@ -69,7 +71,7 @@ public class MCCategoryBar: UIView {
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = MCPageConfig.shared.category.itemSpacing
+        flowLayout.minimumLineSpacing = MCPageConfig.shared.category.itemSpacing
         
         let view = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
         view.backgroundColor = MCPageConfig.shared.category.barBackgroundColor
@@ -122,7 +124,8 @@ extension MCCategoryBar {
         MCPageConfig.shared.category.barHeight = self.frame.size.height
 
         collectionView.snp.remakeConstraints { (make) ->Void in
-            make.top.bottom.equalTo(self)
+            make.top.equalTo(self)
+            make.bottom.equalTo(-0.5)
             make.left.equalTo(MCPageConfig.shared.category.inset.left)
             make.right.equalTo(-MCPageConfig.shared.category.inset.right)
             
@@ -147,7 +150,7 @@ extension MCCategoryBar {
             let height = MCPageConfig.shared.indicator.height
             
             let pointX = cell.frame.origin.x + cell.frame.size.width / 2
-            let pointY = cell.frame.maxY
+            let pointY = cell.frame.maxY - height / 2 - 0.25
             
             indicatorView.center = CGPoint.init(x: pointX, y: pointY)
             indicatorView.bounds = CGRect.init(x: 0, y: 0, width: width, height: height)
@@ -203,18 +206,24 @@ extension MCCategoryBar: UICollectionViewDelegate, UICollectionViewDataSource,UI
         let config = MCPageConfig.shared
         let model = config.categoryModels[indexPath.row]
         
-        let title = model.title
+        let itemHeight: CGFloat = self.frame.size.height - 0.5
 
-        let itemHeight: CGFloat = self.frame.size.height
-
-        var itemWidth: CGFloat = config.category.itemExtendWidth + 2
-        if indexPath.item == selectedIndex {
-            itemWidth += title.getWidth(font: config.category.selectFont, height: 30)
-        } else {
-            itemWidth += title.getWidth(font: config.category.normalFont, height: 30)
+        /// 使用者设置了宽度
+        if config.category.itemWidth > 0 {
+             return CGSize.init(width: config.category.itemWidth, height: itemHeight)
+        } else { /// 使用者未设置宽度，宽度根据文字长度自适应
+            
+            let title = model.title
+            
+            var itemWidth: CGFloat = config.category.itemExtendWidth + 2
+            if indexPath.item == selectedIndex {
+                itemWidth += title.getWidth(font: config.category.selectFont, height: 30)
+            } else {
+                itemWidth += title.getWidth(font: config.category.normalFont, height: 30)
+            }
+            
+            return CGSize.init(width: itemWidth, height: itemHeight)
         }
-                
-        return CGSize.init(width: itemWidth, height: itemHeight)
     }
     
     

@@ -66,13 +66,11 @@ public struct CategoryStruct {
     /// 标题块的选中字体大小
     public var selectFont : UIFont = UIFont.boldSystemFont(ofSize: 16)
     
-
-    /**
-     * 标题栏的高度， 内部计算使用
-     */
-    public var barHeight : CGFloat = 0
     
-    /// 给categoryItem额外加的宽度。 实际一个categoryItem的宽度 = 文字宽度 + categoryItemExtendWidth
+    /// 分类元素的宽度 （默认为0即根据文字长度自适应，如果设置大于0的值，就固定宽度）
+    public var itemWidth: CGFloat = 0
+    
+    /// 给categoryItem额外加的宽度。 实际一个categoryItem的宽度 = 文字宽度 + categoryItemExtendWidth （仅在itemWidth<=0的时候有效）
     public var itemExtendWidth: CGFloat = 10
 
     /// 标题栏的背景颜色
@@ -84,9 +82,23 @@ public struct CategoryStruct {
     /// 分类之间的距离 （collectionView的minimumInteritemSpacing）
     public var itemSpacing: CGFloat = 0
     
-    
     /// 分类的边距 （collectionView的sectionInset）
     public var  inset: (left: CGFloat, right: CGFloat) = (0, 0)
+    
+    
+    /// 是否隐藏分割线
+    public var isHiddenLine: Bool = false
+    
+    
+    
+    
+    // -------------内部使用，请勿赋值--------------- //
+    /**
+     * 标题栏的高度， 内部计算使用
+     */
+    public var barHeight : CGFloat = 0
+    
+
 }
 
 

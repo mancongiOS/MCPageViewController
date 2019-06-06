@@ -69,14 +69,14 @@ extension NormalSubViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let vc = NextViewController()
-    //
-    //        print("点击了")
-    //
-    //        fatherViewController?.present(vc, animated: true, completion: nil)
-    //
-    //    }
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let vc = NextViewController()
+    
+            print("点击了")
+    
+            fatherViewController?.present(vc, animated: true, completion: nil)
+    
+        }
 
 }
 
@@ -89,18 +89,18 @@ extension NormalSubViewController {
         }
         
         
-//        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
-//            
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-//                self.tableView.mj_header.endRefreshing()
-//            })
-//        })
-//        
-//        
-//        tableView.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: {
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-//                self.tableView.mj_footer.endRefreshing()
-//            })
-//        })
+        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                self.tableView.mj_header.endRefreshing()
+            })
+        })
+        
+        
+        tableView.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                self.tableView.mj_footer.endRefreshing()
+            })
+        })
     }
 }

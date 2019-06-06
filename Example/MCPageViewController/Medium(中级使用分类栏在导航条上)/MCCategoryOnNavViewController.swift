@@ -50,7 +50,6 @@ extension MCCategoryOnNavViewController {
     func initUI() {
         view.backgroundColor = UIColor.white
         
-        categoryBar.backgroundColor = UIColor.red
 
         categoryBar.frame = CGRect.init(x: 0, y: 0, width: 100, height: 44)
         self.navigationItem.titleView = categoryBar
@@ -63,10 +62,10 @@ extension MCCategoryOnNavViewController {
     
     func createData() {
         
-        let titles = ["第0页","第1页","第2页"]
-        for title in titles {
+        for i in 0..<2 {
             
             let model = MCCategoryBarModel()
+            let title = "第" + String(i) + "页"
             model.title = title
             
             let vc = NormalSubViewController()
@@ -80,13 +79,22 @@ extension MCCategoryOnNavViewController {
 
         /// 一定要使用这个单例
         let config = MCPageConfig.shared
-        config.category.normalColor = UIColor.gray
-        config.category.selectedColor = UIColor.orange
-        config.category.normalFont = UIFont.mc12
-        config.category.selectFont = UIFont.mc12
+        
         config.selectIndex = 0
         config.viewControllers = vcArray
         config.categoryModels = modelArray
+
+        config.category.normalColor = UIColor.gray
+        config.category.selectedColor = UIColor.red
+        config.category.normalFont = UIFont.mc14
+        config.category.selectFont = UIFont.mc15
+        config.category.isHiddenLine = true
+        
+        
+        /// 注意设置的categoryBar.frame.size.width 和 itemWidth itemSpacing的关系
+        config.category.itemWidth = 50
+        config.category.itemSpacing = 0
+        
         
         config.indicator.isHiddenIndicator = true
         

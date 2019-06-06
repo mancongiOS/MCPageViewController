@@ -1,18 +1,15 @@
 //
-//  MCNormalTwoViewController.swift
+//  MCNormalOneViewController.swift
 //  MCPageViewController_Example
 //
-//  Created by 满聪 on 2019/6/4.
+//  Created by 满聪 on 2019/6/3.
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
 import UIKit
-
 import MCPageViewController
 
-import MCComponentPublicUI
-
-class MCNormalTwoViewController: UIViewController {
+class MCBasicUseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +22,14 @@ class MCNormalTwoViewController: UIViewController {
         loadPageViewController()
     }
     
-    
+    /// 分类条
     lazy var categoryBar: MCCategoryBar = {
         let view = MCCategoryBar()
         view.delegate = self
         return view
     }()
     
-    
+    /// 内容容器
     lazy var containerView: MCContainerView = {
         let view = MCContainerView()
         view.delegate = self
@@ -41,29 +38,18 @@ class MCNormalTwoViewController: UIViewController {
     
     var vcArray: [UIViewController] = []
     var modelArray: [MCCategoryBarModel] = []
-    
-    lazy var showButton = UIButton.mc_make(text: "更多", font: UIFont.mc15, textColor: UIColor.red, backgroundColor: UIColor.yellow, target: self, selector: #selector(event))
-    lazy var searchButton = UIButton.mc_make(text: "搜索", font: UIFont.mc15, textColor: UIColor.red, backgroundColor: UIColor.purple, target: self, selector: #selector(event))
-    
-    
-
-}
-extension MCNormalTwoViewController {
-
-    @objc func event() {
-        print("点击了")
-    }
 }
 
-
-extension MCNormalTwoViewController {
+extension MCBasicUseViewController {
     func initUI() {
+        
+        navigationItem.title = "基本使用"
         view.backgroundColor = UIColor.white
         
         view.addSubview(categoryBar)
         categoryBar.snp.remakeConstraints { (make) ->Void in
             make.left.right.top.equalTo(view)
-            make.height.equalTo(50)
+            make.height.equalTo(40)
         }
 
         
@@ -72,28 +58,14 @@ extension MCNormalTwoViewController {
             make.left.right.bottom.equalTo(view)
             make.top.equalTo(categoryBar.snp.bottom)
         }
-        
-        categoryBar.addSubview(showButton)
-        showButton.snp.remakeConstraints { (make) ->Void in
-            make.top.bottom.right.equalTo(0)
-            make.width.equalTo(50)
-        }
-
-        
-        categoryBar.addSubview(searchButton)
-        searchButton.snp.remakeConstraints { (make) ->Void in
-            make.top.bottom.left.equalTo(0)
-            make.width.equalTo(50)
-        }
-
     }
     
     func createData() {
         
-        let titles = ["第0页","第1页"]
-        for title in titles {
+        for i in 0..<10 {
             
             let model = MCCategoryBarModel()
+            let title = "第" + String(i) + "页"
             model.title = title
             
             let vc = NormalSubViewController()
@@ -108,16 +80,27 @@ extension MCNormalTwoViewController {
     
     func loadPageViewController() {
         
-        /// 一定要使用这个单例
+        /// 一定要使用这个单例。 详细的功能配置请看 MCPageConfig这个类
         let config = MCPageConfig.shared
-        config.category.normalColor = UIColor.gray
-        config.category.selectedColor = UIColor.orange
-        config.category.normalFont = UIFont.mc12
-        config.category.selectFont = UIFont.mc22
+        
+        
         config.selectIndex = 0
         config.viewControllers = vcArray
         config.categoryModels = modelArray
-        config.category.inset = (50, 50)
+
+        
+        config.category.normalColor = UIColor.gray
+        config.category.selectedColor = UIColor.red
+        config.category.normalFont = UIFont.mc14
+        config.category.selectFont = UIFont.mc16
+        
+        // 隐藏底部分割线
+//        config.category.isHiddenLine = true
+        
+        
+        config.indicator.height = 5
+        config.indicator.cornerRadius = 2.5
+        config.indicator.backgroundColor = UIColor.purple
         
         categoryBar.initCategoryBarWithConfig(config)
         containerView.initContainerViewWithConfig(config)
@@ -125,18 +108,17 @@ extension MCNormalTwoViewController {
 }
 
 
-extension MCNormalTwoViewController: MCCategoryBarDelegate {
+extension MCBasicUseViewController: MCCategoryBarDelegate {
     func categoryBar(categoryBar: MCCategoryBar, didSelectItemAt index: Int) {
         print("didSelectItemAt \(index)")
         containerView.containerViewScrollToSubViewController(subIndex: index)
     }
 }
 
-extension MCNormalTwoViewController: MCContainerViewDelegate {
+extension MCBasicUseViewController: MCContainerViewDelegate {
     
     func containerView(_ containerView: MCContainerView, didScrollToIndex index: Int) {
         print("didScrollToIndex \(index)")
         categoryBar.categoryBarDidClickItem(at: index)
     }
 }
-

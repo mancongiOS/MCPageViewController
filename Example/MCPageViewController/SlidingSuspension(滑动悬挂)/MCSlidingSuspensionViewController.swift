@@ -65,7 +65,7 @@ class MCSlidingSuspensionViewController: UIViewController {
     lazy var headerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.red
-        view.frame = CGRect.init(x: 0, y: 0, width: 0, height: 600)
+        view.frame = CGRect.init(x: 0, y: 0, width: 0, height: 200)
         return view
     }()
     
@@ -73,7 +73,7 @@ class MCSlidingSuspensionViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor.green
         
-         /// 有tabbar的时候m，也要减掉
+    
         view.frame = CGRect.init(x: 0, y: 0, width: 0, height: UIDevice.height - UIDevice.topSafeAreaHeight)
         return view
     }()
@@ -164,19 +164,20 @@ extension MCSlidingSuspensionViewController {
     
     func createData() {
         
-        let titles = ["第0页","第1页","第2页"]
-        for title in titles {
+        for i in 0..<10 {
             
             let model = MCCategoryBarModel()
+            let title = "第" + String(i) + "页"
             model.title = title
             
-            let vc = SubViewController()
+            let vc = SlidingSuspensionChildViewController()
             vc.delegate = self
             vc.pageExplain = title
             vc.fatherViewController = self
             vcArray.append(vc)
             modelArray.append(model)
         }
+
     }
     
     func loadPageViewController() {
@@ -242,14 +243,16 @@ extension MCSlidingSuspensionViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        /// 更改状态栏的透明度
+        /// 1. 更改状态栏的透明度
         updateStatusBarCoverColor()
-
         
-        //第二部分：处理scrollView滑动冲突
+        
         let contentOffsetY = scrollView.contentOffset.y
-        //吸顶临界点(此时的临界点不是视觉感官上导航栏的底部，而是当前屏幕的顶部相对scrollViewContentView的位置)
-        let criticalPointOffsetY = scrollView.contentSize.height - UIDevice.height
+        let contentSizeHeight = scrollView.contentSize.height
+        
+        //2.处理scrollView滑动冲突
+        //吸顶临界点
+        let criticalPointOffsetY = contentSizeHeight - UIDevice.height
         
         
         //利用contentOffset处理内外层scrollView的滑动冲突问题
@@ -263,7 +266,6 @@ extension MCSlidingSuspensionViewController {
             self.cannotScroll = true
             
             scrollView.contentOffset = CGPoint.init(x: 0, y: criticalPointOffsetY)
-           
             containerView.currentChildPageViewController?.makePageViewControllerScroll(canScroll: true)
         } else {
             /*

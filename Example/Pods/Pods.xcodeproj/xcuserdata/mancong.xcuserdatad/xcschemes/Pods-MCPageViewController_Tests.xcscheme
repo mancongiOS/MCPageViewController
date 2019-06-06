@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3E5DA5C9D48606549F6B34A1BCCD0081"
+               BlueprintIdentifier = "67F900256740D4A48E9141427FB7E24E"
                BuildableName = "Pods_MCPageViewController_Tests.framework"
                BlueprintName = "Pods-MCPageViewController_Tests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3E5DA5C9D48606549F6B34A1BCCD0081"
+            BlueprintIdentifier = "67F900256740D4A48E9141427FB7E24E"
             BuildableName = "Pods_MCPageViewController_Tests.framework"
             BlueprintName = "Pods-MCPageViewController_Tests"
             ReferencedContainer = "container:Pods.xcodeproj">

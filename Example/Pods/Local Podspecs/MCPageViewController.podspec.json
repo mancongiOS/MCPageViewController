@@ -15,10 +15,11 @@
     "tag": "5.0.4"
   },
   "source_files": "MCPageViewController/Classes/**/*",
-  "swift_version": "4.2",
+  "swift_versions": "4.2",
   "dependencies": {
     "SnapKit": [
 
     ]
-  }
+  },
+  "swift_version": "4.2"
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E13B975B0AEF8C3B49DA81BB3B0DBD4B"
+               BlueprintIdentifier = "89EFEFEE84F6B018C52DC12A0ED201CA"
                BuildableName = "MCComponentPublicUI.framework"
                BlueprintName = "MCComponentPublicUI"
                ReferencedContainer = "container:Pods.xcodeproj">

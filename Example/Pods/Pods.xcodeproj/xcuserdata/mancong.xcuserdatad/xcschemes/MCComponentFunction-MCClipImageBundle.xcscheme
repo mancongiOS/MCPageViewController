@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EF6F5197BEA8B43710381AA561302B62"
+               BlueprintIdentifier = "51F1CC7A3CF7C42BD04EDD9A7E30683E"
                BuildableName = "MCClipImageBundle.bundle"
                BlueprintName = "MCComponentFunction-MCClipImageBundle"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EF6F5197BEA8B43710381AA561302B62"
+            BlueprintIdentifier = "51F1CC7A3CF7C42BD04EDD9A7E30683E"
             BuildableName = "MCClipImageBundle.bundle"
             BlueprintName = "MCComponentFunction-MCClipImageBundle"
             ReferencedContainer = "container:Pods.xcodeproj">

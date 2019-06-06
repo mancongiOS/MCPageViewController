@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43D6903A99BDA6992D487188A3CD75B1"
+               BlueprintIdentifier = "9B74F358511DCB4BE3B4F2A02AC9D632"
                BuildableName = "MCComponentExtension.framework"
                BlueprintName = "MCComponentExtension"
                ReferencedContainer = "container:Pods.xcodeproj">

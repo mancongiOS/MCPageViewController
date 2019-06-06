@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43EC4494F11CA63C84076C4B800284A9"
+               BlueprintIdentifier = "2FAFFED2DAA69148A561DE9F20821A83"
                BuildableName = "MCComponentPublicUIViewBundle.bundle"
                BlueprintName = "MCComponentPublicUI-MCComponentPublicUIViewBundle"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43EC4494F11CA63C84076C4B800284A9"
+            BlueprintIdentifier = "2FAFFED2DAA69148A561DE9F20821A83"
             BuildableName = "MCComponentPublicUIViewBundle.bundle"
             BlueprintName = "MCComponentPublicUI-MCComponentPublicUIViewBundle"
             ReferencedContainer = "container:Pods.xcodeproj">

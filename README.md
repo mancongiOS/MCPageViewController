@@ -9,20 +9,17 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
-
 ## Installation
 
-MCPageViewController is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+To install it, simply add the following line to your Podfile:
 
-```ruby
+```
 pod 'MCPageViewController'
 ```
 
 ## Author
 
-562863544@qq.com, 13761066392@163.com
+联系作者 QQ群： 316879774
 
 ## License
 

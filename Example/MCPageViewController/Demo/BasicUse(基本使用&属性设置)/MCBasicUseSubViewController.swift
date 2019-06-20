@@ -14,7 +14,7 @@ import MJRefresh
 
 
 import SnapKit
-class NormalSubViewController: UIViewController {
+class MCBasicUseSubViewController: UIViewController {
     
     public var pageExplain = ""
     
@@ -44,7 +44,7 @@ class NormalSubViewController: UIViewController {
     }()
 }
 
-extension NormalSubViewController: UITableViewDelegate, UITableViewDataSource {
+extension MCBasicUseSubViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 40
@@ -72,16 +72,14 @@ extension NormalSubViewController: UITableViewDelegate, UITableViewDataSource {
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let vc = NextViewController()
     
-            print("点击了")
-    
-            fatherViewController?.present(vc, animated: true, completion: nil)
+    fatherViewController?.navigationController?.pushViewController(vc, animated: true)
     
         }
 
 }
 
 
-extension NormalSubViewController {
+extension MCBasicUseSubViewController {
     func initUI() {
         view.addSubview(tableView)
         tableView.snp.remakeConstraints { (make) ->Void in

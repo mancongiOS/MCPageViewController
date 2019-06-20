@@ -31,13 +31,34 @@ public class MCContainerView: UIView {
     
     public weak var delegate: MCContainerViewDelegate?
     
+    
+    
     /**
      * 根据数据直接创建
      */
     public func initContainerViewWithConfig(_ config: MCPageConfig) {
         
-        settingWithConfig(config)
+        /// 检查配置
+        if !isConfiguratioCorrect(config: config) {
+            return
+        }
+        
+        let index = config.defaultIndex
+        
+        self.config = config
+        
+        
+        // 指定当前的子控制器
+        currentChildPageViewController = config.viewControllers[index] as? MCPageChildViewController
+        
+        /// 指定当前选中的viewController
+        containerViewScrollToSubViewController(subIndex: index)
     }
+    
+    private var selectedIndex = 0
+    private var config: MCPageConfig = MCPageConfig()
+    
+
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +71,8 @@ public class MCContainerView: UIView {
 
     deinit {
         /// 重置
-        MCPageConfig.shared.empty()
+        self.config.empty()
+        self.selectedIndex = 0
     }
     
     
@@ -71,22 +93,6 @@ public class MCContainerView: UIView {
 //MARK: UI的处理,通知的接收
 private extension MCContainerView {
     
-    private func settingWithConfig(_ config: MCPageConfig) {
-        /// 检查配置
-        if !isConfiguratioCorrect(config: config) {
-            return
-        }
-        
-        let index = MCPageConfig.shared.selectIndex
-        
-        // 指定当前的子控制器
-        currentChildPageViewController = config.viewControllers[index] as? MCPageChildViewController
-        
-        /// 指定当前选中的viewController
-        containerViewScrollToSubViewController(subIndex: index)
-    }
-    
-    
     
     // 基础UI的设置
     private func initBaseUI() {
@@ -106,10 +112,12 @@ private extension MCContainerView {
             return false
         }
         
-        if config.viewControllers.count <= config.selectIndex {
-            print("MCPageViewController:\n 请检查config的配置config.selectIndex")
+        
+        if config.defaultIndex < 0 || config.defaultIndex >= config.viewControllers.count {
+            print("MCPageViewController:\n 请检查config的配置config.defaultIndex")
             return false
         }
+        
         return true
     }
 }
@@ -119,7 +127,7 @@ extension MCContainerView : UIScrollViewDelegate,UIPageViewControllerDelegate,UI
     
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        let viewControllers = MCPageConfig.shared.viewControllers
+        let viewControllers = config.viewControllers
         
         
         let index = viewControllers.index(of: viewController) ?? 0
@@ -132,7 +140,7 @@ extension MCContainerView : UIScrollViewDelegate,UIPageViewControllerDelegate,UI
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         
-        let viewControllers = MCPageConfig.shared.viewControllers
+        let viewControllers = config.viewControllers
         
         
         let index = viewControllers.index(of: viewController) ?? 0
@@ -151,18 +159,18 @@ extension MCContainerView : UIScrollViewDelegate,UIPageViewControllerDelegate,UI
         
         let sub = pageViewController.viewControllers![0]
         var index = 0
-        for subVc in MCPageConfig.shared.viewControllers {
+        for subVc in config.viewControllers {
             if subVc.isEqual(sub) {
-                MCPageConfig.shared.selectIndex = index
+                selectedIndex = index
                 break
             }
             index += 1
         }
         
         /// 滑动了pageViewController，选中对应的分类tab
-        currentChildPageViewController = MCPageConfig.shared.viewControllers[MCPageConfig.shared.selectIndex] as? MCPageChildViewController
+        currentChildPageViewController = config.viewControllers[selectedIndex] as? MCPageChildViewController
         
-        delegate?.containerView(self, didScrollToIndex: MCPageConfig.shared.selectIndex)
+        delegate?.containerView(self, didScrollToIndex: selectedIndex)
     }
     
     
@@ -182,12 +190,12 @@ extension MCContainerView {
     /// 更改选中的页面
     public func containerViewScrollToSubViewController(subIndex index: Int)  {
         let toPage = index
-        let direction : UIPageViewController.NavigationDirection = MCPageConfig.shared.selectIndex > toPage ? .forward : .reverse
+        let direction : UIPageViewController.NavigationDirection = selectedIndex > toPage ? .forward : .reverse
         
-        pageVC.setViewControllers([MCPageConfig.shared.viewControllers[toPage]], direction: direction, animated: false) { [weak self] (finished) in
-            MCPageConfig.shared.selectIndex = toPage;
+        pageVC.setViewControllers([config.viewControllers[toPage]], direction: direction, animated: false) { [weak self] (finished) in
+            self?.selectedIndex = toPage;
             
-            self?.currentChildPageViewController = MCPageConfig.shared.viewControllers[toPage] as? MCPageChildViewController
+            self?.currentChildPageViewController = self?.config.viewControllers[toPage] as? MCPageChildViewController
         }
     }
 }

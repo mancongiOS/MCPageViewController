@@ -11,8 +11,6 @@ import UIKit
 public class MCPageConfig: NSObject {
     
     
-    static public let shared: MCPageConfig = MCPageConfig.init()
-    
     /**
      * 标题文字数据源
      * 数组个数必须和vcs个数一致
@@ -26,24 +24,28 @@ public class MCPageConfig: NSObject {
     
     
     /**
-     * 当前选中的分类下标
+     * 默认选中的分类下标
      * 默认第0页
      */
-    public var selectIndex : Int = 0
-    
+    public var defaultIndex : Int = 0
+
 
     public var category = CategoryStruct.init()
 
     public var indicator = IndicatorStruct.init()
     
+    public var separator = SeparatorStruct.init()
+
+    
     
     /// 清空自身
     public func empty() {
-        selectIndex = 0
+        
         viewControllers = []
         categoryModels = []
         category = CategoryStruct.init()
         indicator = IndicatorStruct.init()
+        separator = SeparatorStruct.init()
     }
 }
 
@@ -53,8 +55,8 @@ public class MCPageConfig: NSObject {
 /// 对分类条的设置
 public struct CategoryStruct {
 
-    /// 标题最长显示字数
-    public var maxTitleCount: Int = 6
+    /// 分类名字最长显示字数
+    public var maxTitleCount: Int = Int.max
     
     /// 未选中的字体颜色
     public var normalColor: UIColor = UIColor.MCPage_gray
@@ -84,23 +86,17 @@ public struct CategoryStruct {
     
     /// 分类的边距 （collectionView的sectionInset）
     public var  inset: (left: CGFloat, right: CGFloat) = (0, 0)
-    
-    
-    /// 是否隐藏分割线
-    public var isHiddenLine: Bool = false
-    
-    
-    
-    
-    // -------------内部使用，请勿赋值--------------- //
-    /**
-     * 标题栏的高度， 内部计算使用
-     */
-    public var barHeight : CGFloat = 0
-    
-
 }
 
+
+/// 分割线的处理
+public struct SeparatorStruct {
+    
+    public var backgroundColor = UIColor.lightGray
+    public var height: CGFloat = 0.5
+    /// 是否隐藏分割线
+    public var isHidden: Bool = false
+}
 
 
 
@@ -109,7 +105,7 @@ public struct CategoryStruct {
 public struct IndicatorStruct {
     
     /// 是否隐藏指示器
-    public var isHiddenIndicator = false
+    public var isHidden = false
     /// 指示器的背景颜色
     public var backgroundColor = UIColor.red
     /// 指示器的高度

@@ -13,7 +13,7 @@ import UIKit
 
 open class MCBaseTableView: UITableView, UIGestureRecognizerDelegate {
     
-    
+    public var barHeight: CGFloat = 0
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
@@ -21,9 +21,9 @@ open class MCBaseTableView: UITableView, UIGestureRecognizerDelegate {
         let currentPoint: CGPoint = gestureRecognizer.location(in: self)
         
         
-        let height = (self.tableFooterView?.frame.size.height ?? 0) - MCPageConfig.shared.category.barHeight
+        let height = (self.tableFooterView?.frame.size.height ?? 0) - barHeight
         
-        let segmentViewContentScrollViewHeight: CGFloat = height > 0 ? height : MCPageConfig.shared.category.barHeight
+        let segmentViewContentScrollViewHeight: CGFloat = height > 0 ? height : barHeight
         
         let contentRect = CGRect.init(x: 0, y: self.contentSize.height - segmentViewContentScrollViewHeight, width: UIDevice.width, height: segmentViewContentScrollViewHeight)
         

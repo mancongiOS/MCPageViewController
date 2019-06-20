@@ -159,12 +159,12 @@ extension MCSlidingSuspensionTwoViewController {
     func loadPageViewController() {
         
         /// 一定要使用这个单例
-        let config = MCPageConfig.shared
+        let config = MCPageConfig()
         config.category.normalColor = UIColor.gray
         config.category.selectedColor = UIColor.orange
         config.category.normalFont = UIFont.mc12
         config.category.selectFont = UIFont.mc22
-        config.selectIndex = 0
+        config.defaultIndex = 0
         config.viewControllers = vcArray
         config.categoryModels = modelArray
         
@@ -240,7 +240,6 @@ extension MCSlidingSuspensionTwoViewController {
 
 extension MCSlidingSuspensionTwoViewController: MCCategoryBarDelegate {
     func categoryBar(categoryBar: MCCategoryBar, didSelectItemAt index: Int) {
-        print("didSelectItemAt \(index)")
         containerView.containerViewScrollToSubViewController(subIndex: index)
     }
 }
@@ -256,7 +255,6 @@ extension MCSlidingSuspensionTwoViewController: MCContainerViewDelegate {
     }
     
     func containerView(_ containerView: MCContainerView, didScrollToIndex index: Int) {
-        print("didScrollToIndex \(index)")
         categoryBar.categoryBarDidClickItem(at: index)
     }
 }

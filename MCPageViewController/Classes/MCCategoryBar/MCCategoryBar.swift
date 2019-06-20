@@ -16,6 +16,10 @@ public protocol MCCategoryBarDelegate: NSObjectProtocol {
 
 public class MCCategoryBar: UIView {
     
+    private var selectedIndex = 0
+    private var config: MCPageConfig = MCPageConfig()
+    private var categoryModels: [MCCategoryBarModel] = []
+    
     public weak var delegate: MCCategoryBarDelegate?
     
     public func initCategoryBarWithConfig(_ config: MCPageConfig) {
@@ -25,60 +29,56 @@ public class MCCategoryBar: UIView {
             return
         }
 
-        let indicator = config.indicator
-        indicatorView.isHidden = indicator.isHiddenIndicator
-        indicatorView.layer.cornerRadius = indicator.cornerRadius
-        indicatorView.layer.masksToBounds = true
-        indicatorView.backgroundColor = indicator.backgroundColor
-        
-
-        
-        lineView.isHidden = config.category.isHiddenLine
-        
-        selectedIndex = MCPageConfig.shared.selectIndex
-        
-        categoryModels = config.categoryModels
-        collectionView.reloadData()
-        
+        self.config = config
+        refreshUIItemSetting()
+        /// 当前选中的下标
+        selectedIndex = config.defaultIndex
+        /// 变为选中状态
         categoryBarDidClickItem(at: selectedIndex)
     }
 
     
     
-    private var selectedIndex = 0
-    
-    
-    public override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
-        initUI()
-    }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        initUI()
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        collectionView.frame = CGRect.init(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height - config.separator.height)
+        
+        lineView.frame = CGRect.init(x: 0, y: self.bounds.size.height - config.separator.height, width: self.bounds.size.width, height: config.separator.height)
+        
+        indicatorView.center.y = self.bounds.size.height - config.indicator.height / 2
     }
     
     deinit {
-        MCPageConfig.shared.empty()
+        config = MCPageConfig()
+        selectedIndex = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public var categoryModels: [MCCategoryBarModel] = []
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var flowLayout: UICollectionViewFlowLayout = {
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumLineSpacing = MCPageConfig.shared.category.itemSpacing
+        return flowLayout
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
         
         let view = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout)
-        view.backgroundColor = MCPageConfig.shared.category.barBackgroundColor
         view.showsHorizontalScrollIndicator = false
         view.delegate = self
         view.dataSource = self
         view.register(MCCategoryBarCell.classForCoder(), forCellWithReuseIdentifier: "MCCategoryCell")
+        view.backgroundColor = UIColor.orange
+        
         return view
     }()
     
@@ -95,6 +95,7 @@ public class MCCategoryBar: UIView {
 }
 
 
+
 extension MCCategoryBar {
     
     /// 检查配置
@@ -105,94 +106,152 @@ extension MCCategoryBar {
             print("MCPageViewController:\n 请检查config的配置 config.vcs.count:\(config.categoryModels.count) --- config.vcs.count:\(config.viewControllers.count)")
             return false
         }
+ 
         
-        if config.viewControllers.count <= config.selectIndex {
-            print("MCPageViewController:\n 请检查config的配置config.selectIndex")
+        if config.defaultIndex < 0 || config.defaultIndex >= config.viewControllers.count {
+            print("MCPageViewController:\n 请检查config的配置config.defaultIndex")
             return false
         }
         return true
     }
     
+    
+    func refreshUIItemSetting() {
+        
+        /// 对指示器的设置
+        let indicator = config.indicator
+        indicatorView.isHidden = indicator.isHidden
+        indicatorView.layer.cornerRadius = indicator.cornerRadius
+        indicatorView.layer.masksToBounds = true
+        indicatorView.backgroundColor = indicator.backgroundColor
+        
+        /// 分割线
+        lineView.isHidden = config.separator.isHidden
+        lineView.backgroundColor = config.separator.backgroundColor
+
+        flowLayout.minimumInteritemSpacing = config.category.itemSpacing
+        flowLayout.minimumLineSpacing = config.category.itemSpacing
+
+        flowLayout.sectionInset = UIEdgeInsets.init(top: 0, left: config.category.inset.left, bottom: 0, right: config.category.inset.right)
+        collectionView.backgroundColor = config.category.barBackgroundColor
+    }
+    
     func initUI() {
 
         self.addSubview(collectionView)
-
         self.addSubview(lineView)
-
         collectionView.addSubview(indicatorView)
-        
-        MCPageConfig.shared.category.barHeight = self.frame.size.height
+    }
+}
 
-        collectionView.snp.remakeConstraints { (make) ->Void in
-            make.top.equalTo(self)
-            make.bottom.equalTo(-0.5)
-            make.left.equalTo(MCPageConfig.shared.category.inset.left)
-            make.right.equalTo(-MCPageConfig.shared.category.inset.right)
-            
-        }
-        lineView.snp.remakeConstraints { (make) ->Void in
-            make.left.right.bottom.equalTo(self)
-            make.height.equalTo(0.5)
-        }
-    }
-    
-    
-    /// 更改指示器的位置
-    func updateIndicatorLocation(row: Int = 0) {
-        
-        if let cell = getCell(index: row) {
-            let setWidth = MCPageConfig.shared.indicator.width
-            
-            let nameWidth = categoryModels[row].title.MCGetWidth(font: MCPageConfig.shared.category.selectFont, height: 30)
-            
-            
-            let width = setWidth > 0 ? setWidth : nameWidth
-            let height = MCPageConfig.shared.indicator.height
-            
-            let pointX = cell.frame.origin.x + cell.frame.size.width / 2
-            let pointY = cell.frame.maxY - height / 2 - 0.25
-            
-            indicatorView.center = CGPoint.init(x: pointX, y: pointY)
-            indicatorView.bounds = CGRect.init(x: 0, y: 0, width: width, height: height)
-        }
-    }
-    
-    
+
+//MARK: - 选中状态的处理
+extension MCCategoryBar {
     /// 更改选中的分类
     public func categoryBarDidClickItem(at itemIndex: Int) {
         
-        if let selectedCell = self.getCell(index: self.selectedIndex) {
-            selectedCell.isCategorySelected = false
-        }
+        refreshSelectedStatus(selectedIndex: itemIndex)
+        layoutAndScrollToSelectedItem(itemIndex)
+        reloadCollectionView()
+    }
 
+    /// 更改选中数据 和 指示器的位置
+    func refreshSelectedStatus(selectedIndex: Int) {
         
-        if let targetCell = self.getCell(index: itemIndex) {
-            targetCell.isCategorySelected = true
-            self.selectedIndex = itemIndex;
-            MCPageConfig.shared.selectIndex = self.selectedIndex
+        // 获取当前选中的item的center.x的大小。
+        // 当前选中的分类的X轴上的中心点 = 左边距 + 前面分类的宽度总合 + 间隔的总合 + 当前分类的宽度的一半
+        // center.x = inset.left + index * (itemWidth + specing) + selectedItemWith / 2
+        var selectedItemCenterX: CGFloat = config.category.inset.left
+        var selectedtitleWidth: CGFloat = 0
+        
+        categoryModels.removeAll()
+        
+        let temp = config
+        
+        
+        for (index, value) in temp.categoryModels.enumerated() {
+            let model = value
+            
+            model.title = model.title.MCClipFromPrefix(to: config.category.maxTitleCount)
+            
+            model.index = index
+            model.isSelected = selectedIndex == index ? true : false
+            model.maxTitleCount = config.category.maxTitleCount
+            
+            model.normalColor = config.category.normalColor
+            model.selectedColor = config.category.selectedColor
+            
+            model.normalFont = config.category.normalFont
+            model.selectFont = config.category.selectFont
+            
+            model.itemBackgroundColor = config.category.itemBackgroundColor
+            
+            model.itemExtendWidth = config.category.itemExtendWidth
+            
+            
+            var itemWidth: CGFloat = 0
+            // 说明用户没有强制设置了item的宽度
+            if config.category.itemWidth <= 0 {
+                let font = model.isSelected ? model.selectFont : model.normalFont
+                
+                itemWidth = model.itemExtendWidth + model.title.getWidth(font: font, height: font.pointSize + 5)
+            } else {
+                itemWidth = config.category.itemWidth
+            }
+            
+            model.itemWidth = ceil(itemWidth)
+            
+            categoryModels.append(model)
+            
+            
+            if index < selectedIndex {
+                selectedItemCenterX += (model.itemWidth + config.category.itemSpacing)
+            } else if index == selectedIndex {
+                selectedItemCenterX += model.itemWidth / 2
+                selectedtitleWidth = model.itemWidth - model.itemExtendWidth
+            }
         }
+        
+        
+        // 更改指示器的位置
+        refreshIndicatorLocation(centerX: selectedItemCenterX, titleWidth: selectedtitleWidth)
+    }
+    
+    /// 更改指示器的位置
+    func refreshIndicatorLocation(centerX: CGFloat, titleWidth: CGFloat) {
+        
+        let height = config.indicator.height
+        
+        var width: CGFloat = 0
+        if config.indicator.width > 0 {
+            width = config.indicator.width
+        } else {
+            width = titleWidth
+        }
+        
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            self?.indicatorView.center.x = centerX
+            self?.indicatorView.bounds = CGRect.init(x: 0, y: 0, width: width, height: height)
+        }
+    }
 
-        self.layoutAndScrollToSelectedItem(itemIndex)
-        collectionView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) { [weak self] in
-            self?.updateIndicatorLocation(row: itemIndex)
-        }
-    }
-    
-    
-    /// 获取对应的cell
-    func getCell(index: Int) -> MCCategoryBarCell? {
-        return collectionView.cellForItem(at: IndexPath.init(row: index, section: 0)) as? MCCategoryBarCell
-    }
     
     /// 滚动选中的item到中央位置
     func layoutAndScrollToSelectedItem(_ index: Int) {
         collectionView.scrollToItem(at: IndexPath.init(row: index, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
     }
+
+    /// 刷新collectionView
+    func reloadCollectionView() {
+        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.reloadData()
+    }
 }
 
 
 
+
+//MARK: - 对UICollectionView的代理
 extension MCCategoryBar: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -203,36 +262,17 @@ extension MCCategoryBar: UICollectionViewDelegate, UICollectionViewDataSource,UI
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         
-        let config = MCPageConfig.shared
-        let model = config.categoryModels[indexPath.row]
+        let model = categoryModels[indexPath.row]
         
-        let itemHeight: CGFloat = self.frame.size.height - 0.5
+        let itemHeight: CGFloat = self.frame.size.height - config.separator.height
 
-        /// 使用者设置了宽度
-        if config.category.itemWidth > 0 {
-             return CGSize.init(width: config.category.itemWidth, height: itemHeight)
-        } else { /// 使用者未设置宽度，宽度根据文字长度自适应
-            
-            let title = model.title
-            
-            var itemWidth: CGFloat = config.category.itemExtendWidth + 2
-            if indexPath.item == selectedIndex {
-                itemWidth += title.getWidth(font: config.category.selectFont, height: 30)
-            } else {
-                itemWidth += title.getWidth(font: config.category.normalFont, height: 30)
-            }
-            
-            return CGSize.init(width: itemWidth, height: itemHeight)
-        }
+        return CGSize.init(width: model.itemWidth, height: itemHeight)
     }
     
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MCCategoryCell", for: indexPath) as! MCCategoryBarCell
-        
-        let name = categoryModels[indexPath.row].title
-        cell.titleLabel.text = name        
-        cell.isCategorySelected = selectedIndex == indexPath.row ? true : false
+        cell.model = categoryModels[indexPath.row]
         return cell
     }
     

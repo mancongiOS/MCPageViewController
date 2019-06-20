@@ -10,26 +10,30 @@ import UIKit
 
 public class MCCategoryBarCell: UICollectionViewCell {
     
-    public var isCategorySelected: Bool = false {
+    
+    public var model = MCCategoryBarModel() {
         didSet {
+            titleLabel.text = model.title
             
-            let category = MCPageConfig.shared.category
-            
-            if isCategorySelected {
-                titleLabel.textColor = category.selectedColor
-                titleLabel.font = category.selectFont
+            if model.isSelected {
+                titleLabel.textColor = model.selectedColor
+                titleLabel.font = model.selectFont
             } else {
-                titleLabel.textColor = category.normalColor
-                titleLabel.font = category.normalFont
+                titleLabel.textColor = model.normalColor
+                titleLabel.font = model.normalFont
             }
+            
+            backgroundColor = model.itemBackgroundColor
+
         }
     }
+    
+
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
-        backgroundColor = MCPageConfig.shared.category.itemBackgroundColor
         self.contentView.addSubview(titleLabel)
         titleLabel.snp.remakeConstraints { (make) ->Void in
             make.edges.equalTo(self.contentView)

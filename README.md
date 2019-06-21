@@ -14,11 +14,11 @@
 ## 功能示例
 ![示例1](https://github.com/mancongiOS/MCPageViewController/blob/master/Resources/demo1.png)
 
-![示例1](https://github.com/mancongiOS/MCPageViewController/blob/master/Resources/demo2.png)
+![示例2](https://github.com/mancongiOS/MCPageViewController/blob/master/Resources/demo2.png)
 
-![示例1](https://github.com/mancongiOS/MCPageViewController/blob/master/Resources/demo3.png)
+![示例3](https://github.com/mancongiOS/MCPageViewController/blob/master/Resources/demo3.png)
 
-![示例1](https://github.com/mancongiOS/MCPageViewController/blob/master/Resources/demoGif.png)
+![示例gif](https://github.com/mancongiOS/MCPageViewController/blob/master/Resources/demoGif.gif)
 
 ##如何使用?
 

@@ -4,7 +4,7 @@
 
 
 
-##功能说明
+## 功能说明
 * 快速构建多页面控制器
 * 分类栏和内容视图完全解耦
 * 支持分类栏的自定义
@@ -20,7 +20,7 @@
 
 ![示例gif](https://github.com/mancongiOS/MCPageViewController/blob/master/Resources/demoGif.gif)
 
-##如何使用?
+## 如何使用?
 
 ```
 pod 'MCPageViewController'

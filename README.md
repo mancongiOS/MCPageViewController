@@ -1,11 +1,18 @@
 # MCPageViewController
-
-[![CI Status](https://img.shields.io/travis/562863544@qq.com/MCPageViewController.svg?style=flat)](https://travis-ci.org/562863544@qq.com/MCPageViewController)
 [![Version](https://img.shields.io/cocoapods/v/MCPageViewController.svg?style=flat)](https://cocoapods.org/pods/MCPageViewController)
-[![License](https://img.shields.io/cocoapods/l/MCPageViewController.svg?style=flat)](https://cocoapods.org/pods/MCPageViewController)
-[![Platform](https://img.shields.io/cocoapods/p/MCPageViewController.svg?style=flat)](https://cocoapods.org/pods/MCPageViewController)
 
-## Example
+
+
+
+##功能说明
+* 快速构建多页面控制器
+* 支持分类栏的自定义
+* 支持分类栏添加在导航栏上
+* 支持分类栏滑动悬停
+
+
+
+
 
 
 ![示例](https://github.com/mancongiOS/MCPageViewController/blob/master/demo.gif)

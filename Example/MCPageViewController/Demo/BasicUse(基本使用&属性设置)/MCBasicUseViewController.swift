@@ -41,7 +41,7 @@ extension MCBasicUseViewController {
     
     func createData() {
         
-        for i in 0..<2 {
+        for i in 0..<10 {
             
             let model = MCCategoryBarModel()
             var titleStr = "第" + String(i) + "页"

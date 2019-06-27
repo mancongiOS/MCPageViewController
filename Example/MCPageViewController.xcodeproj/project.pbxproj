@@ -13,6 +13,7 @@
 		4208A9C522BB77BA0093FADF /* MCBasicUseFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4208A9C422BB77BA0093FADF /* MCBasicUseFourViewController.swift */; };
 		4208A9C722BB77C30093FADF /* MCBasicUseFiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4208A9C622BB77C30093FADF /* MCBasicUseFiveViewController.swift */; };
 		4208A9C922BB7ECC0093FADF /* MCBasicUseSixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4208A9C822BB7ECC0093FADF /* MCBasicUseSixViewController.swift */; };
+		426557FF22C4BD3500CB118B /* MCThreeLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426557FE22C4BD3500CB118B /* MCThreeLevelViewController.swift */; };
 		429623D622A4F13E00F59709 /* MCSlidingSuspensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429623D522A4F13E00F59709 /* MCSlidingSuspensionViewController.swift */; };
 		429623D822A4F19E00F59709 /* MCBasicUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429623D722A4F19E00F59709 /* MCBasicUseViewController.swift */; };
 		429623DA22A4F95200F59709 /* MCBasicUseSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429623D922A4F95200F59709 /* MCBasicUseSubViewController.swift */; };
@@ -46,6 +47,7 @@
 		4208A9C422BB77BA0093FADF /* MCBasicUseFourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCBasicUseFourViewController.swift; sourceTree = "<group>"; };
 		4208A9C622BB77C30093FADF /* MCBasicUseFiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCBasicUseFiveViewController.swift; sourceTree = "<group>"; };
 		4208A9C822BB7ECC0093FADF /* MCBasicUseSixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCBasicUseSixViewController.swift; sourceTree = "<group>"; };
+		426557FE22C4BD3500CB118B /* MCThreeLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCThreeLevelViewController.swift; sourceTree = "<group>"; };
 		429623D522A4F13E00F59709 /* MCSlidingSuspensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSlidingSuspensionViewController.swift; sourceTree = "<group>"; };
 		429623D722A4F19E00F59709 /* MCBasicUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCBasicUseViewController.swift; sourceTree = "<group>"; };
 		429623D922A4F95200F59709 /* MCBasicUseSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCBasicUseSubViewController.swift; sourceTree = "<group>"; };
@@ -96,10 +98,19 @@
 		4208A9BB22BB762E0093FADF /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				426557FD22C4BD1C00CB118B /* ThreeLevel(三级页面) */,
 				429623D322A4F0DD00F59709 /* BasicUse(基本使用&属性设置) */,
 				429623D222A4F0DD00F59709 /* SlidingSuspension(滑动悬挂) */,
 			);
 			path = Demo;
+			sourceTree = "<group>";
+		};
+		426557FD22C4BD1C00CB118B /* ThreeLevel(三级页面) */ = {
+			isa = PBXGroup;
+			children = (
+				426557FE22C4BD3500CB118B /* MCThreeLevelViewController.swift */,
+			);
+			path = "ThreeLevel(三级页面)";
 			sourceTree = "<group>";
 		};
 		429623D222A4F0DD00F59709 /* SlidingSuspension(滑动悬挂) */ = {
@@ -407,6 +418,7 @@
 				42CF36DE22A6986E00FD65CF /* MCSlidingSuspensionTwoViewController.swift in Sources */,
 				4208A9C122BB77A40093FADF /* MCBasicUseTwoViewController.swift in Sources */,
 				4C7E65D721F6A6B100530578 /* NextViewController.swift in Sources */,
+				426557FF22C4BD3500CB118B /* MCThreeLevelViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				4208A9C722BB77C30093FADF /* MCBasicUseFiveViewController.swift in Sources */,

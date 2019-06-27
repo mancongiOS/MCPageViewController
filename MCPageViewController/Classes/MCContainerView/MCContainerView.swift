@@ -174,7 +174,6 @@ extension MCContainerView : UIScrollViewDelegate,UIPageViewControllerDelegate,UI
     }
     
     
-    
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         delegate?.containerViewWillBeginDragging?(self)
     }

@@ -59,7 +59,8 @@ extension ViewController {
             "基本使用 - 指示器的设置",
 
             "高级使用 - 滑动悬停分类栏（无导航栏）",
-            "高级使用 - 滑动悬停分类栏（有导航栏）"
+            "高级使用 - 滑动悬停分类栏（有导航栏）",
+            "高级使用 - 多级页面"
         ]
     }
     
@@ -124,6 +125,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
         case 7:
             let vc = MCSlidingSuspensionTwoViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 8:
+            let vc = MCThreeLevelViewController()
             navigationController?.pushViewController(vc, animated: true)
 
             

@@ -189,6 +189,16 @@ extension MCCategoryBar {
             model.itemExtendWidth = config.category.itemExtendWidth
             
             
+            
+            // item分割线
+            model.itemSeparatorIsHidden = config.itemSeparator.isHidden
+            model.itemSeparatorBackgroundColor = config.itemSeparator.backgroundColor
+            model.itemSeparatorWidth = config.itemSeparator.width
+            model.itemSeparatorHeight = config.itemSeparator.height
+            model.itemSeparatorCornerRadius = config.itemSeparator.cornerRadius
+
+            
+            
             var itemWidth: CGFloat = 0
             // 说明用户没有强制设置了item的宽度
             if config.category.itemWidth <= 0 {

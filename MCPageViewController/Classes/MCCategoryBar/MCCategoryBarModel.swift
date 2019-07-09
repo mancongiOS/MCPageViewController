@@ -48,6 +48,24 @@ public class MCCategoryBarModel: NSObject {
     public var itemBackgroundColor : UIColor = UIColor.white
     
 
+    
+    
+    
+    // ====== item的分割线的设置 ======//
+    /// 是否隐藏
+    public var itemSeparatorIsHidden = false
+    /// 颜色
+    public var itemSeparatorBackgroundColor = UIColor.lightGray
+    /// 宽度
+    public var itemSeparatorWidth: CGFloat = 0
+    /// 高度
+    public var itemSeparatorHeight: CGFloat = 0
+    /// 圆角
+    public var itemSeparatorCornerRadius: CGFloat = 1
+
+    
+    
+    
     override public func setValue(_ value: Any?, forUndefinedKey key: String) { }
 }
 

@@ -44,7 +44,7 @@ extension MCBasicUseViewController {
         for i in 0..<10 {
             
             let model = MCCategoryBarModel()
-            var titleStr = "第" + String(i) + "页"
+            let titleStr = "第" + String(i) + "页"
             
             
 //            if i % 2 == 0 {

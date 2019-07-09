@@ -25,10 +25,27 @@ public class MCCategoryBarCell: UICollectionViewCell {
             
             backgroundColor = model.itemBackgroundColor
 
+            
+            lineView.isHidden = model.itemSeparatorIsHidden
+            lineView.layer.cornerRadius = model.itemSeparatorCornerRadius
+            lineView.backgroundColor = model.itemSeparatorBackgroundColor
+           
+            lineView.snp.remakeConstraints { (make) ->Void in
+                make.right.centerY.equalTo(contentView)
+                make.width.equalTo(model.itemSeparatorWidth)
+                make.height.equalTo(model.itemSeparatorHeight)
+            }
+
         }
     }
     
 
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        
+        
+    }
     
     
     override init(frame: CGRect) {
@@ -38,6 +55,8 @@ public class MCCategoryBarCell: UICollectionViewCell {
         titleLabel.snp.remakeConstraints { (make) ->Void in
             make.edges.equalTo(self.contentView)
         }
+        
+        self.contentView.addSubview(lineView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,5 +68,12 @@ public class MCCategoryBarCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .center
         return label
+    }()
+    
+    lazy var lineView: UIView = {
+        let view = UIView()
+        view.isHidden = true
+        view.layer.masksToBounds = true
+        return view
     }()
 }

@@ -190,14 +190,17 @@ extension MCCategoryBar {
             
             
             
-            // item分割线
-            model.itemSeparatorIsHidden = config.itemSeparator.isHidden
-            model.itemSeparatorBackgroundColor = config.itemSeparator.backgroundColor
-            model.itemSeparatorWidth = config.itemSeparator.width
-            model.itemSeparatorHeight = config.itemSeparator.height
-            model.itemSeparatorCornerRadius = config.itemSeparator.cornerRadius
+            // item分割线 (最后一个直接隐藏)
+            if index == (temp.categoryModels.count - 1) {
+                model.itemSeparatorIsHidden = true
+            } else {
+                model.itemSeparatorIsHidden = config.itemSeparator.isHidden
+                model.itemSeparatorBackgroundColor = config.itemSeparator.backgroundColor
+                model.itemSeparatorWidth = config.itemSeparator.width
+                model.itemSeparatorHeight = config.itemSeparator.height
+                model.itemSeparatorCornerRadius = config.itemSeparator.cornerRadius
+            }
 
-            
             
             var itemWidth: CGFloat = 0
             // 说明用户没有强制设置了item的宽度

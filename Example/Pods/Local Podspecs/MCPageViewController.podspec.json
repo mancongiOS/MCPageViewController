@@ -1,6 +1,6 @@
 {
   "name": "MCPageViewController",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "summary": "分页控制器： 支持分类栏在navigationBar上，滑动置顶等功能。",
   "homepage": "https://github.com/mancongiOS/MCPageViewController",
   "license": "MIT",
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/mancongiOS/MCPageViewController.git",
-    "tag": "5.2.0"
+    "tag": "5.2.1"
   },
   "source_files": "MCPageViewController/Classes/**/*",
   "swift_versions": "4.2",

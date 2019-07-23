@@ -55,6 +55,7 @@ extension MCBasicUseViewController {
             model.title = titleStr
             
             let vc = MCBasicUseSubViewController()
+            vc.delegate = self
             vc.pageExplain = titleStr
             vc.fatherViewController = self
             vcArray.append(vc)
@@ -73,6 +74,13 @@ extension MCBasicUseViewController: MCCategoryBarDelegate {
 extension MCBasicUseViewController: MCContainerViewDelegate {
     
     func containerView(_ containerView: MCContainerView, didScrollToIndex index: Int) {
+        categoryBar.categoryBarDidClickItem(at: index)
+    }
+}
+
+extension MCBasicUseViewController: JumpToOtherIndex {
+    func jumpToOtherIndex(_ index: Int) {
+        containerView.containerViewScrollToSubViewController(subIndex: index)
         categoryBar.categoryBarDidClickItem(at: index)
     }
 }

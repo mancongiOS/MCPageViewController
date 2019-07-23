@@ -77,7 +77,7 @@ public class MCCategoryBar: UIView {
         view.delegate = self
         view.dataSource = self
         view.register(MCCategoryBarCell.classForCoder(), forCellWithReuseIdentifier: "MCCategoryCell")
-        view.backgroundColor = UIColor.orange
+        view.backgroundColor = UIColor.white
         
         return view
     }()
@@ -251,7 +251,19 @@ extension MCCategoryBar {
     
     /// 滚动选中的item到中央位置
     func layoutAndScrollToSelectedItem(_ index: Int) {
-        collectionView.scrollToItem(at: IndexPath.init(row: index, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
+        
+        var endIndex = 0
+        
+        let count = collectionView.numberOfItems(inSection: 0)
+        
+        if count > index {
+            endIndex = index
+        } else {
+            endIndex = count
+        }
+                collectionView.scrollToItem(at: IndexPath.init(row: endIndex, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
+        
+
     }
 
     /// 刷新collectionView

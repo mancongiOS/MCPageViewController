@@ -9,12 +9,17 @@
 import UIKit
 
 import MJRefresh
-
-
-
-
 import SnapKit
+
+
+protocol JumpToOtherIndex: NSObjectProtocol {
+    func jumpToOtherIndex(_ index: Int)
+}
+
+
 class MCBasicUseSubViewController: UIViewController {
+    
+    public weak var delegate: JumpToOtherIndex?
     
     public var pageExplain = ""
     
@@ -69,12 +74,15 @@ extension MCBasicUseSubViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let vc = NextViewController()
     
-    fatherViewController?.navigationController?.pushViewController(vc, animated: true)
-    
-        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        delegate?.jumpToOtherIndex(6)
+        
+//        let vc = NextViewController()
+//
+//        fatherViewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 
 }
 

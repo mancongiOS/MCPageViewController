@@ -151,8 +151,8 @@ extension MCCategoryBar {
     public func categoryBarDidClickItem(at itemIndex: Int) {
         
         refreshSelectedStatus(selectedIndex: itemIndex)
-        layoutAndScrollToSelectedItem(itemIndex)
         reloadCollectionView()
+        layoutAndScrollToSelectedItem(itemIndex)
     }
 
     /// 更改选中数据 和 指示器的位置

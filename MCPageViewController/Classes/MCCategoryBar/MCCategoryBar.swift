@@ -259,7 +259,7 @@ extension MCCategoryBar {
         if count > index {
             endIndex = index
         } else {
-            endIndex = count
+            endIndex = count - 1
         }
                 collectionView.scrollToItem(at: IndexPath.init(row: endIndex, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         

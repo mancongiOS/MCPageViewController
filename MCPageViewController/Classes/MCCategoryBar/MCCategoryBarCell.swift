@@ -35,7 +35,47 @@ public class MCCategoryBarCell: UICollectionViewCell {
                 make.width.equalTo(model.itemSeparatorWidth)
                 make.height.equalTo(model.itemSeparatorHeight)
             }
+            
+            
+            badgeLabel.isHidden = model.badgeIsHidden
+            badgeLabel.backgroundColor = model.badgeBackgroundColor
+            
+            var badgeSize = CGSize.zero
+            
+            if model.badgeIsDoc == true {
+                badgeSize = CGSize.init(width: 8, height: 8)
+                badgeLabel.layer.cornerRadius = 4
+            } else {
+                
+                if let _ = model.badgeValue {
+                    badgeLabel.isHidden = false
+                } else {
+                    badgeLabel.isHidden = true
+                }
+                
+                badgeLabel.textColor = model.badgeTextColor
+                badgeLabel.font = model.badgeTextFont
+                badgeLabel.text = model.badgeValue
+                let height: CGFloat =  model.badgeTextFont.capHeight + 8
+                badgeLabel.layer.cornerRadius = height/2
 
+                var width: CGFloat = model.badgeValue?.pgGetWidth(font: model.badgeTextFont, height: height) ?? 0
+                
+                if width < height {
+                    width = height
+                } else {
+                    width += 6
+                }
+                
+                badgeSize = CGSize.init(width: width, height: height)
+
+            }
+                        
+            badgeLabel.snp.remakeConstraints { (make) ->Void in
+                make.size.equalTo(badgeSize)
+                make.centerY.equalTo(titleLabel.snp.top).offset(model.badgeOffset.y)
+                make.centerX.equalTo(titleLabel.snp.right).offset(model.badgeOffset.x)
+            }
         }
     }
     
@@ -47,16 +87,20 @@ public class MCCategoryBarCell: UICollectionViewCell {
         
     }
     
+
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = frame
         self.contentView.addSubview(titleLabel)
         titleLabel.snp.remakeConstraints { (make) ->Void in
-            make.edges.equalTo(self.contentView)
+            make.center.equalTo(contentView)
         }
         
         self.contentView.addSubview(lineView)
+        
+        self.contentView.addSubview(badgeLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,4 +120,27 @@ public class MCCategoryBarCell: UICollectionViewCell {
         view.layer.masksToBounds = true
         return view
     }()
+    
+    lazy var badgeLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.backgroundColor = UIColor.red
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.white
+        label.layer.masksToBounds = true
+
+        return label
+    }()
+}
+
+extension String {
+    
+    fileprivate func pgGetWidth(font:UIFont,height:CGFloat) -> CGFloat {
+        let statusLabelText: NSString = self as NSString
+        let size = CGSize.init(width: 9999, height: height)
+        let dic = NSDictionary(object: font, forKey: NSAttributedString.Key.font as NSCopying)
+        let strSize = statusLabelText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedString.Key : Any], context: nil).size
+        return strSize.width
+    }
+
 }

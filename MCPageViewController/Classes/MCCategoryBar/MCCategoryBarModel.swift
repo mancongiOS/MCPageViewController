@@ -14,7 +14,8 @@ public class MCCategoryBarModel: NSObject {
     
     @objc public var title: String = ""
     
-    
+    @objc public var badgeValue: String? = nil
+
     
     // ======================以下内部使用，请勿赋值====================== //
     
@@ -64,6 +65,22 @@ public class MCCategoryBarModel: NSObject {
     public var itemSeparatorCornerRadius: CGFloat = 1
 
     
+    // ====== item的badge的设置 ======//
+    /// 是否隐藏
+    public var badgeIsHidden = true
+    /// 颜色
+    public var badgeBackgroundColor = UIColor.red
+    
+    /// 设置Badge的偏移量, Badge中心点默认为文本的右上角
+    public var badgeOffset: CGPoint = CGPoint.zero
+    /// 是否指示点
+    public var badgeIsDoc: Bool = false
+    /// 文字的颜色
+    public var badgeTextColor: UIColor = UIColor.white
+    /// 文字的大小
+    public var badgeTextFont: UIFont = UIFont.systemFont(ofSize: 14)
+    
+
     
     
     override public func setValue(_ value: Any?, forUndefinedKey key: String) { }

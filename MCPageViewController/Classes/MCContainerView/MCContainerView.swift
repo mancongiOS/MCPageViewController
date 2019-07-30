@@ -188,6 +188,11 @@ extension MCContainerView {
     
     /// 更改选中的页面
     public func containerViewScrollToSubViewController(subIndex index: Int)  {
+        
+        if config.viewControllers.count <= index {
+            return
+        }
+        
         let toPage = index
         let direction : UIPageViewController.NavigationDirection = selectedIndex > toPage ? .forward : .reverse
         

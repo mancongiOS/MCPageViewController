@@ -150,6 +150,9 @@ extension MCCategoryBar {
     /// 更改选中的分类
     public func categoryBarDidClickItem(at itemIndex: Int) {
         
+        if config.categoryModels.count <= itemIndex {
+            return
+        }
         refreshSelectedStatus(selectedIndex: itemIndex)
         reloadCollectionView()
         layoutAndScrollToSelectedItem(itemIndex)
@@ -185,7 +188,6 @@ extension MCCategoryBar {
             model.selectFont = config.category.selectFont
             
             model.itemBackgroundColor = config.category.itemBackgroundColor
-            
             model.itemExtendWidth = config.category.itemExtendWidth
             
             
@@ -200,6 +202,14 @@ extension MCCategoryBar {
                 model.itemSeparatorHeight = config.itemSeparator.height
                 model.itemSeparatorCornerRadius = config.itemSeparator.cornerRadius
             }
+
+            // badge的设置
+            model.badgeIsHidden = config.badge.isHidden
+            model.badgeBackgroundColor = config.badge.backgroundColor
+            model.badgeOffset = config.badge.badgeOffset
+            model.badgeIsDoc = config.badge.isDoc
+            model.badgeTextColor = config.badge.badgeTextColor
+            model.badgeTextFont = config.badge.badgeTextFont
 
             
             var itemWidth: CGFloat = 0
@@ -273,6 +283,16 @@ extension MCCategoryBar {
     }
 }
 
+extension MCCategoryBar {
+   
+    /// 更改某一个item的显示数据内容
+    public func updateCategoryModel(_ model: MCCategoryBarModel, atIndex index: Int) {
+        if categoryModels.count > index {
+            categoryModels[index] = model
+            collectionView.reloadItems(at: [IndexPath.init(row: index, section: 0)])
+        }
+    }
+}
 
 
 

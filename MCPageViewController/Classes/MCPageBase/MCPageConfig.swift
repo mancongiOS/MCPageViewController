@@ -42,8 +42,8 @@ public class MCPageConfig: NSObject {
     /// item选中指示器
     public var indicator = LineStruct(isHidden: false, backgroundColor: UIColor.red, width: 0, height: 2, cornerRadius: 1)
     
-
-    
+    /// 设置未读标记
+    public var badge = BadgeStruct(isHidden: true, isDoc: false, backgroundColor: UIColor.red, badgeOffset: CGPoint.zero, badgeTextColor: UIColor.white, badgeTextFont: UIFont.systemFont(ofSize: 14))
     
     /// 清空自身
     public func empty() {
@@ -117,6 +117,28 @@ public class MCPageConfig: NSObject {
         
         /// 圆角
         public var cornerRadius: CGFloat = 1
+    }
+    
+    
+    public struct BadgeStruct {
+        /// 是否隐藏
+        public var isHidden = false
+        
+        /// 是否指示点
+        public var isDoc = false
+
+        
+        /// 颜色
+        public var backgroundColor = UIColor.red
+        
+        /// 设置Badge的偏移量, Badge中心点默认为文本的右上角
+        public var badgeOffset: CGPoint = CGPoint.zero
+        
+        /// 文字的颜色
+        public var badgeTextColor: UIColor = UIColor.white
+        /// 文字的大小
+        public var badgeTextFont: UIFont = UIFont.systemFont(ofSize: 14)
+
     }
 }
 

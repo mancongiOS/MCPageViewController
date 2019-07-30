@@ -58,65 +58,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MCPageViewController/Classes/MCCategoryBar/MCCategoryBarCell.swift"
-            timestampString = "584349062.934919"
+            timestampString = "586167637.368078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "layoutSubviews()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MCPageViewController.MCCategoryBarCell.layoutSubviews() -&gt; ()"
-                  moduleName = "MCPageViewController"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mancong/Desktop/Warehouses/MCPageViewController/MCPageViewController/Classes/MCCategoryBar/MCCategoryBarCell.swift"
-                  timestampString = "584348950.9441561"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "88">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SnapKit.ConstraintMaker) -&gt; () in MCPageViewController.MCCategoryBarCell.layoutSubviews() -&gt; ()"
-                  moduleName = "MCPageViewController"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mancong/Desktop/Warehouses/MCPageViewController/MCPageViewController/Classes/MCCategoryBar/MCCategoryBarCell.swift"
-                  timestampString = "584348950.946577"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "37">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../MCPageViewController/Classes/MCCategoryBar/MCCategoryBarCell.swift"
-            timestampString = "584349062.935235"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "model"
-            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

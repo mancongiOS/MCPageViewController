@@ -13,7 +13,7 @@ public class MCNavigationController: UINavigationController, UIGestureRecognizer
     override public func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        self.hidesBarsOnTap = true
+        self.hidesBarsOnTap = false
         weak var weakSelf = self
         if responds(to: #selector(getter: interactivePopGestureRecognizer)) {
             interactivePopGestureRecognizer?.delegate = weakSelf

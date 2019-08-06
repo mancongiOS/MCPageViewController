@@ -26,9 +26,10 @@ extension UIViewController {
     ///
     /// - Parameters:
     ///   - targetViewController: 目标控制器
+    ///   - isPush: 是push还是present跳转
     ///   - isHiddenBottomBarWhenBack: 返回的时候是否隐藏tabbar
     ///   - animated: 跳转页面动画是否打开
-    public func mc_jump(to targetViewController: UIViewController, isHiddenBottomBarWhenBack: Bool = true, animated:Bool = true) {
+    public func mc_jump(to targetViewController: UIViewController, isPresent: Bool = false, isHiddenBottomBarWhenBack: Bool = true, animated:Bool = true) {
         
         if self.navigationController == nil {
             self.present(targetViewController, animated: true, completion: nil)
@@ -37,15 +38,18 @@ extension UIViewController {
             let vc = getClassName(self)
             
             //如果目标控制器是一级页面，pop或dismiss后重新创建rootController
-            
-            if MCRoute.shared.subControllers.contains(vc) {
-                self.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(targetViewController, animated: animated)
-                self.hidesBottomBarWhenPushed = false
+            if isPresent {
+                self.present(targetViewController, animated: animated, completion: nil)
             } else {
-                self.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(targetViewController, animated: animated)
-                self.hidesBottomBarWhenPushed = isHiddenBottomBarWhenBack
+                if MCRoute.shared.subControllers.contains(vc) {
+                    self.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(targetViewController, animated: animated)
+                    self.hidesBottomBarWhenPushed = false
+                } else {
+                    self.hidesBottomBarWhenPushed = true
+                    self.navigationController?.pushViewController(targetViewController, animated: animated)
+                    self.hidesBottomBarWhenPushed = isHiddenBottomBarWhenBack
+                }
             }
         }
     }
@@ -163,6 +167,8 @@ extension UIViewController {
     
     
 }
+
+
 
 
 

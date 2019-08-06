@@ -124,7 +124,7 @@ extension MCCategoryBar {
         indicatorView.layer.cornerRadius = indicator.cornerRadius
         indicatorView.layer.masksToBounds = true
         indicatorView.backgroundColor = indicator.backgroundColor
-        
+        indicatorView.imageView.image = indicator.image
         /// 分割线
         lineView.isHidden = config.separator.isHidden
         lineView.backgroundColor = config.separator.backgroundColor
@@ -217,7 +217,7 @@ extension MCCategoryBar {
             if config.category.itemWidth <= 0 {
                 let font = model.isSelected ? model.selectFont : model.normalFont
                 
-                itemWidth = model.itemExtendWidth + model.title.getWidth(font: font, height: font.pointSize + 5)
+                itemWidth = model.itemExtendWidth + model.title.MCGetWidth(font: font, height: font.pointSize + 5)
             } else {
                 itemWidth = config.category.itemWidth
             }

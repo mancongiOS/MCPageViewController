@@ -1,5 +1,5 @@
 //
-//  MCCountDown.swift
+//  MCCountdown.swift
 //  MCAPI
 //
 //  Created by MC on 2018/7/30.
@@ -13,18 +13,40 @@ import UIKit
  */
 
 
-public protocol MCCountDownDelegate : NSObjectProtocol {
-    // 进行中
-    func MCCountDownOngoing(time:MCCountDownStruct)
-    // 结束
-    func MCCountDownOver()
+public protocol MCCountdownDelegate : NSObjectProtocol {
+    /// 进行中
+    func countdown(_ countdown: MCCountdown, ongoingTime time: MCCountdownStruct)
+    
+    /// 结束
+    func countdownEnd(_ countdown: MCCountdown)
+
+    /// 开始倒计时
+    func countdownStart(_ countdown: MCCountdown)
 }
 
 
-public class MCCountDown: NSObject {
+/// 让协议可选实现
+extension MCCountdownDelegate {
     
-    weak public var delegate : MCCountDownDelegate?
+    public func countdown(_ countdown: MCCountdown, ongoingTime time: MCCountdownStruct) { }
     
+    public func countdownEnd(_ countdown: MCCountdown) { }
+    
+    public func countdownStart(_ countdown: MCCountdown) { }
+}
+
+/// 倒计时的时间间隔 是秒还是分秒（1/10秒）
+public enum MCCountdownInterval: TimeInterval {
+    case nanosecond = 0.1
+    case seconds = 1
+}
+
+public class MCCountdown: NSObject {
+    
+    weak public var delegate : MCCountdownDelegate?
+    
+    // 倒计时的时间间隔
+    private var interval: MCCountdownInterval = .seconds
     private var second = 0
     private var minit = 0
     private var hour = 0
@@ -34,11 +56,23 @@ public class MCCountDown: NSObject {
     private var timer : Timer?
     
     
-    public func mc_openCountdown(start:String,end:String,format:String) -> MCCountDownStruct {
+    
+    /// 开启倒计时
+    ///
+    /// - Parameters:
+    ///   - start: 开始的时间点
+    ///   - end: 结束的时间点
+    ///   - format: 时间格式
+    ///   - interval: 倒计时间隔时间单位
+    public func mc_open(start: String,
+                                 end: String,
+                                 format: String = "yyyy-MM-dd HH:mm:ss", interval: MCCountdownInterval = .seconds) {
+        
+        self.interval = interval
         
         // 防止重复调用定时器，如果定时器存在就销毁。
         if timer != nil {
-            destructionCountDown()
+            destructionTimer()
         }
         
         let dateFormatter = DateFormatter.init()
@@ -59,25 +93,47 @@ public class MCCountDown: NSObject {
         day         = commponent.day        ?? 0
         nanosecond  = commponent.nanosecond ?? 0
         
-        let time = MCCountDownStruct(day:day,hour:hour,minit:minit,second:second,nanosecond:nanosecond)
-        
-        // 倒计时结束
-        if  nanosecond == 0 && second == 0 && minit == 0 && hour == 0 && day == 0 {
-            delegate?.MCCountDownOver()
-            return time
-        } else {
-            timer = Timer.scheduledTimer(timeInterval: 1/10, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-            RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
-        }
-        
-        return time
+        openTimer()
+        /// 倒计时开启
+        delegate?.countdownStart(self)
     }
     
     
-    // 停止倒计时
-    public func mc_stopCountDown() {
+    
+    /// 开启倒计时
+    ///
+    /// - Parameters:
+    ///   - allSecondsTime: 倒计时的总时长
+    ///   - interval: 倒计时的时间间隔单位
+    public func mc_open(allSecondsTime: Int, interval: MCCountdownInterval = .seconds) {
         
-        destructionCountDown()
+        self.interval = interval
+        
+        // 防止重复调用定时器，如果定时器存在就销毁。
+        if timer != nil {
+            destructionTimer()
+        }
+
+        second      = allSecondsTime
+        minit       = 0
+        hour        = 0
+        day         = 0
+        nanosecond  = 0
+        
+        openTimer()
+        /// 倒计时开启
+        delegate?.countdownStart(self)
+    }
+    
+    
+    
+    
+    
+    
+    /// 主动停止倒计时
+    public func mc_stopCountdown() {
+        
+        destructionTimer()
         
         day = 0
         hour = 0
@@ -85,63 +141,83 @@ public class MCCountDown: NSObject {
         second = 0
         nanosecond = 0
         
-        let time = MCCountDownStruct(day:day,hour:hour,minit:minit,second:second,nanosecond:nanosecond)
-        delegate?.MCCountDownOngoing(time: time)
+        delegate?.countdownEnd(self)
     }
     
     
     @objc private func timerAction() {
         
-        nanosecond = nanosecond - 1
-        
-        if nanosecond == -1 {
-            nanosecond = 9
-            
-            second = second - 1
-            
-            if second == -1 {
-                second = 59
-                minit = minit - 1
-                if minit == -1 {
-                    minit = 59
-                    hour = hour - 1
-                    if hour == -1 {
-                        hour = 23
-                        day = day - 1
-                    }
-                }
+        if interval == .seconds {
+            countDownSeconds()
+        } else {
+            nanosecond = nanosecond - 1
+            if nanosecond == -1 {
+                nanosecond = 9
+                countDownSeconds()
             }
         }
         
+        
+        let time = MCCountdownStruct(day:day,hour:hour,minit:minit,second:second,nanosecond:nanosecond)
+        delegate?.countdown(self, ongoingTime: time)
+        
         if  nanosecond == 0 && second == 0 && minit == 0 && hour == 0 && day == 0 {
-            
-            delegate?.MCCountDownOver()
-            self.timer?.invalidate()
-            timer = nil
+            mc_stopCountdown()
         }
-        let time = MCCountDownStruct(day:day,hour:hour,minit:minit,second:second,nanosecond:nanosecond)
-        delegate?.MCCountDownOngoing(time: time)
     }
     
-    // 销毁定时器
-    private func destructionCountDown() {
-        timer?.invalidate()
-        timer = nil
-    }
     
+    // 对秒的倒计时
+    private func countDownSeconds() {
+        second = second - 1
+        
+        if second == -1 {
+            second = 59
+            minit = minit - 1
+            if minit == -1 {
+                minit = 59
+                hour = hour - 1
+                if hour == -1 {
+                    hour = 23
+                    day = day - 1
+                }
+            }
+        }
+    }
+
     
     deinit {
-        destructionCountDown()
+        destructionTimer()
     }
 }
 
 
-public struct MCCountDownStruct {
-    var day        : Int
-    var hour       : Int
-    var minit      : Int
-    var second     : Int
-    var nanosecond : Int
+extension MCCountdown {
+    
+    func openTimer() {
+        
+        guard let _ = timer else {
+            timer = Timer.scheduledTimer(timeInterval: TimeInterval(interval.rawValue), target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+            RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
+            return
+        }
+    }
+    
+    // 销毁定时器
+    private func destructionTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+}
+
+
+
+public struct MCCountdownStruct {
+    public var day        : Int
+    public var hour       : Int
+    public var minit      : Int
+    public var second     : Int
+    public var nanosecond : Int
 }
 
 

@@ -56,12 +56,12 @@ extension String {
     /**
      * 判断是否电话号码 11位并且首位是1
      */
-    public func mc_isPhoneNumber(str:String) -> Bool {
-        if str.count != 11 { return false }
-        if str.first != "1" { return false }
+    public func mc_isPhoneNumber() -> Bool {
+        if self.count != 11 { return false }
+        if self.first != "1" { return false }
         return true
     }
-    
+
     
     /**
      * 校验密码强度
@@ -258,6 +258,23 @@ extension String {
 extension String {
     
     
+    /// 将原始的url编码为合法的url
+    public func mc_urlEncoded() -> String {
+        
+        // 先解码，后编码。防止二次编码的情况
+        let decodedStr = self.mc_urlDecoded()
+        
+        let encodedStr = decodedStr.addingPercentEncoding(withAllowedCharacters:
+            .urlQueryAllowed) ?? ""
+        return encodedStr
+    }
+    
+    /// 将编码后的url转换回原始的url
+    public func mc_urlDecoded() -> String {
+        return self.removingPercentEncoding ?? ""
+    }
+
+    
     /**
      * 字符串转字典
      */
@@ -334,6 +351,67 @@ extension String {
 
 
 
+//MARK: - 给String类添加下标扩展
+public extension String {
+    
+    subscript(start:Int, length:Int) -> String {
+        get {
+            
+            if start >= self.count {
+                return ""
+            }
+            
+            if (start + length) > self.count {
+                let selfIndex = self.index(self.startIndex, offsetBy: start)
+                let str = self.suffix(from: selfIndex)
+                return String(str)
+            }
+            
+            
+            let index1 = self.index(self.startIndex, offsetBy: start)
+            let index2 = self.index(index1, offsetBy: length)
+            let range = Range(uncheckedBounds: (lower: index1, upper: index2))
+            return String(self[range])
+        }
+        set {
+            let tmp = self
+            var s = ""
+            var e = ""
+            for (idx, item) in tmp.enumerated() {
+                if(idx < start) {
+                    s += "\(item)"
+                }
+                if(idx >= start + length) {
+                    e += "\(item)"
+                }
+            }
+            self = s + newValue + e
+        }
+    }
+    
+    subscript(index:Int) -> String {
+        get {
+            if index >= self.count {
+                return ""
+            }
+            return String(self[self.index(self.startIndex, offsetBy: index)])
+        }
+        set {
+            let tmp = self
+            self = ""
+            for (idx, item) in tmp.enumerated() {
+                if idx == index {
+                    self += "\(newValue)"
+                } else {
+                    self += "\(item)"
+                }
+            }
+        }
+    }
+}
+
+
+
 
 
 
@@ -378,3 +456,5 @@ extension UIImage {
         return imageNew!
     }
 }
+
+

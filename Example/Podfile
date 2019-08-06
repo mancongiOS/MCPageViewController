@@ -11,9 +11,9 @@ target 'MCPageViewController_Example' do
   pod 'MJRefresh'
   
   # ==============扩展库
-  pod 'MCComponentExtension', '~> 0.6.4'
-  pod 'MCComponentPublicUI', '~> 0.6.4'
-  pod 'MCComponentFunction', '~> 0.6.8'
+  pod 'MCComponentExtension', '0.8.0'
+  pod 'MCComponentPublicUI', '0.8.0'
+  pod 'MCComponentFunction', '0.8.2'
 
   
   target 'MCPageViewController_Tests' do

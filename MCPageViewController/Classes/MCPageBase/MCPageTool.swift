@@ -10,7 +10,7 @@ import UIKit
 
 public extension String {
     // 计算字符串的宽度
-    public func getWidth(font:UIFont,height:CGFloat) -> CGFloat {
+    func getWidth(font:UIFont,height:CGFloat) -> CGFloat {
         
         let size: CGSize = self.size(withAttributes: [NSAttributedString.Key.font: font])
         return size.width

@@ -88,8 +88,8 @@ public class MCCategoryBar: UIView {
         return view
     }()
     
-    private lazy var indicatorView: MCIndicatorView = {
-        let view = MCIndicatorView()
+    private lazy var indicatorView: UIImageView = {
+        let view = UIImageView()
         return view
     }()
 }
@@ -124,7 +124,7 @@ extension MCCategoryBar {
         indicatorView.layer.cornerRadius = indicator.cornerRadius
         indicatorView.layer.masksToBounds = true
         indicatorView.backgroundColor = indicator.backgroundColor
-        
+        indicatorView.image = indicator.image
         /// 分割线
         lineView.isHidden = config.separator.isHidden
         lineView.backgroundColor = config.separator.backgroundColor

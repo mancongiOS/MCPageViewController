@@ -34,13 +34,13 @@ public class MCPageConfig: NSObject {
     public var category = CategoryStruct.init()
 
     /// 元素间分割线 （竖向）
-    public var itemSeparator = LineStruct(isHidden: true, backgroundColor: UIColor.lightGray, width: 2, height: 20, cornerRadius: 1)
+    public var itemSeparator = LineStruct(isHidden: true, backgroundColor: UIColor.lightGray, width: 2, height: 20, cornerRadius: 1, image: nil)
 
     /// 分割线 （整个横向）
-    public var separator = LineStruct(isHidden: false, backgroundColor: UIColor.lightGray, width: 0, height: 0.5, cornerRadius: 0)
+    public var separator = LineStruct(isHidden: false, backgroundColor: UIColor.lightGray, width: 0, height: 0.5, cornerRadius: 0, image: nil)
 
     /// item选中指示器
-    public var indicator = LineStruct(isHidden: false, backgroundColor: UIColor.red, width: 0, height: 2, cornerRadius: 1)
+    public var indicator = LineStruct(isHidden: false, backgroundColor: UIColor.red, width: 0, height: 2, cornerRadius: 1, image: nil)
     
     /// 设置未读标记
     public var badge = BadgeStruct(isHidden: true, isDoc: false, backgroundColor: UIColor.red, badgeOffset: CGPoint.zero, badgeTextColor: UIColor.white, badgeTextFont: UIFont.systemFont(ofSize: 14))
@@ -53,11 +53,11 @@ public class MCPageConfig: NSObject {
         category = CategoryStruct.init()
         
         
-        itemSeparator = LineStruct(isHidden: true, backgroundColor: UIColor.lightGray, width: 2, height: 20, cornerRadius: 1)
+        itemSeparator = LineStruct(isHidden: true, backgroundColor: UIColor.lightGray, width: 2, height: 20, cornerRadius: 1, image: nil)
         
-        separator = LineStruct(isHidden: false, backgroundColor: UIColor.lightGray, width: 0, height: 0.5, cornerRadius: 0)
+        separator = LineStruct(isHidden: false, backgroundColor: UIColor.lightGray, width: 0, height: 0.5, cornerRadius: 0, image: nil)
         
-        indicator = LineStruct(isHidden: false, backgroundColor: UIColor.red, width: 0, height: 2, cornerRadius: 1)
+        indicator = LineStruct(isHidden: false, backgroundColor: UIColor.red, width: 0, height: 2, cornerRadius: 1, image: nil)
     }
     
     
@@ -117,6 +117,9 @@ public class MCPageConfig: NSObject {
         
         /// 圆角
         public var cornerRadius: CGFloat = 1
+        
+        /// 图片
+        public var image: UIImage?
     }
     
     

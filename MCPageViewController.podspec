@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
     s.name         = "MCPageViewController"
-    s.version      = "5.3.0"
+    s.version      = "5.4.1"
     s.summary      = "分页控制器： 支持分类栏在navigationBar上，滑动置顶等功能。"
     s.homepage     = "https://github.com/mancongiOS/MCPageViewController"
     s.license      = "MIT"
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
     s.platform     = :ios, "7.0"
     s.source       = { :git => "https://github.com/mancongiOS/MCPageViewController.git", :tag => "#{s.version}" }
     s.source_files = 'MCPageViewController/Classes/**/*'
-    s.swift_version = '4.2'
+    s.swift_version = '5.0'
     s.ios.deployment_target = '8.0'
     
     s.dependency 'SnapKit'

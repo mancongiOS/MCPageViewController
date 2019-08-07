@@ -129,8 +129,7 @@ extension MCContainerView : UIScrollViewDelegate,UIPageViewControllerDelegate,UI
         
         let viewControllers = config.viewControllers
         
-        
-        let index = viewControllers.index(of: viewController) ?? 0
+        let index = viewControllers.firstIndex(of: viewController) ?? 0
         if index == viewControllers.count - 1 {
             return nil
         }
@@ -143,12 +142,12 @@ extension MCContainerView : UIScrollViewDelegate,UIPageViewControllerDelegate,UI
         let viewControllers = config.viewControllers
         
         
-        let index = viewControllers.index(of: viewController) ?? 0
+        let index = viewControllers.firstIndex(of: viewController) ?? 0
         if index == 0 {
             return nil
         }
         
-        if let index = viewControllers.index(of: viewController) {
+        if let index = viewControllers.firstIndex(of: viewController) {
             return viewControllers[index - 1]
         } else {
             return nil

@@ -14,8 +14,13 @@ import MCComponentExtension
  */
 public class MCEmptyDataView: UIView {
     
-    public var emptyClosure : (() -> Void)?
+    public var emptyClosure: (() -> Void)?
     
+    public var imageTopMargin: CGFloat = 150
+    public var textTopMargin: CGFloat = 20
+    public var buttonTopMargin: CGFloat = 40
+    public var buttonSize: CGSize = CGSize.init(width: 240, height: 40)
+
     public var isShowButton : Bool = false
     
     override init(frame: CGRect) {
@@ -37,23 +42,21 @@ public class MCEmptyDataView: UIView {
         
         emptyImageView.snp.remakeConstraints { (make) ->Void in
             make.centerX.equalTo(self)
-            make.centerY.equalTo(self.snp.centerY).offset(-60)
+            make.top.equalTo(imageTopMargin)
         }
         
-        if isShowButton {
-            emptyButton.snp.remakeConstraints { (make) ->Void in
-                make.centerX.equalTo(self)
-                make.top.equalTo(emptyImageView.snp.bottom).offset(40)
-                make.height.equalTo(40)
-                make.width.equalTo(self.snp.width).multipliedBy(0.65)
-            }
-        } else {
-            emptyTextLabel.snp.remakeConstraints { (make) ->Void in
-                make.centerX.equalTo(self)
-                make.top.equalTo(emptyImageView.snp.bottom).offset(30)
-                make.height.equalTo(40)
-            }
+        emptyTextLabel.snp.remakeConstraints { (make) ->Void in
+            make.centerX.equalTo(self)
+            make.top.equalTo(emptyImageView.snp.bottom).offset(textTopMargin)
         }
+        
+        emptyButton.snp.remakeConstraints { (make) ->Void in
+            make.centerX.equalTo(self)
+            make.top.equalTo(emptyTextLabel.snp.bottom).offset(buttonTopMargin)
+            make.size.equalTo(buttonSize)
+        }
+        
+        emptyButton.isHidden = !isShowButton
     }
     
     @objc private func emptyButtonEvent() {
@@ -80,7 +83,7 @@ public class MCEmptyDataView: UIView {
         let button = UIButton.init(type: UIButton.ButtonType.custom)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
-        button.backgroundColor = UIColor.red
+        button.backgroundColor = UIColor.groupTableViewBackground
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.setTitle("返回", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)

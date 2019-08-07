@@ -33,11 +33,11 @@ public class MCTabBarController: UITabBarController,UITabBarControllerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         return true
     }
     
-    private func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
     }
     

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "51F1CC7A3CF7C42BD04EDD9A7E30683E"
-               BuildableName = "MCClipImageBundle.bundle"
-               BlueprintName = "MCComponentFunction-MCClipImageBundle"
+               BlueprintIdentifier = "EE5B3123ED843D9B0059B12BA4845DEF"
+               BuildableName = "MCPhotoLibraryBundle.bundle"
+               BlueprintName = "MCComponentFunction-MCPhotoLibraryBundle"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "51F1CC7A3CF7C42BD04EDD9A7E30683E"
-            BuildableName = "MCClipImageBundle.bundle"
-            BlueprintName = "MCComponentFunction-MCClipImageBundle"
+            BlueprintIdentifier = "EE5B3123ED843D9B0059B12BA4845DEF"
+            BuildableName = "MCPhotoLibraryBundle.bundle"
+            BlueprintName = "MCComponentFunction-MCPhotoLibraryBundle"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

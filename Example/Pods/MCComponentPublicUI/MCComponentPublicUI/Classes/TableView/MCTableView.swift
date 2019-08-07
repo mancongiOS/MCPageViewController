@@ -127,6 +127,7 @@ extension UITableView {
         guard let cell = dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? T else {
             return T()
         }
+        cell.selectionStyle = .none
         return cell
     }
     

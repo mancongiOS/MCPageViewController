@@ -12,8 +12,7 @@ import UIKit
 
 extension MCToast {
     
-    /// toast显示的时长
-    public static let ktoastAutoClearTime: CGFloat = 2
+
     /// toast上文字的字体大小
     public static let kToastFont: CGFloat = 15
 
@@ -28,7 +27,7 @@ extension MCToast {
     ///   - font: 字体大小
     public static func mc_text(
         _ text: String,
-        autoClearTime: CGFloat = ktoastAutoClearTime,
+        autoClearTime: CGFloat = MCToastConfig.shared.autoClearTime,
         font: CGFloat = kToastFont) {
         
         let autoClear : Bool = autoClearTime > 0 ? true : false
@@ -62,7 +61,7 @@ extension MCToast {
     ///   - font: 字体大小
     public static func mc_success(
         _ text:String,
-        autoClearTime: CGFloat = ktoastAutoClearTime,
+        autoClearTime: CGFloat = MCToastConfig.shared.autoClearTime,
         font: CGFloat = kToastFont) {
 
         let autoClear : Bool = autoClearTime > 0 ? true : false
@@ -79,7 +78,7 @@ extension MCToast {
     ///   - font: 字体大小
     public static func mc_failure(
         _ text: String,
-        autoClearTime:CGFloat = ktoastAutoClearTime,
+        autoClearTime:CGFloat = MCToastConfig.shared.autoClearTime,
         font: CGFloat = kToastFont) {
 
         let autoClear : Bool = autoClearTime > 0 ? true : false
@@ -95,7 +94,7 @@ extension MCToast {
     ///   - font: 字体大小
     public static func mc_wait(
         _ text: String,
-        autoClearTime:CGFloat = ktoastAutoClearTime,
+        autoClearTime:CGFloat = MCToastConfig.shared.autoClearTime,
         font: CGFloat = kToastFont) {
         
         let autoClear : Bool = autoClearTime > 0 ? true : false
@@ -112,7 +111,7 @@ extension MCToast {
     ///   - font: 字体大小
     public static func mc_warning(
         _ text: String,
-        autoClearTime:CGFloat = ktoastAutoClearTime,
+        autoClearTime:CGFloat = MCToastConfig.shared.autoClearTime,
         font: CGFloat = kToastFont) {
         
         let autoClear : Bool = autoClearTime > 0 ? true : false
@@ -128,7 +127,7 @@ extension MCToast {
     ///   - font: 字体大小
     public static func mc_other(
         _ text: String,
-        autoClearTime:CGFloat = ktoastAutoClearTime,
+        autoClearTime:CGFloat = MCToastConfig.shared.autoClearTime,
         font: CGFloat = kToastFont) {
         
         let autoClear : Bool = autoClearTime > 0 ? true : false
@@ -150,7 +149,7 @@ extension MCToast {
     ///   - font: 字体大小
     public static func mc_statusBar(
         _ text: String,
-        autoClearTime: CGFloat = ktoastAutoClearTime,
+        autoClearTime: CGFloat = MCToastConfig.shared.autoClearTime,
         font: CGFloat = kToastFont,
         backgroundColor: UIColor? = nil) {
         

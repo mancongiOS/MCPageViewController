@@ -1,123 +1,127 @@
 PODS:
   - Alamofire (4.8.2)
   - Kingfisher (4.10.1)
-  - MCComponentExtension (0.6.4):
-    - MCComponentExtension/Bundle (= 0.6.4)
-    - MCComponentExtension/DispatchQueue (= 0.6.4)
-    - MCComponentExtension/Int (= 0.6.4)
-    - MCComponentExtension/MCLoading (= 0.6.4)
-    - MCComponentExtension/NotificationCenter (= 0.6.4)
-    - MCComponentExtension/String (= 0.6.4)
-    - MCComponentExtension/UIAlertController (= 0.6.4)
-    - MCComponentExtension/UIBarButtonItem (= 0.6.4)
-    - MCComponentExtension/UIColor (= 0.6.4)
-    - MCComponentExtension/UIDevice (= 0.6.4)
-    - MCComponentExtension/UIFont (= 0.6.4)
-    - MCComponentExtension/UIImage (= 0.6.4)
-    - MCComponentExtension/UIView (= 0.6.4)
-    - MCComponentExtension/UserDefaults (= 0.6.4)
-  - MCComponentExtension/Bundle (0.6.4)
-  - MCComponentExtension/DispatchQueue (0.6.4)
-  - MCComponentExtension/Int (0.6.4)
-  - MCComponentExtension/MCLoading (0.6.4)
-  - MCComponentExtension/NotificationCenter (0.6.4)
-  - MCComponentExtension/String (0.6.4)
-  - MCComponentExtension/UIAlertController (0.6.4)
-  - MCComponentExtension/UIBarButtonItem (0.6.4)
-  - MCComponentExtension/UIColor (0.6.4)
-  - MCComponentExtension/UIDevice (0.6.4)
-  - MCComponentExtension/UIFont (0.6.4)
-  - MCComponentExtension/UIImage (0.6.4):
+  - MCComponentExtension (0.8.0):
+    - MCComponentExtension/Array (= 0.8.0)
+    - MCComponentExtension/Bundle (= 0.8.0)
+    - MCComponentExtension/DispatchQueue (= 0.8.0)
+    - MCComponentExtension/Int (= 0.8.0)
+    - MCComponentExtension/NotificationCenter (= 0.8.0)
+    - MCComponentExtension/NSMutableAttributedString (= 0.8.0)
+    - MCComponentExtension/String (= 0.8.0)
+    - MCComponentExtension/Time (= 0.8.0)
+    - MCComponentExtension/UIAlertController (= 0.8.0)
+    - MCComponentExtension/UIBarButtonItem (= 0.8.0)
+    - MCComponentExtension/UIColor (= 0.8.0)
+    - MCComponentExtension/UIDevice (= 0.8.0)
+    - MCComponentExtension/UIFont (= 0.8.0)
+    - MCComponentExtension/UIImage (= 0.8.0)
+    - MCComponentExtension/UIView (= 0.8.0)
+    - MCComponentExtension/UserDefaults (= 0.8.0)
+  - MCComponentExtension/Array (0.8.0)
+  - MCComponentExtension/Bundle (0.8.0)
+  - MCComponentExtension/DispatchQueue (0.8.0)
+  - MCComponentExtension/Int (0.8.0)
+  - MCComponentExtension/NotificationCenter (0.8.0)
+  - MCComponentExtension/NSMutableAttributedString (0.8.0)
+  - MCComponentExtension/String (0.8.0)
+  - MCComponentExtension/Time (0.8.0)
+  - MCComponentExtension/UIAlertController (0.8.0)
+  - MCComponentExtension/UIBarButtonItem (0.8.0)
+  - MCComponentExtension/UIColor (0.8.0)
+  - MCComponentExtension/UIDevice (0.8.0)
+  - MCComponentExtension/UIFont (0.8.0)
+  - MCComponentExtension/UIImage (0.8.0):
     - MCComponentExtension/Bundle
-  - MCComponentExtension/UIView (0.6.4)
-  - MCComponentExtension/UserDefaults (0.6.4)
-  - MCComponentFunction (0.6.8):
+  - MCComponentExtension/UIView (0.8.0)
+  - MCComponentExtension/UserDefaults (0.8.0)
+  - MCComponentFunction (0.8.2):
     - MCComponentExtension
-    - MCComponentFunction/AppStore (= 0.6.8)
-    - MCComponentFunction/CountDown (= 0.6.8)
-    - MCComponentFunction/DatePicker (= 0.6.8)
-    - MCComponentFunction/Geocoder (= 0.6.8)
-    - MCComponentFunction/Location (= 0.6.8)
-    - MCComponentFunction/MCClipImage (= 0.6.8)
-    - MCComponentFunction/MCKingfisher (= 0.6.8)
-    - MCComponentFunction/MCRefresh (= 0.6.8)
-    - MCComponentFunction/Network (= 0.6.8)
-    - MCComponentFunction/PickerImageHelper (= 0.6.8)
-    - MCComponentFunction/Route (= 0.6.8)
-    - MCComponentFunction/Scan (= 0.6.8)
-    - MCComponentFunction/Toast (= 0.6.8)
-    - MCComponentFunction/Tool (= 0.6.8)
-  - MCComponentFunction/AppStore (0.6.8):
+    - MCComponentFunction/AppStore (= 0.8.2)
+    - MCComponentFunction/CountDown (= 0.8.2)
+    - MCComponentFunction/DatePicker (= 0.8.2)
+    - MCComponentFunction/Geocoder (= 0.8.2)
+    - MCComponentFunction/Kingfisher (= 0.8.2)
+    - MCComponentFunction/Location (= 0.8.2)
+    - MCComponentFunction/MCRefresh (= 0.8.2)
+    - MCComponentFunction/Network (= 0.8.2)
+    - MCComponentFunction/PhotoLibrary (= 0.8.2)
+    - MCComponentFunction/PickerImageHelper (= 0.8.2)
+    - MCComponentFunction/Route (= 0.8.2)
+    - MCComponentFunction/Scan (= 0.8.2)
+    - MCComponentFunction/Toast (= 0.8.2)
+    - MCComponentFunction/Tool (= 0.8.2)
+  - MCComponentFunction/AppStore (0.8.2):
     - MCComponentExtension
-  - MCComponentFunction/CountDown (0.6.8):
+  - MCComponentFunction/CountDown (0.8.2):
     - MCComponentExtension
-  - MCComponentFunction/DatePicker (0.6.8):
+  - MCComponentFunction/DatePicker (0.8.2):
     - MCComponentExtension
-  - MCComponentFunction/Geocoder (0.6.8):
+  - MCComponentFunction/Geocoder (0.8.2):
     - MCComponentExtension
-  - MCComponentFunction/Location (0.6.8):
-    - MCComponentExtension
-  - MCComponentFunction/MCClipImage (0.6.8):
-    - MCComponentExtension
-  - MCComponentFunction/MCKingfisher (0.6.8):
+  - MCComponentFunction/Kingfisher (0.8.2):
     - Kingfisher
     - MCComponentExtension
-  - MCComponentFunction/MCRefresh (0.6.8):
+  - MCComponentFunction/Location (0.8.2):
+    - MCComponentExtension
+  - MCComponentFunction/MCRefresh (0.8.2):
     - MCComponentExtension
     - MJRefresh
-  - MCComponentFunction/Network (0.6.8):
+  - MCComponentFunction/Network (0.8.2):
     - Alamofire
     - MCComponentExtension
-  - MCComponentFunction/PickerImageHelper (0.6.8):
+  - MCComponentFunction/PhotoLibrary (0.8.2):
     - MCComponentExtension
-  - MCComponentFunction/Route (0.6.8):
+  - MCComponentFunction/PickerImageHelper (0.8.2):
     - MCComponentExtension
-  - MCComponentFunction/Scan (0.6.8):
+  - MCComponentFunction/Route (0.8.2):
+    - MCComponentExtension
+  - MCComponentFunction/Scan (0.8.2):
     - MCComponentExtension
     - MCComponentFunction/Route
-  - MCComponentFunction/Toast (0.6.8):
+  - MCComponentFunction/Toast (0.8.2):
     - MCComponentExtension
-  - MCComponentFunction/Tool (0.6.8):
+  - MCComponentFunction/Tool (0.8.2):
     - MCComponentExtension
-  - MCComponentPublicUI (0.6.4):
+  - MCComponentPublicUI (0.8.0):
     - MCComponentExtension
-    - MCComponentPublicUI/Button (= 0.6.4)
-    - MCComponentPublicUI/CollectionView (= 0.6.4)
-    - MCComponentPublicUI/TableView (= 0.6.4)
-    - MCComponentPublicUI/TextField (= 0.6.4)
-    - MCComponentPublicUI/Textview (= 0.6.4)
-    - MCComponentPublicUI/View (= 0.6.4)
+    - MCComponentPublicUI/Button (= 0.8.0)
+    - MCComponentPublicUI/CollectionView (= 0.8.0)
+    - MCComponentPublicUI/TableView (= 0.8.0)
+    - MCComponentPublicUI/TextField (= 0.8.0)
+    - MCComponentPublicUI/TextView (= 0.8.0)
+    - MCComponentPublicUI/View (= 0.8.0)
     - SnapKit
-  - MCComponentPublicUI/Button (0.6.4):
+  - MCComponentPublicUI/Button (0.8.0):
     - MCComponentExtension
     - SnapKit
-  - MCComponentPublicUI/CollectionView (0.6.4):
+  - MCComponentPublicUI/CollectionView (0.8.0):
     - MCComponentExtension
     - MCComponentPublicUI/View
     - SnapKit
-  - MCComponentPublicUI/TableView (0.6.4):
+  - MCComponentPublicUI/TableView (0.8.0):
     - MCComponentExtension
     - MCComponentPublicUI/View
     - SnapKit
-  - MCComponentPublicUI/TextField (0.6.4):
+  - MCComponentPublicUI/TextField (0.8.0):
     - MCComponentExtension
     - SnapKit
-  - MCComponentPublicUI/Textview (0.6.4):
+  - MCComponentPublicUI/TextView (0.8.0):
     - MCComponentExtension
     - SnapKit
-  - MCComponentPublicUI/View (0.6.4):
+  - MCComponentPublicUI/View (0.8.0):
     - MCComponentExtension
     - MCComponentPublicUI/TextField
     - SnapKit
-  - MCPageViewController (5.3.0):
+  - MCPageViewController (5.4.1):
     - SnapKit
   - MJRefresh (3.1.16)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
-  - MCComponentExtension (~> 0.6.4)
-  - MCComponentFunction (~> 0.6.8)
-  - MCComponentPublicUI (~> 0.6.4)
+  - MCComponentExtension (= 0.8.0)
+  - MCComponentFunction (= 0.8.2)
+  - MCComponentPublicUI (~> 0.8.0)
   - MCPageViewController (from `../`)
   - MJRefresh
   - SnapKit
@@ -140,13 +144,13 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  MCComponentExtension: 6e715d6842dfc5d27f0d26f9ab05970d7f2feea7
-  MCComponentFunction: 16528b788d0ba996ffef879599ed5f4a61dd8ed6
-  MCComponentPublicUI: beea3629618a1a512ab0164fa1c05ef1e8a4d383
-  MCPageViewController: 1451fdcc0c09a4832bb8b59485699182f767889a
+  MCComponentExtension: c5ca1dcd27527ea59324cf81c1ddaf62beb7a64f
+  MCComponentFunction: fc3a391f95cba55bda6ca9a7e276be7739269b4a
+  MCComponentPublicUI: ac4790a5b3f670b7e17a3608bc0ce58b83f338f4
+  MCPageViewController: 454e2665f3c1ba3d70e6de584b75b690427e4d29
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 6e8a84fbb93f2d6bc0ac69d3282b446b1e0eb59b
+PODFILE CHECKSUM: 99ed9034c5bb1a05b9693a70554b2199ef75193d
 
 COCOAPODS: 1.7.1

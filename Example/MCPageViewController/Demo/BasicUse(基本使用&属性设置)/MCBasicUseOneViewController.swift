@@ -48,7 +48,8 @@ class MCBasicUseOneViewController: MCBasicUseViewController {
         config.categoryModels = modelArray
         config.defaultIndex = 0
         config.category.maxTitleCount = 10
-        
+        config.indicator.height = 20
+        config.indicator.image = UIImage.init(named: "HOT_bg")
         
         categoryBar.initCategoryBarWithConfig(config)
         containerView.initContainerViewWithConfig(config)

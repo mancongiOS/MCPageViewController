@@ -23,33 +23,14 @@ extension UIImageView {
         guard let urlString = urlString,
             let url = URL(string: urlString) else {
                 self.image = placeholder
-                
                 return
         }
+        
         self.kf.setImage(with: url, placeholder: placeholder) { (image, _, _, _) in
             
-            self.image = image
             if complete != nil {
                 complete!(image)
             }
-        }
-    }
-
-    
-    
-    /// 图片下载返回尺寸
-    public func mc_setImageReturnSize(with urlString: String?, placeholder: UIImage?, complete: @escaping ((_ size: CGSize) -> ())) {
-        
-        guard let urlString = urlString,
-            let url = URL(string: urlString) else {
-                self.image = placeholder
-                
-                return
-        }
-        self.kf.setImage(with: url, placeholder: placeholder) { (image, _, _, _) in
-            
-            self.image = image
-            complete(image?.size ?? .zero)
         }
     }
 }

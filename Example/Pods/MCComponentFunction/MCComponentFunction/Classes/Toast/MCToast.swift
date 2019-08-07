@@ -15,16 +15,11 @@ private let sn_topBar: Int = 1001
 
 
 private let kScreenWidth = UIScreen.main.bounds.size.width
-/// toast 的背景颜色
-private let kToastBackgroundColor: UIColor = UIColor.init(white: 0, alpha: 0.8)
+
 /// toast内边距 （toast和其中的内容的最小边距）
 private let kMinPadding: CGFloat = 10
 /// toast外边距 （toast距离屏幕边的最小边距）
 private let kMinMargin: CGFloat = 30
-/// 黑色框的size
-fileprivate let kToastSize = CGSize.init(width: 150, height: 110)
-/// toast状态图片的size
-fileprivate let kToastImageSize = CGSize.init(width: 34, height: 34)
 
 
 
@@ -57,6 +52,7 @@ public class MCToast: NSObject {
     
     private override init() {
         super.init()
+        
     }
     
     
@@ -221,7 +217,7 @@ extension MCToast {
         
         let mainView = UIView()
         mainView.layer.cornerRadius = 10
-        mainView.backgroundColor = kToastBackgroundColor
+        mainView.backgroundColor = MCToastConfig.shared.background.color
         
         let label = UILabel()
         label.text = text
@@ -285,6 +281,14 @@ extension MCToast {
         
         clearAllToast()
 
+        let kToastSize = MCToastConfig.shared.background.size
+        var kToastImageSize = MCToastConfig.shared.icon.size
+
+        if (kToastImageSize.width > kToastSize.width) || (kToastImageSize.height > kToastSize.height)  {
+            kToastImageSize = CGSize.init(width: 40, height: 40)
+        }
+        
+        
         
         let frame = CGRect(x: 0, y: 0, width: kToastSize.width, height: kToastSize.height)
         
@@ -294,13 +298,15 @@ extension MCToast {
         
         let mainView = UIView()
         mainView.layer.cornerRadius = 10
-        mainView.backgroundColor = kToastBackgroundColor
+        mainView.backgroundColor = MCToastConfig.shared.background.color
         
         
         let activity = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
         
-        activity.bounds = CGRect.init(x: 0, y: 0, width: kToastImageSize.width, height: kToastImageSize.height)
-        activity.center = CGPoint.init(x: kToastSize.width / 2, y: (kToastSize.height - kToastImageSize.height) / 2)
+     
+        let activityX = (kToastSize.width - kToastImageSize.width) / 2
+        let activityY = ((kToastSize.height - kToastImageSize.height - 30) / 2)
+        activity.frame = CGRect.init(x: activityX, y: activityY, width: kToastImageSize.width, height: kToastImageSize.height)
         activity.startAnimating()
         mainView.addSubview(activity)
         
@@ -313,7 +319,7 @@ extension MCToast {
         label.backgroundColor = UIColor.clear
         
         
-        label.frame = CGRect(x: 5, y: kToastSize.height / 2 + 12, width: kToastSize.width - 10, height: 20)
+        label.frame = CGRect(x: 5, y: activity.frame.maxY + 12, width: kToastSize.width - 10, height: 18)
         mainView.addSubview(label)
         
         
@@ -374,12 +380,20 @@ extension MCToast {
         
         clearAllToast()
         
+        let kToastSize = MCToastConfig.shared.background.size
+        var kToastImageSize = MCToastConfig.shared.icon.size
+        if (kToastImageSize.width > kToastSize.width) || (kToastImageSize.height > kToastSize.height)  {
+            kToastImageSize = CGSize.init(width: 40, height: 40)
+        }
+
+        
+        
         let frame = CGRect(x: 0, y: 0, width: kToastSize.width, height: kToastSize.height)
         let window = UIWindow()
         window.backgroundColor = UIColor.clear
         let mainView = UIView()
         mainView.layer.cornerRadius = 10
-        mainView.backgroundColor = kToastBackgroundColor
+        mainView.backgroundColor = MCToastConfig.shared.background.color
         
         
         var imageName = ""
@@ -398,15 +412,48 @@ extension MCToast {
             break
         }
         
-        let image = Bundle.mc_loadImage(imageName, from: "MCToastBundle", in: "MCComponentFunction")
+        var image = Bundle.mc_loadImage(imageName, from: "MCToastBundle", in: "MCComponentFunction")
+        
+        
+        
+        /// 外部是否配置了展示的icon
+        switch type {
+        case .success:
+            if let trueImage = MCToastConfig.shared.icon.successImage {
+                image = trueImage
+            }
+        case .failure:
+            if let trueImage = MCToastConfig.shared.icon.failureImage {
+                image = trueImage
+            }
+        case .wait:
+            if let trueImage = MCToastConfig.shared.icon.waitImage {
+                image = trueImage
+            }
+        case .warning:
+            if let trueImage = MCToastConfig.shared.icon.warningImage {
+                image = trueImage
+            }
+        case .other:
+            if let trueImage = MCToastConfig.shared.icon.otherImage {
+                image = trueImage
+            }
+        default:
+            break
+        }
+
         
         let checkmarkView = UIImageView(image: image)
-        checkmarkView.bounds = CGRect.init(x: 0, y: 0, width: kToastImageSize.width, height: kToastImageSize.height)
-        checkmarkView.center = CGPoint.init(x: kToastSize.width / 2, y: (kToastSize.height - kToastImageSize.height) / 2)
+       
+        
+        let checkmarkX = (kToastSize.width - kToastImageSize.width) / 2
+        let checkmarkY = ((kToastSize.height - kToastImageSize.height - 30) / 2) + 2
+        checkmarkView.frame = CGRect.init(x: checkmarkX, y: checkmarkY, width: kToastImageSize.width, height: kToastImageSize.height)
+        
         mainView.addSubview(checkmarkView)
         
         let label = UILabel()
-        label.frame = CGRect(x: 5, y: kToastSize.height / 2 + 12, width: kToastSize.width - 10, height: 20)
+        label.frame = CGRect(x: 5, y: checkmarkView.frame.maxY + 12, width: kToastSize.width - 10, height: 18)
 
         label.font = UIFont.systemFont(ofSize: font)
         label.textColor = UIColor.white
@@ -467,7 +514,7 @@ extension MCToast {
                     v.alpha = 0
                 }, completion: { b in
                     
-                    if let index = windows.index(where: { (item) -> Bool in
+                    if let index = windows.firstIndex(where: { (item) -> Bool in
                         return item == window
                     }) {
                         windows.remove(at: index)

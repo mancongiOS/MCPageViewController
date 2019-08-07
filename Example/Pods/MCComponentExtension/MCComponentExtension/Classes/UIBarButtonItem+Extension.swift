@@ -19,17 +19,12 @@ extension UIBarButtonItem {
     ///   - selector: 事件
     ///   - isLeft: 是否左侧导航栏元素项
     /// - Returns: UIBarButtonItem
-    public static func mc_setImage(_ image: UIImage?, target: UIViewController, selector: Selector, isLeft: Bool = false) -> UIBarButtonItem {
+    public static func mc_setImage(_ image: UIImage?, target: Any, selector: Selector, isLeft: Bool = false) -> UIBarButtonItem {
         
-        var barImage = image
-        
-        if barImage == nil {
-            barImage = UIImage.init(named: "...")
-        }
         
         var size = CGSize.init(width: 44, height: 44)
         
-        if let sizeTemp = barImage?.size {
+        if let sizeTemp = image?.size {
             size = sizeTemp
         }
         if size.width < 44 { size.width = 44 }
@@ -40,7 +35,7 @@ extension UIBarButtonItem {
         let imageView = UIImageView()
         imageView.frame = CGRect.init(x: 0, y: 0, width: size.width, height: size.height)
         imageView.isUserInteractionEnabled = true
-        imageView.image = barImage
+        imageView.image = image
         let tap = UITapGestureRecognizer.init(target: target, action: selector)
         imageView.addGestureRecognizer(tap)
         
@@ -64,7 +59,7 @@ extension UIBarButtonItem {
     ///   - isLeft: 是否左侧导航栏元素项
     
     /// - Returns: UIBarButtonItem
-    public static func mc_setText(_ text: String, textColor: UIColor = UIColor.darkText, font: CGFloat = 14, target: UIViewController, selector: Selector, isLeft : Bool = false) -> UIBarButtonItem {
+    public static func mc_setText(_ text: String, textColor: UIColor = UIColor.darkText, font: CGFloat = 14, target: Any, selector: Selector, isLeft : Bool = false) -> UIBarButtonItem {
         
         
         var strWidth = text.getWidth(font: UIFont.systemFont(ofSize: font), height: font + 4)

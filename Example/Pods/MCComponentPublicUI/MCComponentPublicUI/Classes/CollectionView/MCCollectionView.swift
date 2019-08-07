@@ -11,6 +11,16 @@ import UIKit
 
 public class MCCollectionView: UICollectionView {
     
+    /// 当前tableView的数据源，如果为0的话，展示空数据页面。否则隐藏。
+    public var dataListCount: Int = 0 {
+        didSet {
+            if dataListCount == 0 {
+                showBackground()
+            } else {
+                hideBackground()
+            }
+        }
+    }
     
     override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -29,17 +39,19 @@ public class MCCollectionView: UICollectionView {
     
     
     
-    /// 展示空数据UI
-    public func showEmptyView() {
+    /**
+     * 展示背景  空数据UI展示
+     */
+    public func showBackground() {
         self.emptyView.isHidden = false
     }
     
-    /// 隐藏空数据UI
-    public func hiddenEmptyView() {
+    /**
+     * 隐藏背景  空数据UI隐藏
+     */
+    public func hideBackground() {
         self.emptyView.isHidden = true
     }
-    
-    
     
     public lazy var emptyView: MCEmptyDataView = {
         let view = MCEmptyDataView()

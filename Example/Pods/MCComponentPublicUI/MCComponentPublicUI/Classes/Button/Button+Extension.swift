@@ -24,7 +24,7 @@ public protocol MCButtonDirectionRrotocol {
 }
 
 extension UIButton: MCButtonDirectionRrotocol {
-    /// 设置按钮的图文位置
+    /// 设置按钮的图文位置 （一定要在有frame的时候调用）
     ///
     /// - Parameters:
     ///   - direction: 图文的方向
@@ -112,7 +112,7 @@ extension UIButton {
     ///   - backgroundColor: 背景颜色
     /// - Returns: UIButton
     public static func mc_make(
-        image: UIImage,
+        image: UIImage?,
         selectImage: UIImage? = nil,
         cornerRadius: CGFloat = 0,
         backgroundColor: UIColor = UIColor.white,
@@ -123,9 +123,7 @@ extension UIButton {
         let button = UIButton.init(type: .custom)
         
         button.setImage(image, for: .normal)
-        if selectImage != nil {
-            button.setImage(selectImage, for: .selected)
-        }
+        button.setImage(selectImage, for: .selected)
         button.backgroundColor = backgroundColor
         if cornerRadius > 0 {
             button.layer.cornerRadius = cornerRadius

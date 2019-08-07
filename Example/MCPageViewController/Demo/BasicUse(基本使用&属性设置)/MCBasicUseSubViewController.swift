@@ -77,11 +77,11 @@ extension MCBasicUseSubViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        delegate?.jumpToOtherIndex(6)
+//        delegate?.jumpToOtherIndex(6)
         
-//        let vc = NextViewController()
+        let vc = NextViewController()
 //
-//        fatherViewController?.navigationController?.pushViewController(vc, animated: true)
+        fatherViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

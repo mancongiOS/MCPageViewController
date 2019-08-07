@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class MCInputBarView: UIView {
     
@@ -37,7 +38,7 @@ public class MCInputBarView: UIView {
         
         rightTextFiled.snp.remakeConstraints { (make) ->Void in
             make.left.equalTo(leftLabel.snp.right)
-            make.right.equalTo(-15)
+            make.right.equalTo(0)
             make.top.bottom.equalTo(self)
         }
     }
@@ -60,8 +61,8 @@ public class MCInputBarView: UIView {
     }()
     
     
-    public lazy var rightTextFiled: MCTextFiled = {
-        let tf = MCTextFiled()
+    public lazy var rightTextFiled: UITextField = {
+        let tf = UITextField()
         tf.placeholder = "请填写"
         tf.font = UIFont.mc14
         tf.textColor = UIColor.mc_gray

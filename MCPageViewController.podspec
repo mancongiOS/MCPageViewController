@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
     s.name         = "MCPageViewController"
-    s.version      = "5.4.1"
+    s.version      = "5.4.2"
     s.summary      = "分页控制器： 支持分类栏在navigationBar上，滑动置顶等功能。"
     s.homepage     = "https://github.com/mancongiOS/MCPageViewController"
     s.license      = "MIT"

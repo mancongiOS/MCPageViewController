@@ -80,7 +80,7 @@ public class MCContainerView: UIView {
     
     private lazy var pageVC: UIPageViewController = {
         let vc = UIPageViewController.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        vc.view.backgroundColor = UIColor.white
+//        vc.view.backgroundColor = UIColor.white
         vc.delegate = self
         vc.dataSource = self
         return vc

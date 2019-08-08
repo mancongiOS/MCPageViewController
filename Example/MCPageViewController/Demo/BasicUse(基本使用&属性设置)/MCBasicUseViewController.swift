@@ -60,6 +60,7 @@ extension MCBasicUseViewController {
             vc.fatherViewController = self
             vcArray.append(vc)
             modelArray.append(model)
+            self.addChild(vc)
         }
     }
 }

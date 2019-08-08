@@ -113,7 +113,7 @@ PODS:
     - MCComponentExtension
     - MCComponentPublicUI/TextField
     - SnapKit
-  - MCPageViewController (5.4.1):
+  - MCPageViewController (5.4.2):
     - SnapKit
   - MJRefresh (3.1.16)
   - SnapKit (4.2.0)
@@ -147,7 +147,7 @@ SPEC CHECKSUMS:
   MCComponentExtension: c5ca1dcd27527ea59324cf81c1ddaf62beb7a64f
   MCComponentFunction: fc3a391f95cba55bda6ca9a7e276be7739269b4a
   MCComponentPublicUI: ac4790a5b3f670b7e17a3608bc0ce58b83f338f4
-  MCPageViewController: 454e2665f3c1ba3d70e6de584b75b690427e4d29
+  MCPageViewController: 657a3568dac0c511923238c95922c9cb93a762dc
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 

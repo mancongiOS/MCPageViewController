@@ -29,6 +29,7 @@ class MCBasicUseSubViewController: UIViewController {
         super.viewDidLoad()
         
         
+        view.backgroundColor = UIColor.clear
         initUI()
     }
     
@@ -41,6 +42,7 @@ class MCBasicUseSubViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tb = UITableView.init(frame: CGRect.zero, style: .plain)
+        tb.backgroundColor = UIColor.clear
         tb.delegate = self
         tb.dataSource = self
         tb.separatorStyle = .none
@@ -62,11 +64,12 @@ extension MCBasicUseSubViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = UIColor.white
-        } else {
-            cell.backgroundColor = UIColor.orange
-        }
+        cell.backgroundColor = UIColor.clear
+//        if indexPath.row % 2 == 0 {
+//            cell.backgroundColor = UIColor.white
+//        } else {
+//            cell.backgroundColor = UIColor.orange
+//        }
         
         cell.textLabel?.text = pageExplain + "  第" + String(indexPath.row) + "行"
         cell.textLabel?.textColor = UIColor.black
@@ -81,7 +84,7 @@ extension MCBasicUseSubViewController: UITableViewDelegate, UITableViewDataSourc
         
         let vc = NextViewController()
 //
-        fatherViewController?.navigationController?.pushViewController(vc, animated: true)
+        self.fatherViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

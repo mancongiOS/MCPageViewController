@@ -48,6 +48,13 @@ public class MCContainerView: UIView {
         self.config = config
         
         
+        
+        /// pageVC是否支持手势滑动切换
+        if config.isCanScroll {
+            pageVC.dataSource = self
+        }
+
+        
         // 指定当前的子控制器
         currentChildPageViewController = config.viewControllers[index] as? MCPageChildViewController
         
@@ -80,9 +87,8 @@ public class MCContainerView: UIView {
     
     private lazy var pageVC: UIPageViewController = {
         let vc = UIPageViewController.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-//        vc.view.backgroundColor = UIColor.white
+        
         vc.delegate = self
-        vc.dataSource = self
         return vc
     }()
 }

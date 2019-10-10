@@ -30,6 +30,9 @@ public class MCPageConfig: NSObject {
     public var defaultIndex : Int = 0
 
     
+    /// 是否支持左右滑动切换
+    public var isCanScroll: Bool = true
+    
 
     public var category = CategoryStruct.init()
 
